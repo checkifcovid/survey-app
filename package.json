@@ -18,8 +18,8 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && next export",
+    "start": "serve ./out",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "devDependencies": {
