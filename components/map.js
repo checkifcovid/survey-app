@@ -18,7 +18,7 @@ export default function Map(props) {
   return (
     <div className={classes.root}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyAVoFQ7WjTb1G1yx6gAPNqqDxJpEtc6ry4' }}
+        bootstrapURLKeys={{ key: 'GOOGLE API KEY HERE' }}
         defaultCenter={{
           lat: 43.7068,
           lng: -79.3983,
