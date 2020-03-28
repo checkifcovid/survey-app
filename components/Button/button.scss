@@ -1,13 +1,21 @@
-.button {
-  &--primary {
+@import '../variables';
 
+.button {
+  border-radius: 15px;
+  min-width: 150px;
+  box-shadow: 0 10px 40px 0 rgba(25, 104, 252, 0.3);
+  padding: 15px 20px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &--primary {
+    background-color: $blue500;
+    color: $white;
   }
 
   &--secondary {
-
-  }
-
-  &--ternary {
-
+    background-color: $white;
+    border: solid 2px $blue500;
+    color: $blue500;
   }
 }

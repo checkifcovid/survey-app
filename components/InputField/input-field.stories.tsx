@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import InputField from './input-field';
 
 export default {
-    title: 'Input Field',
+    title: 'Text Input Field',
 };
 
-export const TextInput = () => {
+export const textInput = () => {
     const [inputText, setInputText] = useState('');
 
     return (
         <InputField
-            onChange={(e) => setInputText(e.target.value)}
+            onChange={({ target: { value } }) => setInputText(value)}
             value={inputText}
-            label='Test Input'
+            label='Other'
+            placeholder='What other conditions do you have?'
+            labelPosition='left'
         />
-    );
-}
+    )
+};

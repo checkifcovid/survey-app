@@ -1,4 +1,5 @@
-module.exports = {
+const withSass = require('@zeit/next-sass');
+module.exports = withSass({
   env: {
     site_name: 'FindTheCluster.com',
     city: 'Toronto',
@@ -7,16 +8,5 @@ module.exports = {
       username: 'admin',
       password: 'secret',
     },
-  },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.module.rules.push({
-      test: /\.s[ac]ss$/i,
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader',
-      ],
-    },)
-    return config;
   }
-}
+})
