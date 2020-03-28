@@ -5,9 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import MuiLink from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 
-
-import theme from '../src/theme'
-
+// TODO replace with footer
 function Copyright() {
   return (
     <Grid>
@@ -30,7 +28,7 @@ export default class MyDocument extends Document {
       <html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
