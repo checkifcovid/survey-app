@@ -1,14 +1,15 @@
 import React from 'react';
 
 type ButtonProps = {
-    onClick: any,
-    children: any
+    onClick: () => any;
+    children: any;
+    variant: string;
 }
 
-export default ({ onClick, children }: ButtonProps) => (
+export default ({ onClick, children, variant }: ButtonProps) => (
     <button
         onClick={onClick}
-        className='button'
+        className={`button button--${variant}`}
     >
         { children }
     </button>
