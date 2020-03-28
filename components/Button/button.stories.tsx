@@ -23,12 +23,3 @@ export const secondary = () => (
         Secondary Button
     </Button>
 );
-
-export const ternary = () => (
-    <Button
-        onClick={action('clicked')}
-        variant='ternary'
-    >
-        Ternary Button
-    </Button>
-);
