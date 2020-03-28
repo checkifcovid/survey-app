@@ -5,11 +5,12 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
     "clsx": "latest",
     "google-map-react": "^1.1.7",
     "highcharts": "^8.0.4",
     "highcharts-react-official": "^3.0.0",
-    "next": "latest",
+    "next": "^9.3.2",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
