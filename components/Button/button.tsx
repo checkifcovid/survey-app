@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './button.scss';
 type ButtonProps = {
     onClick: () => any;
     children: any;
