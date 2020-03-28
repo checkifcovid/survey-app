@@ -1,0 +1,23 @@
+@import '../variables';
+
+.toggle {
+  display: flex;
+
+  &__option {
+    border-radius: 3px;
+    border: solid 1px $grey100;
+    background-color: $white;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+
+  &--selected {
+    background-color: $blue500;
+    color: $white;
+  }
+
+  &--un-selected {
+    background-color: $white;
+    color: $black;
+  }
+}

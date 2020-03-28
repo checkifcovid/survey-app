@@ -1,0 +1,30 @@
+@import '../variables';
+
+.other-symptoms-select {
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 30px;
+
+  &__option {
+    padding: 30px 5px;
+    border-radius: 9px;
+    background-color: $white;
+    min-width: 120px;
+    max-width: 200px;
+    box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
+
+    &__symptom {
+      text-align: center;
+      font-size: 18px;
+    }
+
+    &--selected {
+      border: solid 1px $blue500;
+    }
+
+    &--un-selected {
+    }
+  }
+}
