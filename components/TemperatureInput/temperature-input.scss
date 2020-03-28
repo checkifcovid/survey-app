@@ -8,8 +8,8 @@
   text-align: center;
   font-size: $default-input-text;
 
-  &__text {
-    min-width: 500px;
+  &__temperature {
+    display: flex;
   }
 
   &__label {

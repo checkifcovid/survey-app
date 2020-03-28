@@ -1,22 +1,8 @@
 import React, { useState } from 'react';
 import InputField from './input-field';
-import {action} from "@storybook/addon-actions";
 
 export default {
-    title: 'Input Fields',
-};
-
-export const temperatureInput = () => {
-    const [inputText, setInputText] = useState({temperature: undefined, unit: 'F'});
-
-    return (
-        <InputField
-            onChange={(temperature) => setInputText(temperature)}
-            value={inputText}
-            type='temperature'
-            label='What’s the highest temperature that you’ve measured?'
-        />
-    );
+    title: 'Text Input Field',
 };
 
 export const textInput = () => {
