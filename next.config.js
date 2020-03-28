@@ -8,4 +8,15 @@ module.exports = {
       password: 'secret',
     },
   },
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    webpack.module.rules.push({
+      test: /\.s[ac]ss$/i,
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+      ],
+    },)
+    return config;
+  }
 }

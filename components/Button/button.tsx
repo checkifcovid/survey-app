@@ -1,8 +1,14 @@
 import React from 'react';
 
-export default ({ onClick, children }: { onClick: any, children: any }) => (
+type ButtonProps = {
+    onClick: any,
+    children: any
+}
+
+export default ({ onClick, children }: ButtonProps) => (
     <button
         onClick={onClick}
+        className='button'
     >
         { children }
     </button>

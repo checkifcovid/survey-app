@@ -40,7 +40,10 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "fork-ts-checker-webpack-plugin": "^4.1.2",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
     "ts-loader": "^6.2.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1"
   }
 }
