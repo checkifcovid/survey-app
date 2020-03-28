@@ -1,5 +1,32 @@
-.input-field {
-  &__label {
+@import '../variables';
 
+.input-field {
+  border-radius: 3px;
+  border: solid 1px $grey100;
+  background-color: $white;
+  min-height: 25px;
+  text-align: center;
+  font-size: $default-input-text;
+
+  &__temperature {
+    display: flex;
+  }
+
+  &__text {
+    min-width: 500px;
+  }
+
+  &__label {
+    &--top {
+      margin-bottom: 10px;
+    }
+
+    &--left {
+      display: flex;
+
+      p {
+        margin-right: 25px;
+      }
+    }
   }
 }
