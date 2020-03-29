@@ -10,14 +10,14 @@
   &__option {
     padding: 30px 5px;
     border-radius: 9px;
-    border: solid 1px $white;
+    border: solid 2px rgba(255, 255, 255, 0.1);
     background-color: $white;
     width: 140px;
     box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
     cursor: pointer;
 
     &:hover {
-      border: solid 1px $blue500;
+      border: solid 2px $blue500;
     }
 
     &__symptom {
@@ -27,7 +27,7 @@
     }
 
     &--selected {
-      border: solid 1px $blue500;
+      border: solid 2px $blue500;
     }
 
     &--un-selected {
