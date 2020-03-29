@@ -1,0 +1,36 @@
+@import '../variables.scss';
+
+.navigation {
+  display: grid;
+  grid-template-columns: 265px 1fr;
+  padding: 20px 10%;
+
+  font-family: 'Roboto', serif;
+
+  &__logo-group {
+    display: grid;
+    grid-template-columns: 65px 200px;
+    cursor: pointer;
+  }
+
+  &__title {
+    font-weight: 400;
+    color: $blue500;
+    font-size: 18px;
+  }
+
+  &__items {
+    justify-self: end;
+    list-style: none;
+  }
+
+  &__item {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      color: $blue500;
+    }
+  }
+}
