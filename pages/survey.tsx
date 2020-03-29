@@ -63,13 +63,13 @@ export const SurveyContext = createContext(null);
 
 const Survey = () => {
     // State hooks for survey questions and survey itself
-    // TODO messing around with initial survey state. set to Age after.
     const [surveyState, setSurveyState] = useState(SurveyState.AGE);
     const [selectedAgeGroup, setAge] = useState();
     const [selectedSymptoms, setSymptoms] = useState([]);
     const [temperature, setTemperature] = useState({temperature: undefined, unit: 'F'});
     const [location, setLocation] = useState('');
     const [coordinates, setCoordinates] = useState({});
+    const [geoLocationLoading, setGeoLocationLoadingState] = useState(false);
 
     const onSubmitSurvey = async () => {
         try {
@@ -85,24 +85,26 @@ const Survey = () => {
         }
     };
 
+    // Triggers state change and gets caught by the useEffect below
     const geoLocateUser = () => {
-        // TODO add a loading state.
-        if (navigator.geolocation) {
+        setGeoLocationLoadingState(true);
+    };
+
+    useEffect(() => {
+        if (geoLocationLoading && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(({coords}) => {
                 setLocation('Current location');
                 setCoordinates(coords);
+                setGeoLocationLoadingState(false);
             });
         }
-    };
+    }, [geoLocationLoading]);
 
     useEffect(() => {
         if (surveyState === SurveyState.FINISHED) {
             window.location.href = '/results';
         }
     }, [surveyState]);
-
-    // TODO create the state machine for the survey.
-    // basically handle moving the state to the next corret one after each answer.
 
     return (
         <SurveyContext.Provider
@@ -118,6 +120,7 @@ const Survey = () => {
                 geoLocateUser,
                 location,
                 setLocation,
+                geoLocationLoading
             }}
         >
             <SurveyPage/>

@@ -61,7 +61,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-width: 200px;
       border-radius: 25px;
       box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
@@ -125,12 +124,19 @@
       }
 
       &__current-location {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
         background-color: rgba(204, 209, 217, 0.25);
         color: $blue500;
-        padding: 15px 0;
         cursor: pointer;
         margin: unset;
+        min-height: 20px;
+
+        p {
+          margin-left: 15px;
+        }
       }
     }
   }

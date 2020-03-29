@@ -2,6 +2,12 @@ import React, { useContext } from 'react';
 import './survey-page.scss';
 
 import { Button, OtherSymptomSelect, TemperatureInputField, InputField } from '../../components';
+import FeverIcon from '../../components/Icons/fever';
+import CoughIcon from '../../components/Icons/cough';
+import ShortBreathIcon from '../../components/Icons/short-breath';
+import MarkerIcon from '../../components/Icons/marker';
+
+import { CircularProgress } from "@material-ui/core";
 
 import { SurveyContext } from "../../pages/survey";
 import { SurveyState } from '../../pages/survey';
@@ -53,6 +59,12 @@ const AgeSection = () => {
     )
 };
 
+const symptomsLogoMapper = {
+    'Fever': <FeverIcon width={'50px'} height={'58px'}/>,
+    'Cough': <CoughIcon width={'50px'} height={'58px'}/>,
+    'Shortness of breath': <ShortBreathIcon width={'50px'} height={'58px'}/>
+};
+
 const SymptomsSection = () => {
     const { selectedSymptoms, setSymptoms, temperature, setTemperature } = useContext(SurveyContext);
 
@@ -79,7 +91,7 @@ const SymptomsSection = () => {
                             className={`symptoms-section__option symptoms-section__option--${selectedSymptoms.includes(symptom) ? 'selected' : 'un-selected'}`}
                             key={symptom}
                         >
-                            <p>icon</p>
+                            {symptomsLogoMapper[symptom]}
                             <p>{ symptom }</p>
                         </div>
                     );
@@ -123,7 +135,8 @@ const ConditionsSection = () => {
 };
 
 const LocationSection = () => {
-    const { geoLocateUser, location, setLocation } = useContext(SurveyContext);
+    const { geoLocateUser, location, setLocation, geoLocationLoading } = useContext(SurveyContext);
+
     return (
         <>
             <div className='location-section'>
@@ -133,13 +146,20 @@ const LocationSection = () => {
                     className='location-input-field__input'
                     onChange={({ target: { value } }) => setLocation(value)}
                 />
-                <div>
-                    <p
-                        className='location-input-field__current-location'
-                        onClick={geoLocateUser}
-                    >
-                        Current Location
-                    </p>
+                <div
+                    className='location-input-field__current-location'
+                    onClick={geoLocateUser}
+                >
+                    {geoLocationLoading ?
+                        <p>
+                            <CircularProgress size={16}/>
+                        </p>
+                        :
+                        <>
+                            <MarkerIcon height='18px'/>
+                            <p>Current Location</p>
+                        </>
+                    }
                 </div>
             </div>
         </>
