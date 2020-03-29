@@ -5,3 +5,4 @@ export { default as PageWrapper } from './PageWrapper/page-wrapper';
 export { default as Toggle } from './Toggle/toggle';
 export { default as OtherSymptomSelect } from './OtherSymptomSelect/other-symptom-select';
 export { default as HomePage } from './HomePage/homepage';
+export { default as SurveyPage } from './SurveyPage/survey-page';

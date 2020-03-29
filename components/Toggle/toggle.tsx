@@ -7,7 +7,7 @@ type ToggleProps = {
 }
 
 export default ({ options, onClick }: ToggleProps) => {
-    const [activeToggle, toggleOption] = useState(options[0]);
+    const [activeToggle, toggleOption] = useState('');
 
     if (options.length < 2) {
         options.push(options[0]);

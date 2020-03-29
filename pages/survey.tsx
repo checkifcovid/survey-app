@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { PageWrapper } from '../components';
+import React, { useState, createContext } from 'react';
+import { SurveyPage } from '../components';
 import { submitSurvey } from "../services/survey";
 
 enum SurveyState {
     INITIAL = 'initial',
-    ONE = 'one',
+    AGE = 'age',
     TWO = 'two',
     FINISHED = 'finished'
 }
@@ -57,19 +57,22 @@ type UserInfo = {
     receivedFluVaccine: string;
 }
 
+export const SurveyContext = createContext(null);
+
 const Survey = () => {
     // State hooks for survey questions and survey itself
     const [currentPage, setPage] = useState(SurveyState.INITIAL);
+    const [age, setAge] = useState();
 
     const onSubmitSurvey = async () => {
         try {
-            // grab the states of all questions and merge into one object
+            // TODO grab the states of all questions and merge into one object
             const surveyData = {};
             const submissionResponse = await submitSurvey(surveyData);
 
-            if (submissionResponse === 200) {
-                setPage(SurveyState.FINISHED)
-            }
+            // if (submissionResponse === 200) {
+            //     setPage(SurveyState.FINISHED)
+            // }
         } catch(error) {
             // error processing submission. We should let the user know something happened.
         }
@@ -79,9 +82,15 @@ const Survey = () => {
     // basically handle moving the state to the next corret one after each answer.
 
     return (
-        <PageWrapper>
+        <SurveyContext.Provider
+            value={{
+                selectedAgeGroup: age,
+                setAge,
 
-        </PageWrapper>
+            }}
+        >
+            <SurveyPage/>
+        </SurveyContext.Provider>
     )
 };
 
