@@ -4,3 +4,4 @@ export { default as TemperatureInputField } from './TemperatureInput/temperature
 export { default as PageWrapper } from './PageWrapper/page-wrapper';
 export { default as Toggle } from './Toggle/toggle';
 export { default as OtherSymptomSelect } from './OtherSymptomSelect/other-symptom-select';
+export { default as HomePage } from './HomePage/homepage';

@@ -1,12 +1,10 @@
 import React from 'react'
-import { PageWrapper } from '../components';
+import { HomePage } from '../components';
 
 const Index = () => {
   return (
-    <PageWrapper>
-        <p>Hi</p>
-    </PageWrapper>
+    <HomePage/>
   )
 };
 
-export default Index
+export default Index;
