@@ -2,10 +2,12 @@ import React, { useState, createContext } from 'react';
 import { SurveyPage } from '../components';
 import { submitSurvey } from "../services/survey";
 
-enum SurveyState {
-    INITIAL = 'initial',
+export enum SurveyState {
     AGE = 'age',
-    TWO = 'two',
+    SYMPTOMS = 'symptoms',
+    OTHERSYMPTOMS = 'other-symptoms',
+    CONDITIONS = 'conditions',
+    LOCATION = 'location',
     FINISHED = 'finished'
 }
 
@@ -61,8 +63,8 @@ export const SurveyContext = createContext(null);
 
 const Survey = () => {
     // State hooks for survey questions and survey itself
-    const [currentPage, setPage] = useState(SurveyState.INITIAL);
-    const [age, setAge] = useState();
+    const [surveyState, setSurveyState] = useState(SurveyState.AGE);
+    const [selectedAgeGroup, setAge] = useState();
 
     const onSubmitSurvey = async () => {
         try {
@@ -84,7 +86,9 @@ const Survey = () => {
     return (
         <SurveyContext.Provider
             value={{
-                selectedAgeGroup: age,
+                surveyState,
+                setSurveyState,
+                selectedAgeGroup,
                 setAge,
 
             }}

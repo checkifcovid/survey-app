@@ -23,7 +23,7 @@ const SymptomOption = ({ onClick, symptom, selected }: SymptomOption) => {
 export default ({ onClick, symptoms }: OtherSymptomSelectProps) => {
     const [selectedSymptoms, toggleSelected] = useState([]);
 
-    // could extract to own hook. basically updates an array of values by removing it if it exists or adding if not exist.
+    // TODO could extract to own hook. basically updates an array of values by removing it if it exists or adding if not exist.
     const updateSymptomSelectState = (selectedSymptom) => {
         let updatedSymptomsSelection = [...selectedSymptoms];
 

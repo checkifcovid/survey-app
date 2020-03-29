@@ -1,6 +1,7 @@
 import React from 'react';
 import './homepage.scss';
 import { PageWrapper, Button } from "../index";
+import Link from 'next/link';
 
 type HomePageProps = {
     startSurvey: () => any;
@@ -21,8 +22,16 @@ export default () => (
                 <p className='highlighted'>Wondering if you might have COVID?</p>
 
                 <div className='homepage__buttons-group'>
-                    <Button onClick={() => console.log('')} variant='primary'>Report your symptoms</Button>
-                    <Button onClick={() => console.log('')} variant='secondary'>Report for someone</Button>
+                    <Link href={'/survey'}>
+                        <Button onClick={() => console.log('')} variant='primary'>
+                            Report your symptoms
+                        </Button>
+                    </Link>
+                    <Link href={'/survey'}>
+                        <Button onClick={() => console.log('')} variant='secondary'>
+                            Report for someone
+                        </Button>
+                    </Link>
                 </div>
             </div>
 
