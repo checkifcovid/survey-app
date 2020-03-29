@@ -1,8 +1,8 @@
 @import '../variables';
 
 .survey-page {
+  font-family: 'Roboto', serif;
   &__question {
-    font-family: 'Roboto', serif;
     font-weight: 400;
     font-size: 36px;
   }
@@ -29,7 +29,7 @@
       -webkit-border-radius: 25px;
       -moz-border-radius: 25px;
       border-radius: 25px;
-      border: solid 1px $white;
+      border: solid 2px rgba(255, 255, 255, 0.1);
       box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
       width: 400px;
       text-align: center;
@@ -37,16 +37,15 @@
       cursor: pointer;
 
       &:hover {
-        border: solid 1px $blue500;
+        border: solid 2px $blue500;
       }
 
       p {
         font-size: 16px;
-        font-family: 'Roboto', serif;
       }
 
       &--selected {
-        border: solid 1px $blue500;
+        border: solid 2px $blue500;
       }
     }
   }
@@ -67,25 +66,24 @@
       border-radius: 25px;
       box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
       padding: 25px 0;
-      border: solid 1px $white;
+      border: solid 2px rgba(255, 255, 255, 0.1);
       cursor: pointer;
 
       &:hover {
-        border: solid 1px $blue500;
+        border: solid 2px $blue500;
       }
 
       p {
-        font-family: 'Roboto', serif;
         max-width: 100px;
         text-align: center;
         line-height: 26px;
       }
 
       &--selected {
-        border: solid 1px $blue500;
+        border: solid 2px $blue500;
 
         &:active {
-          border: solid 1px $white;
+          border: solid 2px $white;
         }
       }
     }
@@ -111,7 +109,6 @@
       &__input {
         text-align: center;
         font-size: 16px;
-        font-family: 'Roboto', serif;
         padding: 5px 0;
         height: 30px;
         &::-webkit-outer-spin-button,

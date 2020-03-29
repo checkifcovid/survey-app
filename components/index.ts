@@ -6,3 +6,4 @@ export { default as Toggle } from './Toggle/toggle';
 export { default as OtherSymptomSelect } from './OtherSymptomSelect/other-symptom-select';
 export { default as HomePage } from './HomePage/homepage';
 export { default as SurveyPage } from './SurveyPage/survey-page';
+export { default as Navigation } from './Navigation/navigation';
