@@ -21,6 +21,12 @@ this wont be enforced, so if you don't have experience with typescript don't wor
 Storybook is integrated into this project. Please use it as much as you can in order to keep track of
 what components are available in the project. To learn more about storybook you can check out storybook.js.
 
+Running storybook:
+
+```
+npm run storybook
+```
+
 ### Contributing to the project
 
 Please branch off of dev when working on your feature! 
