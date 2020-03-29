@@ -1,4 +1,17 @@
-export const symptomsList = [
+export const otherSymptomsList = [
+    'Chills or sweating',
+    'Chest pain or pressure',
+    'Body aches',
+    'Runny nose',
+    'Headache',
+    'Diarrhea',
+    'Abdominal Pain',
+    'Nausea or vomiting',
+    'Sore throat',
+    'Rash'
+];
+
+export const conditionsList = [
     'Asthma or chronic lung disease',
     'Diabetes',
     'High Blood Pressure',
@@ -17,4 +30,10 @@ export const ageGroups = [
     '30 - 40',
     '40 - 63',
     'Above 64'
+];
+
+export const symptomsList = [
+  'Fever',
+  'Cough',
+  'Shortness of breath'
 ];

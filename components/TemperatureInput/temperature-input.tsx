@@ -51,6 +51,7 @@ export default ({ onChange, value, label, labelPosition = 'top' }: TemperatureIn
                 <Toggle
                     options={[TemperatureUnit.F, TemperatureUnit.C]}
                     onClick={(option) => onUnitChange(option)}
+                    defaultOption={TemperatureUnit.F}
                 />
             </div>
         </label>

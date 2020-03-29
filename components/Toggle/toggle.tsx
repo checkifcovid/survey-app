@@ -4,10 +4,11 @@ import './toggle.scss';
 type ToggleProps = {
     options: Array<string>;
     onClick: (option) => any;
+    defaultOption?: string;
 }
 
-export default ({ options, onClick }: ToggleProps) => {
-    const [activeToggle, toggleOption] = useState('');
+export default ({ options, onClick, defaultOption }: ToggleProps) => {
+    const [activeToggle, toggleOption] = useState((defaultOption && options.includes(defaultOption)) ? defaultOption : '');
 
     if (options.length < 2) {
         options.push(options[0]);

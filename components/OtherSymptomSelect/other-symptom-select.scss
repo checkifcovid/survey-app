@@ -12,13 +12,18 @@
     border-radius: 9px;
     border: solid 1px $white;
     background-color: $white;
-    min-width: 120px;
-    max-width: 200px;
+    width: 140px;
     box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
+    cursor: pointer;
+
+    &:hover {
+      border: solid 1px $blue500;
+    }
 
     &__symptom {
       text-align: center;
       font-size: 18px;
+      font-family: 'Roboto', serif;
     }
 
     &--selected {

@@ -23,13 +23,15 @@
 
   // Age section
   .age-section {
+    margin: 50px 0;
+
     &__group-option {
       -webkit-border-radius: 25px;
       -moz-border-radius: 25px;
       border-radius: 25px;
       border: solid 1px $white;
       box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
-      width: 100%;
+      width: 400px;
       text-align: center;
       margin-bottom: 20px;
       cursor: pointer;
@@ -45,6 +47,93 @@
 
       &--selected {
         border: solid 1px $blue500;
+      }
+    }
+  }
+
+  // Symptoms Section
+  .symptoms-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    margin: 50px 0;
+
+    &__option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px 0 rgba(49, 69, 244, 0.1);
+      padding: 25px 0;
+      border: solid 1px $white;
+      cursor: pointer;
+
+      &:hover {
+        border: solid 1px $blue500;
+      }
+
+      p {
+        font-family: 'Roboto', serif;
+        max-width: 100px;
+        text-align: center;
+        line-height: 26px;
+      }
+
+      &--selected {
+        border: solid 1px $blue500;
+
+        &:active {
+          border: solid 1px $white;
+        }
+      }
+    }
+  }
+
+  // Other Symptoms Section
+  .other-symptoms-section {
+    margin: 50px 0;
+  }
+
+  // Conditions Section
+  .conditions-section {
+    margin: 50px 0;
+  }
+
+  // Locations Section
+  .location-section {
+    margin: 50px 0;
+
+    // Move to its own component
+    .location-input-field {
+
+      &__input {
+        text-align: center;
+        font-size: 16px;
+        font-family: 'Roboto', serif;
+        padding: 5px 0;
+        height: 30px;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        &[type=number] {
+          -moz-appearance: textfield;
+        }
+
+        // FIXME refactor once moved out
+        width: 400px;
+      }
+
+      &__current-location {
+        text-align: center;
+        background-color: rgba(204, 209, 217, 0.25);
+        color: $blue500;
+        padding: 15px 0;
+        cursor: pointer;
+        margin: unset;
       }
     }
   }

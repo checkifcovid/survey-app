@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import './survey-page.scss';
 
-import { Button, OtherSymptomSelect } from '../../components';
+import { Button, OtherSymptomSelect, TemperatureInputField, InputField } from '../../components';
 
 import { SurveyContext } from "../../pages/survey";
 import { SurveyState } from '../../pages/survey';
-import { symptomsList, ageGroups } from "../../constants/survey.constants";
+import { symptomsList, otherSymptomsList, conditionsList, ageGroups } from "../../constants/survey.constants";
 
 const SurveyWrapper = ({question, children, nextState}) => {
     // onclick calculate next state from survey context.
@@ -22,7 +22,7 @@ const SurveyWrapper = ({question, children, nextState}) => {
                     onClick={() => setSurveyState(nextState)}
                     variant='primary'
                     style={{
-                        width: '100%'
+                        minWidth: '400px'
                     }}
                 >
                     Next
@@ -38,21 +38,23 @@ const AgeSection = () => {
 
     return (
         <>
-            {ageGroups.map((group) => (
-                <div
-                    onClick={() => setAge(group)}
-                    className={`age-section__group-option age-section__group-option--${selectedAgeGroup === group ? 'selected' : 'un-selected'}`}
-                    key={group}
-                >
-                    <p>{group}</p>
-                </div>
-            ))}
+            <div className='age-section'>
+                {ageGroups.map((group) => (
+                    <div
+                        onClick={() => setAge(group)}
+                        className={`age-section__group-option age-section__group-option--${selectedAgeGroup === group ? 'selected' : 'un-selected'}`}
+                        key={group}
+                    >
+                        <p>{group}</p>
+                    </div>
+                ))}
+            </div>
         </>
     )
 };
 
 const SymptomsSection = () => {
-    const {selectedSymptoms, setSymptoms} = useContext(SurveyContext);
+    const { selectedSymptoms, setSymptoms, temperature, setTemperature } = useContext(SurveyContext);
 
     // TODO can extract to own hook. see other symptoms select component
     const updateSymptomsSelection = (selectedSymptom) => {
@@ -69,7 +71,27 @@ const SymptomsSection = () => {
 
     return (
         <>
-            <p>symptoms</p>
+            <div className='symptoms-section'>
+                {symptomsList.map((symptom) => {
+                    return (
+                        <div
+                            onClick={() => updateSymptomsSelection(symptom)}
+                            className={`symptoms-section__option symptoms-section__option--${selectedSymptoms.includes(symptom) ? 'selected' : 'un-selected'}`}
+                            key={symptom}
+                        >
+                            <p>icon</p>
+                            <p>{ symptom }</p>
+                        </div>
+                    );
+                })}
+            </div>
+            {selectedSymptoms.includes('Fever') &&
+                <TemperatureInputField
+                  value={temperature}
+                  onChange={(temperature) => setTemperature(temperature)}
+                  label={`What's the highest temperature that you've measured`}
+                />
+            }
         </>
     )
 };
@@ -77,10 +99,12 @@ const SymptomsSection = () => {
 const OtherSymptomsSection = () => {
     return (
         <>
-            <OtherSymptomSelect
-                symptoms={symptomsList}
-                onClick={() => console.log('hi')}
-            />
+            <div className='other-symptoms-section'>
+                <OtherSymptomSelect
+                    symptoms={otherSymptomsList}
+                    onClick={() => console.log('hi')}
+                />
+            </div>
         </>
     )
 };
@@ -88,15 +112,36 @@ const OtherSymptomsSection = () => {
 const ConditionsSection = () => {
     return (
         <>
-            <p>Condtions</p>
+            <div className='conditions-section'>
+                <OtherSymptomSelect
+                    symptoms={conditionsList}
+                    onClick={() => console.log('hi')}
+                />
+            </div>
         </>
     )
 };
 
 const LocationSection = () => {
+    const { geoLocateUser, location, setLocation } = useContext(SurveyContext);
     return (
         <>
-            <p>Location</p>
+            <div className='location-section'>
+                {/*TODO move to its owwn component*/}
+                <input
+                    value={location}
+                    className='location-input-field__input'
+                    onChange={({ target: { value } }) => setLocation(value)}
+                />
+                <div>
+                    <p
+                        className='location-input-field__current-location'
+                        onClick={geoLocateUser}
+                    >
+                        Current Location
+                    </p>
+                </div>
+            </div>
         </>
     )
 };

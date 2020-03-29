@@ -63,9 +63,14 @@ export const SurveyContext = createContext(null);
 
 const Survey = () => {
     // State hooks for survey questions and survey itself
-    const [surveyState, setSurveyState] = useState(SurveyState.AGE);
+    // TODO messing around with initial survey state. set to Age after.
+    const [surveyState, setSurveyState] = useState(SurveyState.LOCATION);
     const [selectedAgeGroup, setAge] = useState();
-
+    const [selectedSymptoms, setSymptoms] = useState([]);
+    const [temperature, setTemperature] = useState({temperature: undefined, unit: 'F'});
+    const [location, setLocation] = useState('');
+    const [coordinates, setCoordinates] = useState({});
+    
     const onSubmitSurvey = async () => {
         try {
             // TODO grab the states of all questions and merge into one object
@@ -77,6 +82,16 @@ const Survey = () => {
             // }
         } catch(error) {
             // error processing submission. We should let the user know something happened.
+        }
+    };
+
+    const geoLocateUser = () => {
+        // TODO add a loading state.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(({coords}) => {
+                setLocation('Current location');
+                setCoordinates(coords);
+            });
         }
     };
 
@@ -96,7 +111,13 @@ const Survey = () => {
                 setSurveyState,
                 selectedAgeGroup,
                 setAge,
-
+                selectedSymptoms,
+                setSymptoms,
+                temperature,
+                setTemperature,
+                geoLocateUser,
+                location,
+                setLocation,
             }}
         >
             <SurveyPage/>
