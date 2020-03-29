@@ -91,6 +91,11 @@
   // Other Symptoms Section
   .other-symptoms-section {
     margin: 50px 0;
+
+    &__free-solo {
+      margin: 60px 0;
+      width: 50%;
+    }
   }
 
   // Conditions Section
@@ -138,6 +143,17 @@
           margin-left: 15px;
         }
       }
+    }
+  }
+
+  // Symptom Follow up component
+  .symptom-follow-up-section {
+    > * {
+      margin-bottom: 55px;
+    }
+
+    &__sub-question {
+      margin-left: 25px;
     }
   }
 }

@@ -1,0 +1,9 @@
+@import '../variables';
+
+.simple-survey-question {
+  font-family: 'Roboto', serif;
+  &__question {
+    color: $grey200;
+    margin-bottom: 25px;
+  }
+}

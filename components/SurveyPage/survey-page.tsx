@@ -1,17 +1,27 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import './survey-page.scss';
 
-import { Button, OtherSymptomSelect, TemperatureInputField } from '../../components';
+import { Button, OtherSymptomSelect, SimpleSurveyQuestion, TemperatureInputField, Toggle, Checkbox } from '../../components';
 import FeverIcon from '../../components/Icons/fever';
 import CoughIcon from '../../components/Icons/cough';
 import ShortBreathIcon from '../../components/Icons/short-breath';
 import MarkerIcon from '../../components/Icons/marker';
 
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Chip, TextField } from "@material-ui/core";
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
-import { SurveyContext } from "../../pages/survey";
-import { SurveyState } from '../../pages/survey';
-import { symptomsList, otherSymptomsList, otherSymptomsContinuedList, conditionsList, ageGroups, genderOptions } from "../../constants/survey.constants";
+import { SurveyContext, SurveyState } from "../../pages/survey";
+import {
+    ageGroups,
+    conditionsList,
+    genderOptions,
+    otherSymptomsContinuedList,
+    otherSymptomsList,
+    symptomsList,
+    symptomFollowUpQuestionsMap
+} from "../../constants/survey.constants";
 
 type SurveyWrapperProps = {
     question: string;
@@ -48,19 +58,17 @@ const AgeSection = () => {
     const {selectedAgeGroup, setAge} = useContext(SurveyContext);
 
     return (
-        <>
-            <div className='age-section'>
-                {ageGroups.map((group) => (
-                    <div
-                        onClick={() => setAge(group)}
-                        className={`age-section__group-option age-section__group-option--${selectedAgeGroup === group ? 'selected' : 'un-selected'}`}
-                        key={group}
-                    >
-                        <p>{group}</p>
-                    </div>
-                ))}
-            </div>
-        </>
+        <div className='age-section'>
+            {ageGroups.map((group) => (
+                <div
+                    onClick={() => setAge(group)}
+                    className={`age-section__group-option age-section__group-option--${selectedAgeGroup === group ? 'selected' : 'un-selected'}`}
+                    key={group}
+                >
+                    <p>{group}</p>
+                </div>
+            ))}
+        </div>
     )
 };
 
@@ -68,19 +76,17 @@ const GenderSection = () => {
     const {selectedGender, setGender} = useContext(SurveyContext);
 
     return (
-        <>
-            <div className='age-section'>
-                {genderOptions.map((gender) => (
-                    <div
-                        onClick={() => setGender(gender)}
-                        className={`age-section__group-option age-section__group-option--${selectedGender === gender ? 'selected' : 'un-selected'}`}
-                        key={gender}
-                    >
-                        <p>{gender}</p>
-                    </div>
-                ))}
-            </div>
-        </>
+        <div className='age-section'>
+            {genderOptions.map((gender) => (
+                <div
+                    onClick={() => setGender(gender)}
+                    className={`age-section__group-option age-section__group-option--${selectedGender === gender ? 'selected' : 'un-selected'}`}
+                    key={gender}
+                >
+                    <p>{gender}</p>
+                </div>
+            ))}
+        </div>
     )
 };
 
@@ -150,14 +156,12 @@ const OtherSymptomsSection = () => {
     };
 
     return (
-        <>
-            <div className='other-symptoms-section'>
-                <OtherSymptomSelect
-                    symptoms={otherSymptomsList}
-                    onClick={updateSymptomsSelection}
-                />
-            </div>
-        </>
+        <div className='other-symptoms-section'>
+            <OtherSymptomSelect
+                symptoms={otherSymptomsList}
+                onClick={updateSymptomsSelection}
+            />
+        </div>
     )
 };
 
@@ -178,14 +182,28 @@ const OtherSymptomsContinuedSection = () => {
     };
 
     return (
-        <>
-            <div className='other-symptoms-section'>
-                <OtherSymptomSelect
-                    symptoms={otherSymptomsContinuedList}
-                    onClick={updateSymptomsSelection}
+        <div className='other-symptoms-section'>
+            <OtherSymptomSelect
+                symptoms={otherSymptomsContinuedList}
+                onClick={updateSymptomsSelection}
+            />
+
+            <div className='other-symptoms-section__free-solo'>
+                <Autocomplete
+                    multiple
+                    freeSolo
+                    options={[]}
+                    renderTags={(value, getTagProps) =>
+                        value.map((option, index) => (
+                            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                        ))
+                    }
+                    renderInput={(params) => (
+                        <TextField {...params} label="Other Symptoms"/>
+                    )}
                 />
             </div>
-        </>
+        </div>
     )
 };
 
@@ -206,14 +224,12 @@ const ConditionsSection = () => {
     };
 
     return (
-        <>
-            <div className='conditions-section'>
-                <OtherSymptomSelect
-                    symptoms={conditionsList}
-                    onClick={updateSymptomsSelection}
-                />
-            </div>
-        </>
+        <div className='conditions-section'>
+            <OtherSymptomSelect
+                symptoms={conditionsList}
+                onClick={updateSymptomsSelection}
+            />
+        </div>
     )
 };
 
@@ -221,36 +237,131 @@ const LocationSection = () => {
     const { geoLocateUser, location, setLocation, geoLocationLoading } = useContext(SurveyContext);
 
     return (
-        <>
-            <div className='location-section'>
-                {/*TODO move to its owwn component*/}
-                <input
-                    value={location}
-                    className='location-input-field__input'
-                    onChange={({ target: { value } }) => setLocation(value)}
-                />
-                <div
-                    className='location-input-field__current-location'
-                    onClick={geoLocateUser}
-                >
-                    {geoLocationLoading ?
-                        <p>
-                            <CircularProgress size={16}/>
-                        </p>
-                        :
-                        <>
-                            <MarkerIcon height='18px'/>
-                            <p>Current Location</p>
-                        </>
-                    }
-                </div>
+        <div className='location-section'>
+            {/*TODO move to its owwn component*/}
+            <input
+                value={location}
+                className='location-input-field__input'
+                onChange={({ target: { value } }) => setLocation(value)}
+            />
+            <div
+                className='location-input-field__current-location'
+                onClick={geoLocateUser}
+            >
+                {geoLocationLoading ?
+                    <p>
+                        <CircularProgress size={16}/>
+                    </p>
+                    :
+                    <>
+                        <MarkerIcon height='18px'/>
+                        <p>Current Location</p>
+                    </>
+                }
             </div>
-        </>
+        </div>
+    )
+};
+
+const SymptomFollowUpSection = () => {
+    const { symptomFollowUpAnswers, setFollowUpAnswers } = useContext(SurveyContext);
+
+    const updateFollowUpAnswers = (questionId, updatedAnswer) => {
+        const updatedFollowUpAnswers = Object.assign({}, symptomFollowUpAnswers);
+        updatedFollowUpAnswers[questionId] = updatedAnswer;
+
+        setFollowUpAnswers(updatedFollowUpAnswers);
+    };
+
+    return (
+        <div className='symptom-follow-up-section'>
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0001']}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        disableToolbar
+                        variant='inline'
+                        format='MM/dd/yyyy'
+                        value={symptomFollowUpAnswers['0001']}
+                        onChange={(selectedDate) => updateFollowUpAnswers('0001', selectedDate)}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                </MuiPickersUtilsProvider>
+            </SimpleSurveyQuestion>
+
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0002']}>
+                <Toggle
+                    options={['Yes', 'No']}
+                    onClick={(selectedAnswer) => updateFollowUpAnswers('0002', selectedAnswer)}
+                />
+            </SimpleSurveyQuestion>
+
+            {(symptomFollowUpAnswers['0002'] === 'Yes') &&
+                <div className='symptom-follow-up-section__sub-question'>
+                  <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0003']}>
+                      {/*<Checkbox label={'Telephone call'} name='0003' checked={symptomFollowUpAnswers['0003']}  />*/}
+                  </SimpleSurveyQuestion>
+                </div>
+            }
+
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0004']}>
+                <Toggle
+                    options={['Yes', 'No']}
+                    onClick={(selectedAnswer) => updateFollowUpAnswers('0004', selectedAnswer)}
+                />
+            </SimpleSurveyQuestion>
+
+            {(symptomFollowUpAnswers['0004'] === 'Yes') &&
+                <div className='symptom-follow-up-section__sub-question'>
+                  <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0005']}>
+
+                  </SimpleSurveyQuestion>
+                </div>
+            }
+
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0006']}>
+                <Toggle
+                    options={['Yes', 'No']}
+                    onClick={(selectedAnswer) => updateFollowUpAnswers('0006', selectedAnswer)}
+                />
+            </SimpleSurveyQuestion>
+
+            {symptomFollowUpAnswers['0006'] === 'Yes' &&
+                <div className='symptom-follow-up-section__sub-question'>
+                  <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0007']}>
+
+                  </SimpleSurveyQuestion>
+                </div>
+            }
+
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0008']}>
+
+            </SimpleSurveyQuestion>
+
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0009']}>
+                <Toggle
+                    options={['Yes', 'No']}
+                    onClick={(selectedAnswer) => updateFollowUpAnswers('0009', selectedAnswer)}
+                />
+            </SimpleSurveyQuestion>
+
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0010']}>
+
+            </SimpleSurveyQuestion>
+
+            <SimpleSurveyQuestion question={symptomFollowUpQuestionsMap['0011']}>
+                <Toggle
+                    options={['Yes', 'No']}
+                    onClick={(selectedAnswer) => updateFollowUpAnswers('0011', selectedAnswer)}
+                />
+            </SimpleSurveyQuestion>
+        </div>
     )
 };
 
 const RenderCurrentSection = () => {
-    const {surveyState} = useContext(SurveyContext);
+    const { surveyState, selectedSymptoms } = useContext(SurveyContext);
 
     switch (surveyState) {
         case 'symptoms': {
@@ -274,12 +385,24 @@ const RenderCurrentSection = () => {
             )
         }
         case 'other-symptoms-2': {
+            const  nextState = selectedSymptoms.length ? SurveyState.SYMPTOMSFOLLOWUP : SurveyState.CONDITIONS;
+
             return (
                 <SurveyWrapper
                     question='Are you experiencing any of these other symptoms? (Continued)'
-                    nextState={SurveyState.CONDITIONS}
+                    nextState={nextState}
                 >
                     <OtherSymptomsContinuedSection/>
+                </SurveyWrapper>
+            )
+        }
+        case 'symptoms-follow-up': {
+            return (
+                <SurveyWrapper
+                    question='Symptoms Follow-up'
+                    nextState={SurveyState.CONDITIONS}
+                >
+                    <SymptomFollowUpSection />
                 </SurveyWrapper>
             )
         }

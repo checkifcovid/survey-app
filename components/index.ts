@@ -7,3 +7,5 @@ export { default as OtherSymptomSelect } from './OtherSymptomSelect/other-sympto
 export { default as HomePage } from './HomePage/homepage';
 export { default as SurveyPage } from './SurveyPage/survey-page';
 export { default as Navigation } from './Navigation/navigation';
+export { default as SimpleSurveyQuestion } from './SimpleSurveyQuestion/simple-survey-question';
+export { default as Checkbox } from './Checkbox/checkbox';

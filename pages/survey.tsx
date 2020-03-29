@@ -7,6 +7,7 @@ export enum SurveyState {
     OTHERSYMPTOMS = 'other-symptoms',
     OTHERSYMPTOMS2 = 'other-symptoms-2',
     ADDITIONALSYMPTOMINFO = 'additional-symptom-info',
+    SYMPTOMSFOLLOWUP = 'symptoms-follow-up',
     CONDITIONS = 'conditions',
     AGE = 'age',
     GENDER = 'gender',
@@ -79,19 +80,8 @@ const Survey = () => {
     const [coordinates, setCoordinates] = useState({});
     const [geoLocationLoading, setGeoLocationLoadingState] = useState(false);
 
-    const onSubmitSurvey = async () => {
-        try {
-            // TODO grab the states of all questions and merge into one object
-            const surveyData = {};
-            const submissionResponse = await submitSurvey(surveyData);
-
-            // if (submissionResponse === 200) {
-            //     setPage(SurveyState.FINISHED)
-            // }
-        } catch(error) {
-            // error processing submission. We should let the user know something happened.
-        }
-    };
+    // Symptom Follow up states. Need to refactor this soon.
+    const [symptomFollowUpAnswers, setFollowUpAnswers] = useState({});
 
     // Triggers state change and gets caught by the useEffect below
     const geoLocateUser = () => {
@@ -101,22 +91,49 @@ const Survey = () => {
     useEffect(() => {
         if (geoLocationLoading && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(({coords}) => {
-                setLocation('Current location');
+                setLocation('Current Location');
                 setCoordinates(coords);
                 setGeoLocationLoadingState(false);
             });
         }
     }, [geoLocationLoading]);
 
-    useEffect( () => {
-        if (surveyState === SurveyState.SUBMITTING) {
-            // do the survey submissions
-            // set state to finished on complete
+    useEffect(() => {
+        switch (surveyState) {
+            case SurveyState.SUBMITTING: {
+                const onSubmitSurvey = async () => {
+                    try {
+                        // TODO need to shape data to match API call expectations
+                        const surveyData = {
+                            gender: selectedGender,
+                            age: selectedAgeGroup,
+                            location,
+                            coordinates,
+                            symptoms: selectedSymptoms,
+                            reportSource: 'Survey App',
+                            reportDate: new Date()
+                        };
 
-        }
+                        console.log({surveyData})
 
-        if (surveyState === SurveyState.FINISHED) {
-            window.location.href = '/results';
+                        await submitSurvey(surveyData);
+
+                        // return setSurveyState(SurveyState.FINISHED)
+                    } catch(error) {
+                        // TODO if they survey doesn't submit, we need to elegantly handle this.
+                        return setSurveyState(SurveyState.ERROR);
+                    }
+                };
+
+                onSubmitSurvey();
+                break;
+            }
+            case SurveyState.FINISHED: {
+               window.location.href = '/results';
+               break;
+            }
+            default:
+                break;
         }
     }, [surveyState]);
 
@@ -138,7 +155,9 @@ const Survey = () => {
                 geoLocateUser,
                 location,
                 setLocation,
-                geoLocationLoading
+                geoLocationLoading,
+                symptomFollowUpAnswers,
+                setFollowUpAnswers
             }}
         >
             <SurveyPage/>
