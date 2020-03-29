@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './survey-page.scss';
 
-import { Button, OtherSymptomSelect, TemperatureInputField, InputField } from '../../components';
+import { Button, OtherSymptomSelect, TemperatureInputField } from '../../components';
 import FeverIcon from '../../components/Icons/fever';
 import CoughIcon from '../../components/Icons/cough';
 import ShortBreathIcon from '../../components/Icons/short-breath';
@@ -11,11 +11,16 @@ import { CircularProgress } from "@material-ui/core";
 
 import { SurveyContext } from "../../pages/survey";
 import { SurveyState } from '../../pages/survey';
-import { symptomsList, otherSymptomsList, conditionsList, ageGroups } from "../../constants/survey.constants";
+import { symptomsList, otherSymptomsList, otherSymptomsContinuedList, conditionsList, ageGroups, genderOptions } from "../../constants/survey.constants";
 
-const SurveyWrapper = ({question, children, nextState}) => {
-    // onclick calculate next state from survey context.
-    const {setSurveyState} = useContext(SurveyContext);
+type SurveyWrapperProps = {
+    question: string;
+    children: any;
+    nextState: string;
+}
+
+const SurveyWrapper = ({question, children, nextState}: SurveyWrapperProps) => {
+    const { setSurveyState, surveyState } = useContext(SurveyContext);
 
     return (
         <section className='survey-page__section'>
@@ -31,7 +36,7 @@ const SurveyWrapper = ({question, children, nextState}) => {
                         minWidth: '400px'
                     }}
                 >
-                    Next
+                    { (surveyState === SurveyState.VACCINE) ? 'Submit' : 'Next' }
                 </Button>
             </div>
         </section>
@@ -52,6 +57,26 @@ const AgeSection = () => {
                         key={group}
                     >
                         <p>{group}</p>
+                    </div>
+                ))}
+            </div>
+        </>
+    )
+};
+
+const GenderSection = () => {
+    const {selectedGender, setGender} = useContext(SurveyContext);
+
+    return (
+        <>
+            <div className='age-section'>
+                {genderOptions.map((gender) => (
+                    <div
+                        onClick={() => setGender(gender)}
+                        className={`age-section__group-option age-section__group-option--${selectedGender === gender ? 'selected' : 'un-selected'}`}
+                        key={gender}
+                    >
+                        <p>{gender}</p>
                     </div>
                 ))}
             </div>
@@ -108,28 +133,84 @@ const SymptomsSection = () => {
     )
 };
 
-// TODO
 const OtherSymptomsSection = () => {
+    const { selectedSymptoms, setSymptoms } = useContext(SurveyContext);
+
+    // TODO can extract to own hook. see other symptoms select component
+    const updateSymptomsSelection = (selectedSymptom) => {
+        let updatedSymptomsSelection = [...selectedSymptoms];
+
+        if (selectedSymptoms.includes(selectedSymptom)) {
+            updatedSymptomsSelection = updatedSymptomsSelection.filter(symptom => symptom !== selectedSymptom);
+        } else {
+            updatedSymptomsSelection.push(selectedSymptom);
+        }
+
+        return setSymptoms(updatedSymptomsSelection);
+    };
+
     return (
         <>
             <div className='other-symptoms-section'>
                 <OtherSymptomSelect
                     symptoms={otherSymptomsList}
-                    onClick={() => console.log('hi')}
+                    onClick={updateSymptomsSelection}
                 />
             </div>
         </>
     )
 };
 
-// TODO
+const OtherSymptomsContinuedSection = () => {
+    const { selectedSymptoms, setSymptoms } = useContext(SurveyContext);
+
+    // TODO can extract to own hook. see other symptoms select component
+    const updateSymptomsSelection = (selectedSymptom) => {
+        let updatedSymptomsSelection = [...selectedSymptoms];
+
+        if (selectedSymptoms.includes(selectedSymptom)) {
+            updatedSymptomsSelection = updatedSymptomsSelection.filter(symptom => symptom !== selectedSymptom);
+        } else {
+            updatedSymptomsSelection.push(selectedSymptom);
+        }
+
+        return setSymptoms(updatedSymptomsSelection);
+    };
+
+    return (
+        <>
+            <div className='other-symptoms-section'>
+                <OtherSymptomSelect
+                    symptoms={otherSymptomsContinuedList}
+                    onClick={updateSymptomsSelection}
+                />
+            </div>
+        </>
+    )
+};
+
 const ConditionsSection = () => {
+    const { selectedConditions, setConditions } = useContext(SurveyContext);
+
+    // TODO can extract to own hook. see other symptoms select component
+    const updateSymptomsSelection = (selectedCondition) => {
+        let updatedConditionsSelection = [...selectedConditions];
+
+        if (selectedConditions.includes(selectedCondition)) {
+            updatedConditionsSelection = updatedConditionsSelection.filter(symptom => symptom !== selectedCondition);
+        } else {
+            updatedConditionsSelection.push(selectedCondition);
+        }
+
+        return setConditions(updatedConditionsSelection);
+    };
+
     return (
         <>
             <div className='conditions-section'>
                 <OtherSymptomSelect
                     symptoms={conditionsList}
-                    onClick={() => console.log('hi')}
+                    onClick={updateSymptomsSelection}
                 />
             </div>
         </>
@@ -168,22 +249,10 @@ const LocationSection = () => {
     )
 };
 
-
-
 const RenderCurrentSection = () => {
     const {surveyState} = useContext(SurveyContext);
 
     switch (surveyState) {
-        case 'age': {
-            return (
-                <SurveyWrapper
-                    question='How old are you?'
-                    nextState={SurveyState.SYMPTOMS}
-                >
-                    <AgeSection/>
-                </SurveyWrapper>
-            )
-        }
         case 'symptoms': {
             return (
                 <SurveyWrapper
@@ -198,9 +267,19 @@ const RenderCurrentSection = () => {
             return (
                 <SurveyWrapper
                     question='Are you experiencing any of these other symptoms?'
-                    nextState={SurveyState.CONDITIONS}
+                    nextState={SurveyState.OTHERSYMPTOMS2}
                 >
                     <OtherSymptomsSection/>
+                </SurveyWrapper>
+            )
+        }
+        case 'other-symptoms-2': {
+            return (
+                <SurveyWrapper
+                    question='Are you experiencing any of these other symptoms? (Continued)'
+                    nextState={SurveyState.CONDITIONS}
+                >
+                    <OtherSymptomsContinuedSection/>
                 </SurveyWrapper>
             )
         }
@@ -208,9 +287,29 @@ const RenderCurrentSection = () => {
             return (
                 <SurveyWrapper
                     question='Do you have any of the following conditions?'
-                    nextState={SurveyState.LOCATION}
+                    nextState={SurveyState.AGE}
                 >
                     <ConditionsSection/>
+                </SurveyWrapper>
+            )
+        }
+        case 'age': {
+            return (
+                <SurveyWrapper
+                    question='How old are you?'
+                    nextState={SurveyState.GENDER}
+                >
+                    <AgeSection/>
+                </SurveyWrapper>
+            )
+        }
+        case 'gender': {
+            return (
+                <SurveyWrapper
+                    question='What is your Gender?'
+                    nextState={SurveyState.LOCATION}
+                >
+                    <GenderSection/>
                 </SurveyWrapper>
             )
         }
@@ -218,7 +317,7 @@ const RenderCurrentSection = () => {
             return (
                 <SurveyWrapper
                     question='What is your zip code?'
-                    nextState={SurveyState.FINISHED}
+                    nextState={SurveyState.SUBMITTING}
                 >
                     <LocationSection/>
                 </SurveyWrapper>
