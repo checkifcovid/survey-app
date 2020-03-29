@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { SurveyPage } from '../components';
 import { submitSurvey } from "../services/survey";
 
@@ -79,6 +79,12 @@ const Survey = () => {
             // error processing submission. We should let the user know something happened.
         }
     };
+
+    useEffect(() => {
+        if (surveyState === SurveyState.FINISHED) {
+            window.location.href = '/results';
+        }
+    }, [surveyState]);
 
     // TODO create the state machine for the survey.
     // basically handle moving the state to the next corret one after each answer.
