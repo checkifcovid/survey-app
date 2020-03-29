@@ -12,7 +12,7 @@ export default () => (
     <div className='homepage'>
         <section className='homepage__hero'>
             <div className='homepage__hero--message'>
-                <h1>FindTheCluster collects and analyzes data of health symptoms of COV-19</h1>
+                <h1><strong>FindTheCluster</strong> collects and analyzes data of health symptoms of <span className='highlighted'>COVID-19</span></h1>
 
                 <p>
                     Getting tested for COVID-19 is a challenge due to limited testing kits and health care systems getting overwhelmed

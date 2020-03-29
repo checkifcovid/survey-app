@@ -108,6 +108,7 @@ const SymptomsSection = () => {
     )
 };
 
+// TODO
 const OtherSymptomsSection = () => {
     return (
         <>
@@ -121,6 +122,7 @@ const OtherSymptomsSection = () => {
     )
 };
 
+// TODO
 const ConditionsSection = () => {
     return (
         <>
