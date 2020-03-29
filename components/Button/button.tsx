@@ -1,7 +1,7 @@
 import React from 'react';
 import './button.scss';
 type ButtonProps = {
-    onClick: () => any;
+    onClick?: () => any;
     children: any;
     variant: string;
     style?: object;

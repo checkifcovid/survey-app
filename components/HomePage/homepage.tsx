@@ -1,34 +1,32 @@
 import React from 'react';
 import './homepage.scss';
-import { PageWrapper, Button } from "../index";
+import {Button} from "../index";
 import Link from 'next/link';
 
-type HomePageProps = {
-    startSurvey: () => any;
-
-}
 
 export default () => (
     <div className='homepage'>
         <section className='homepage__hero'>
             <div className='homepage__hero--message'>
-                <h1><strong>FindTheCluster</strong> collects and analyzes data of health symptoms of <span className='highlighted'>COVID-19</span></h1>
+                <h1><strong>FindTheCluster</strong> collects and analyzes data for symptoms of <span
+                    className='highlighted'>COVID-19</span></h1>
 
                 <p>
-                    Getting tested for COVID-19 is a challenge due to limited testing kits and health care systems getting overwhelmed
-                    with patients.Our aim is to collect geographic data of symptoms, analyze clusters, predict outbreaks and avoid community infection.
+                    The availability of testing for COVID-19 is limited. Our aim is to collect geographic data of
+                    symptoms, analyze clusters, and predict outbreaks. Our ultimate goal is to recognize and prevent
+                    community infection.
                 </p>
 
-                <p className='highlighted'>Wondering if you might have COVID?</p>
+                <p className='highlighted'>Wondering if you or someone you know may have COVID-19?</p>
 
                 <div className='homepage__buttons-group'>
                     <Link href={'/survey'}>
-                        <Button onClick={() => console.log('')} variant='primary'>
+                        <Button variant='primary'>
                             Report your symptoms
                         </Button>
                     </Link>
                     <Link href={'/survey'}>
-                        <Button onClick={() => console.log('')} variant='secondary'>
+                        <Button variant='secondary'>
                             Report for someone
                         </Button>
                     </Link>
