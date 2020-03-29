@@ -1,0 +1,40 @@
+@import '../variables';
+
+.homepage {
+
+  .highlighted {
+    color: $blue500;
+  }
+
+  &__hero {
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    &--message {
+      max-width: 800px;
+      margin-left: $default-margin-left;
+
+      h1 {
+        font-family: 'Roboto', serif;
+        font-weight: 300;
+        font-size: 50px;
+      }
+
+      p {
+        line-height: 40px;
+        font-family: 'Roboto', serif;
+      }
+    }
+
+    &--image {
+      max-height: 700px;
+      margin-right: -25%;
+    }
+  }
+  &__buttons-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    width: 400px;
+  }
+}
