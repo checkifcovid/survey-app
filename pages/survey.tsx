@@ -64,13 +64,13 @@ export const SurveyContext = createContext(null);
 const Survey = () => {
     // State hooks for survey questions and survey itself
     // TODO messing around with initial survey state. set to Age after.
-    const [surveyState, setSurveyState] = useState(SurveyState.LOCATION);
+    const [surveyState, setSurveyState] = useState(SurveyState.AGE);
     const [selectedAgeGroup, setAge] = useState();
     const [selectedSymptoms, setSymptoms] = useState([]);
     const [temperature, setTemperature] = useState({temperature: undefined, unit: 'F'});
     const [location, setLocation] = useState('');
     const [coordinates, setCoordinates] = useState({});
-    
+
     const onSubmitSurvey = async () => {
         try {
             // TODO grab the states of all questions and merge into one object
