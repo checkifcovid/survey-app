@@ -83,17 +83,33 @@ const SymptomsSection = () => {
 
     return (
         <>
+            <section className='warning'>
+                <h1>
+                    If you have any of the following symptoms, please seek medical
+                    attention immediately. Please call 911 if experiencing:
+                </h1>
+                <ul>
+                    <li>Difficulty breathing</li>
+                    <li>Persistent chest pain or pressure</li>
+                    <li>Brush lips or face</li>
+                    <li>New confusion</li>
+                    <li>Fainting or sever lightheadedness</li>
+                    <li>Any other new and concerning symptoms</li>
+                </ul>
+            </section>
             <div className='symptoms-section'>
                 {symptomsList.map((symptom) => {
                     return (
-                        <div
-                            onClick={() => updateSymptomsSelection(symptom)}
-                            className={`symptoms-section__option symptoms-section__option--${selectedSymptoms.includes(symptom) ? 'selected' : 'un-selected'}`}
-                            key={symptom}
-                        >
-                            {symptomsLogoMapper[symptom]}
-                            <p>{ symptom }</p>
-                        </div>
+                        
+                            <div
+                                onClick={() => updateSymptomsSelection(symptom)}
+                                className={`symptoms-section__option symptoms-section__option--${selectedSymptoms.includes(symptom) ? 'selected' : 'un-selected'}`}
+                                key={symptom}
+                            >
+                                {symptomsLogoMapper[symptom]}
+                                <p>{ symptom }</p>
+                            </div>
+                        
                     );
                 })}
             </div>
