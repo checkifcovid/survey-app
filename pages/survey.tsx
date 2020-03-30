@@ -114,11 +114,9 @@ const Survey = () => {
                             reportDate: new Date()
                         };
 
-                        console.log({surveyData})
-
                         await submitSurvey(surveyData);
 
-                        // return setSurveyState(SurveyState.FINISHED)
+                        return setSurveyState(SurveyState.FINISHED)
                     } catch(error) {
                         // TODO if they survey doesn't submit, we need to elegantly handle this.
                         return setSurveyState(SurveyState.ERROR);
