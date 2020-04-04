@@ -1,3 +1,7 @@
+# FindTheCluster Survey-App
+
+Collects symptoms and other information from users which will be fed into our ML model to predict and prevent outbreaks
+
 ## How to use
 
 Install it and run:
@@ -7,20 +11,6 @@ npm install
 npm run dev
 ```
 
-## Development process
-
-Overview of some development tools, processes, and guidelines for this hackathon
-
-### Typescript
-
-Try to type your components as much as possible :) 
-this wont be enforced, so if you don't have experience with typescript don't worry too much about it.
-
-### Storybook
-
-Storybook is integrated into this project. Please use it as much as you can in order to keep track of
-what components are available in the project. To learn more about storybook you can check out storybook.js.
-
 Running storybook:
 
 ```
@@ -29,9 +19,14 @@ npm run storybook
 
 ### Contributing to the project
 
-Please branch off of dev when working on your feature! 
-In order to iterate quickly and not hold people back, dev will be free of restrictions (though I highly recommend getting
-at least one person to review your PR!). 
-However, master (prod) will be blocked. We will deploy to prod on a daily basis.  
+Please branch off of the latest dev when working on your feature. 
 
 
+---
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2020 © <a href="http://findthecluster.com" target="_blank">FindTheCluster</a>.
