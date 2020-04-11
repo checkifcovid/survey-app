@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogTitle: {
     color: '#f44336',
+    textAlign: 'center',
+  },
+  continue: {
+    color: '#1968fc',
   },
   badge: {
     background: '#fff8ea',
@@ -42,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#000',
     lineHeight: 2,
     fontSize: '18px',
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
   },
 }))
 
@@ -72,10 +79,6 @@ export default function Urgent({ form, update }) {
                       <li>Difficulty breathing</li>
                       <li>Persistent chest pain or pressure</li>
                       <li>Brush lips or face</li>
-                    </ul>
-                  </Grid>
-                  <Grid item sm={6}>
-                    <ul className={classes.list}>
                       <li>New confusion</li>
                       <li>Fainting or severe lightheadedness</li>
                       <li>Any other new and concerning symptoms</li>
@@ -87,7 +90,7 @@ export default function Urgent({ form, update }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button className={classes.continue} onClick={handleClose}>
             I don't have any of these
           </Button>
         </DialogActions>

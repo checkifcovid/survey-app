@@ -32,7 +32,6 @@ const theme = createMuiTheme({
     },
     h6: {
       fontSize: '1.2rem',
-      color: '#1968fc',
     },
   },
   overrides: {

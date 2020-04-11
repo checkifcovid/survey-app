@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     '&:hover': {
       border: 'solid 2px #1968fc',
+      background: '#fff',
     },
     [theme.breakpoints.down('sm')]: {
       width: 155,
