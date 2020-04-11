@@ -1,28 +1,9 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import MuiLink from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
 
 
 import theme from '../src/theme'
-
-function Copyright() {
-  return (
-    <Grid>
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <MuiLink color="inherit" href="http://localhost:3000">
-          {process.env.site_name}
-        </MuiLink>
-        {' '}
-        {new Date().getFullYear()}
-        .
-      </Typography>
-    </Grid>
-  )
-}
 
 export default class MyDocument extends Document {
   render() {
@@ -39,7 +20,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <Copyright />
         </body>
       </html>
     )

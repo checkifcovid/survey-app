@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { makeStyles } from '@material-ui/core/styles'
 
 import Table from '@material-ui/core/Table'
@@ -33,7 +35,7 @@ const results = [
 
 ]
 
-export default function Statistics({ title }) {
+const Statistics = ({ title }) => {
   const classes = useStyles()
 
   return (
@@ -70,3 +72,9 @@ export default function Statistics({ title }) {
     </TableContainer>
   )
 }
+
+Statistics.propTypes = {
+  title: PropTypes.string.isRequired,
+}
+
+export default Statistics

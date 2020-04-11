@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column-reverse',
     justifyContent: 'flex-end',
     width: '100%',
-    height: 600,
     alignContent: 'top',
   },
 }))
@@ -83,12 +82,12 @@ export default function Index() {
         </Toolbar>
       </AppBar>
       <Grid container>
-        <StepWizard isHashEnabled className={classes.wizard} nav={<Nav update={updateForm} />}>
+        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} />}>
           <Urgent form={state.form} update={updateForm} />
           <Others form={state.form} update={updateForm} />
           <Additional form={state.form} update={updateForm} />
           <Underlying form={state.form} update={updateForm} />
-          <Result hashKey="result" form={state.form} />
+          <Result form={state.form} />
         </StepWizard>
       </Grid>
       <pre>

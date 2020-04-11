@@ -6,22 +6,33 @@ import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
   navigation: {
-    margin: theme.spacing(1),
+    textAlign: 'center',
+    margin: theme.spacing(10, 0),
+    background: '#fff',
+    width: '100%',
+    zIndex: 2,
   },
   action: {
     margin: theme.spacing(1),
+    padding: theme.spacing(1, 10),
   },
 }))
 
-export default function Nav(props) {
+export default function Nav({
+  currentStep, totalSteps, previousStep, nextStep,
+}) {
   const classes = useStyles()
-  const isFirst = props.currentStep === 1
-  const isLast = props.currentStep == props.totalSteps
+  const isFirst = currentStep === 1
+  const isLast = currentStep === totalSteps
 
   return (
-    <Grid className={classes.navigation}>
-      <Button className={classes.action} disabled={isFirst} variant="contained" onClick={props.previousStep}>Previous</Button>
-      <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={props.nextStep}>Next</Button>
+    <Grid container className={classes.navigation}>
+      <Grid item xs={6} align="right">
+        <Button className={classes.action} disabled={isFirst} variant="contained" onClick={previousStep}>Previous</Button>
+      </Grid>
+      <Grid item xs={6} align="left">
+        <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
+      </Grid>
     </Grid>
   )
 }

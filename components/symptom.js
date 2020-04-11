@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
   symptom: {
     cursor: 'pointer',
     fontSize: 16,
-    fontWeight: 'bold',
     padding: theme.spacing(10, 4),
     height: 80,
     boxShadow: '0 20px 60px 0 rgba(49,69,244,0.1)',
