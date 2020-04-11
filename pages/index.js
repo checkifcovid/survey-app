@@ -94,30 +94,28 @@ const Index = () => {
         </Toolbar>
       </AppBar>
       <Grid container className={classes.hero}>
-        <Container>
-          <Grid item sm={6}>
-            <Container>
-              <Typography className={classes.herotext} variant="h2" component="h1" gutterBottom>
-                <span className={classes.bold}>{process.env.site_name}</span>
-                {' '}
-                collects and analyzes data for symptoms of
-                {' '}
-                <span className={classes.primaryText}>{process.env.disease}</span>
-              </Typography>
-            </Container>
-            <Container>
-              <Typography className={classes.subText} variant="p" component="p" gutterBottom>
-                The availability of testing for COVID-19 is limited. Our aim is to collect geographic data of symptoms, analyze clusters, and predict outbreaks. Our ultimate goal is to recognize and prevent community infection.
-              </Typography>
-              <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
-                Wondering if you or someone you know may have COVID-19?
-              </Typography>
-              <Grid className={classes.action}>
-                <Button href="/survey" variant="contained" color="primary">Report your symptoms</Button>
-              </Grid>
-            </Container>
-          </Grid>
-        </Container>
+        <Grid item sm={6}>
+          <Container>
+            <Typography className={classes.herotext} variant="h2" component="h1" gutterBottom>
+              <span className={classes.bold}>{process.env.site_name}</span>
+              {' '}
+              collects and analyzes data for symptoms of
+              {' '}
+              <span className={classes.primaryText}>{process.env.disease}</span>
+            </Typography>
+          </Container>
+          <Container>
+            <Typography className={classes.subText} variant="p" component="p" gutterBottom>
+              The availability of testing for COVID-19 is limited. Our aim is to collect geographic data of symptoms, analyze clusters, and predict outbreaks. Our ultimate goal is to recognize and prevent community infection.
+            </Typography>
+            <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
+              Wondering if you or someone you know may have COVID-19?
+            </Typography>
+            <Grid className={classes.action}>
+              <Button href="/survey" variant="contained" color="primary">Report your symptoms</Button>
+            </Grid>
+          </Container>
+        </Grid>
       </Grid>
       <Grid container>
         <Grid container className={classes.map}>
