@@ -12,6 +12,9 @@ import Urgent from '../components/urgent'
 import Others from '../components/others'
 import Additional from '../components/additional'
 import Underlying from '../components/underlying'
+import Age from '../components/age'
+import Gender from '../components/gender'
+import Location from '../components/location'
 import Result from '../components/result'
 
 
@@ -72,7 +75,9 @@ export default function Index() {
   const updateForm = (key, value) => {
     const { form } = state
 
-    form.total = (value === 'true') ? form.total + 1 : form.total - 1
+    const dontCount = ['age', 'gender', 'location']
+
+    form.total = (value === 'true' && !dontCount.includes(key)) ? form.total + 1 : form.total - 1
 
     form[key] = value
     updateState({
@@ -94,6 +99,9 @@ export default function Index() {
           <Others form={state.form} update={updateForm} />
           <Additional form={state.form} update={updateForm} />
           <Underlying form={state.form} update={updateForm} />
+          <Age form={state.form} update={updateForm} />
+          <Gender form={state.form} update={updateForm} />
+          <Location form={state.form} update={updateForm} />
           <Result form={state.form} />
         </StepWizard>
       </Grid>
