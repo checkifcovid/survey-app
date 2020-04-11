@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container'
 
 import Typography from '@material-ui/core/Typography'
 
-import Option from './Button/option'
+import Options from './Button/options'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -23,6 +23,25 @@ const useStyles = makeStyles((theme) => ({
 export default function Gender({ form, update }) {
   const classes = useStyles()
 
+  const options = [
+    {
+      key: 'male',
+      label: 'Male',
+    },
+    {
+      key: 'female',
+      label: 'Female',
+    },
+    {
+      key: 'nonbinary',
+      label: 'Non-binary',
+    },
+    {
+      key: 'others',
+      label: 'Others',
+    },
+  ]
+
   return (
     <>
       <Container maxWidth="lg">
@@ -31,10 +50,7 @@ export default function Gender({ form, update }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Option label="Male" style={{ width: 400 }} sendUpdate={() => { update('gender', 'male') }} />
-        <Option label="Female" style={{ width: 400 }} sendUpdate={() => { update('gender', 'female') }} />
-        <Option label="Non-binary" style={{ width: 400 }} sendUpdate={() => { update('gender', 'nonbinary') }} />
-        <Option label="Other" style={{ width: 400 }} sendUpdate={() => { update('age', 'other') }} />
+        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { update('gender', response) }} />
       </Container>
     </>
   )

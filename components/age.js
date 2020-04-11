@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
-import Option from './Button/option'
+import Options from './Button/options'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -22,6 +22,25 @@ const useStyles = makeStyles((theme) => ({
 export default function Age({ form, update }) {
   const classes = useStyles()
 
+  const options = [
+    {
+      key: '0-10',
+      label: '0-10',
+    },
+    {
+      key: '11-20',
+      label: '11-20',
+    },
+    {
+      key: '21-30',
+      label: '21-30',
+    },
+    {
+      key: '31-40',
+      label: '31-40',
+    },
+  ]
+
   return (
     <>
       <Container maxWidth="lg">
@@ -30,10 +49,7 @@ export default function Age({ form, update }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Option label="0-10" style={{ width: 400 }} sendUpdate={() => { update('age', '0-10') }} />
-        <Option label="10-20" style={{ width: 400 }} sendUpdate={() => { update('age', '10-20') }} />
-        <Option label="20-30" style={{ width: 400 }} sendUpdate={() => { update('age', '20-30') }} />
-        <Option label="30-40" style={{ width: 400 }} sendUpdate={() => { update('age', '30-40') }} />
+        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { update('age', response) }} />
       </Container>
     </>
   )

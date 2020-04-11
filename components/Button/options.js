@@ -30,27 +30,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Option = ({ label, style, sendUpdate }) => {
+const Options = ({ options, style, sendUpdate }) => {
   const classes = useStyles()
-  const [open, setOpen] = useState(false)
+  const [option, setOption] = useState(null)
 
-  const active = open ? 'active' : 'not-active'
 
-  const toggleButton = () => {
-    setOpen(!open)
-    sendUpdate(!open ? 'true' : 'false')
+  const handleOption = (e) => {
+    console.log('e', e.target.id)
+    setOption(e.target.id)
+    sendUpdate(e.target.id)
   }
 
   return (
-    <Button onClick={toggleButton} className={clsx(classes.symptom, classes[active])} style={style}>
-      {label}
-    </Button>
+    <>
+      {
+      options.map((value) => {
+        const active = (option === value.key) ? 'active' : 'not-active'
+        return (
+          <Button id={value.key} onClick={(e) => handleOption(e)} className={clsx(classes.symptom, classes[active])} style={style}>
+            {value.label}
+          </Button>
+        )
+      })
+    }
+    </>
   )
 }
 
-Option.propTypes = {
-  label: PropTypes.string.isRequired,
+Options.propTypes = {
+  options: PropTypes.array.isRequired,
   sendUpdate: PropTypes.func.isRequired,
 }
 
-export default Option
+export default Options
