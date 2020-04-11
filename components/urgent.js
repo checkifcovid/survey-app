@@ -65,6 +65,7 @@ export default function Urgent({ form, update }) {
       <Dialog
         open={open}
         onClose={handleClose}
+        disableBackdropClick
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
