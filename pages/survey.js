@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import StepWizard from 'react-step-wizard'
 
@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     alignContent: 'top',
     margin: theme.spacing(5, 0),
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(2, 0),
+    },
   },
 }))
 
@@ -86,7 +89,7 @@ export default function Index() {
         </Toolbar>
       </AppBar>
       <Grid container>
-        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} totalSelected={state.form.total} />}>
+        <StepWizard className={classes.wizard} isLazyMount nav={<Nav update={updateForm} totalSelected={state.form.total} />}>
           <Urgent form={state.form} update={updateForm} />
           <Others form={state.form} update={updateForm} />
           <Additional form={state.form} update={updateForm} />

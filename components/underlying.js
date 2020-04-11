@@ -8,9 +8,11 @@ import Typography from '@material-ui/core/Typography'
 import Symptom from './symptom'
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+  title: {
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.8rem',
+    },
   },
   badge: {
     background: '#fff8ea',
@@ -76,7 +78,7 @@ export default function Underlying({ form, update }) {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography align="center" variant="h3" component="h3" gutterBottom>
+        <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
           Do you have any of the following conditions?
         </Typography>
       </Container>

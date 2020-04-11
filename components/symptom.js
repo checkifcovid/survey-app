@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       border: 'solid 2px #1968fc',
     },
+    [theme.breakpoints.down('sm')]: {
+      width: 155,
+    },
   },
   active: {
     border: 'solid 2px #1968fc',

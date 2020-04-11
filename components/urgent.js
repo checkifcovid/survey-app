@@ -14,6 +14,12 @@ import ShortBreathIcon from './Icon/ShortBreathIcon'
 import Symptom from './symptom'
 
 const useStyles = makeStyles((theme) => ({
+  title: {
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.8rem',
+    },
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -39,7 +45,7 @@ export default function Urgent({ form, update }) {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography align="center" variant="h3" component="h3" gutterBottom>
+        <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
           Are you experiencing any of these symptoms?
         </Typography>
       </Container>
