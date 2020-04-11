@@ -3,19 +3,18 @@ import React, { useState } from 'react'
 import StepWizard from 'react-step-wizard'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import LinearProgress from '@material-ui/core/LinearProgress'
 
 import Nav from '../components/nav'
-import Personal from '../components/personal'
-import Cough from '../components/cough'
-import Fever from '../components/fever'
-import Travel from '../components/travel'
-import Exposure from '../components/exposure'
-import Weakness from '../components/weakness'
+import Urgent from '../components/urgent'
+import Others from '../components/others'
+import Additional from '../components/additional'
+import Underlying from '../components/underlying'
+import Result from '../components/result'
+
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -43,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
   wizard: {
     display: 'flex',
     flexDirection: 'column-reverse',
+    justifyContent: 'flex-end',
+    width: '100%',
+    height: 600,
+    alignContent: 'top',
   },
 }))
 
@@ -53,7 +56,6 @@ export default function Index() {
   const [state, updateState] = useState({
     form: {
       next: false,
-      status: 10,
     },
   })
 
@@ -73,26 +75,24 @@ export default function Index() {
 
   return (
     <>
-      <AppBar className={classes.appbar} position="static">
+      <AppBar color="transparent" className={classes.appbar} position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             {process.env.site_name}
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container>
-        <LinearProgress className={classes.progress} variant="determinate" value={state.form.status} />
-        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} />}>
-          <Personal form={state.form} update={updateForm} />
-          <Cough form={state.form} update={updateForm} />
-          <Fever form={state.form} update={updateForm} />
-          <Travel form={state.form} update={updateForm} />
-          <Exposure form={state.form} update={updateForm} />
-          <Weakness form={state.form} update={updateForm} />
+      <Grid container>
+        <StepWizard isHashEnabled className={classes.wizard} nav={<Nav update={updateForm} />}>
+          <Urgent form={state.form} update={updateForm} />
+          <Others form={state.form} update={updateForm} />
+          <Additional form={state.form} update={updateForm} />
+          <Underlying form={state.form} update={updateForm} />
+          <Result hashKey="result" form={state.form} />
         </StepWizard>
-
-        <pre>
-          {
+      </Grid>
+      <pre>
+        {
           Object.keys(state.form).map((key) => (
             <div>
               {key}
@@ -103,8 +103,7 @@ export default function Index() {
             </div>
           ))
         }
-        </pre>
-      </Container>
+      </pre>
     </>
   )
 }
