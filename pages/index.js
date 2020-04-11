@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
   cluster: {
     width: 200,
   },
+  logo: {
+    width: 200,
+  },
   image: {
     maxWidth: '100%',
     textAlign: 'center',
@@ -77,14 +80,12 @@ const Index = () => {
     <>
       <AppBar color="transparent" className={classes.appbar} position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            {process.env.site_name}
-          </Typography>
+          <img src="/logo.png" alt={process.env.site_name} className={classes.logo} />
         </Toolbar>
       </AppBar>
       <Grid container className={classes.hero}>
         <Container>
-          <Grid item sm={7}>
+          <Grid item sm={6}>
             <Container>
               <Typography className={classes.herotext} variant="h2" component="h1" gutterBottom>
                 <span className={classes.bold}>{process.env.site_name}</span>

@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 
 import Nav from '../components/nav'
 import Urgent from '../components/urgent'
@@ -20,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     margin: theme.spacing(0, 0, 2, 0),
     flexGrow: 1,
+  },
+  logo: {
+    width: 200,
   },
   hero: {
     margin: theme.spacing(1),
@@ -77,9 +79,7 @@ export default function Index() {
     <>
       <AppBar color="transparent" className={classes.appbar} position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            {process.env.site_name}
-          </Typography>
+          <img src="/logo.png" alt={process.env.site_name} className={classes.logo} />
         </Toolbar>
       </AppBar>
       <Grid container>
