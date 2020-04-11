@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     width: '100%',
     alignContent: 'top',
+    margin: theme.spacing(5, 0),
   },
 }))
 

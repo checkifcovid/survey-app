@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 const useStyles = makeStyles((theme) => ({
   navigation: {
     textAlign: 'center',
-    margin: theme.spacing(10, 0),
+    margin: theme.spacing(6, 0),
     background: '#fff',
     width: '100%',
     zIndex: 2,
