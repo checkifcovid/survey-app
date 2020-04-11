@@ -27,12 +27,17 @@ export default function Nav({
 
   return (
     <Grid container className={classes.navigation}>
-      <Grid item xs={6} align="right">
-        <Button className={classes.action} disabled={isFirst} variant="contained" onClick={previousStep}>Previous</Button>
-      </Grid>
-      <Grid item xs={6} align="left">
-        <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
-      </Grid>
+      { !isLast
+      && (
+      <>
+        <Grid item xs={6} align="right">
+          <Button className={classes.action} disabled={isFirst} variant="contained" onClick={previousStep}>Previous</Button>
+        </Grid>
+        <Grid item xs={6} align="left">
+          <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
+        </Grid>
+      </>
+      )}
     </Grid>
   )
 }
