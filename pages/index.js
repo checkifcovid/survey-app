@@ -152,19 +152,21 @@ const Index = () => {
         <Grid container className={classes.section}>
           <Grid container>
             <Container>
-              <Grid item sm={7}>
-                <Typography variant="h3" component="h3" gutterBottom>
-                  The power of crowdsourcing
-                </Typography>
-                <Typography variant="p" component="p" gutterBottom>
-                  Data is very important in making decisions but isn't always available. Data for active cases (and deaths) is available but we need more data on the population who are experiencing only some of the symptoms.
-                </Typography>
-                <Typography variant="p" component="p" gutterBottom>
-                  By conducting survey sampling, especially during an outbreak, data will be collected, analyzed and made available.
-                </Typography>
-              </Grid>
-              <Grid item align="center" sm={5}>
-                <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
+              <Grid container>
+                <Grid item sm={7}>
+                  <Typography variant="h3" component="h3" gutterBottom>
+                    The power of crowdsourcing
+                  </Typography>
+                  <Typography variant="p" component="p" gutterBottom>
+                    Data is very important in making decisions but isn't always available. Data for active cases (and deaths) is available but we need more data on the population who are experiencing only some of the symptoms.
+                  </Typography>
+                  <Typography variant="p" component="p" gutterBottom>
+                    By conducting survey sampling, especially during an outbreak, data will be collected, analyzed and made available.
+                  </Typography>
+                </Grid>
+                <Grid item align="center" sm={5}>
+                  <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
+                </Grid>
               </Grid>
             </Container>
           </Grid>
