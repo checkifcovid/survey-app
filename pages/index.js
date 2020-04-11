@@ -12,11 +12,17 @@ import Grid from '@material-ui/core/Grid'
 const useStyles = makeStyles((theme) => ({
   section: {
     margin: theme.spacing(15, 0),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1, 0),
+    },
   },
   map: {
     background: theme.palette.primary.main,
     color: '#fff',
     padding: theme.spacing(15, 0),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(5, 0),
+    },
   },
   hero: {
     padding: theme.spacing(15, 2),
@@ -24,11 +30,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'contain',
     height: 680,
     [theme.breakpoints.down('sm')]: {
-      height: 280,
+      fontSize: '1rem',
+      height: 430,
       padding: theme.spacing(2, 1),
-      backgroundAttachment: 'inherit',
-      backgroundSize: '100%',
-      background: 'url(macbook-mock.png) no-repeat 100%',
+      background: 'none',
     },
   },
   bold: {
@@ -40,12 +45,17 @@ const useStyles = makeStyles((theme) => ({
   subText: {
     lineHeight: '40px',
     padding: theme.spacing(3, 0),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1, 0),
+      lineHeight: '20px',
+      fontSize: '12px',
+    },
   },
   herotext: {
     zIndex: 1,
     fontSize: '50px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '20px',
+      fontSize: '30px',
     },
   },
   cluster: {
