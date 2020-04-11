@@ -19,11 +19,19 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    fontSize: '4rem',
     h3: {
       fontSize: '2.5rem',
       fontWeight: 'bold',
     },
+    h4: {
+      fontSize: '1.8rem',
+    },
+    h5: {
+      fontSize: '1.5rem',
+    },
     h6: {
+      fontSize: '1.2rem',
       color: '#1968fc',
     },
   },
@@ -42,6 +50,7 @@ const theme = createMuiTheme({
         padding: '15px 40px',
         textTransform: 'none',
         backgroundColor: '#fff',
+        fontSize: '1rem',
       },
     },
   },
