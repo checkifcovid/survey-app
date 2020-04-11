@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
   symptom: {
     cursor: 'pointer',
     fontSize: 16,
-    padding: theme.spacing(10, 4),
-    height: 80,
+    padding: theme.spacing(2, 4),
+    height: 140,
     boxShadow: '0 20px 60px 0 rgba(49,69,244,0.1)',
     borderRadius: 25,
     width: 180,
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Symptom = ({ name, sendUpdate }) => {
+const Symptom = ({ name, icon, sendUpdate }) => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
@@ -40,6 +40,7 @@ const Symptom = ({ name, sendUpdate }) => {
 
   return (
     <Button onClick={toggleButton} className={clsx(classes.symptom, classes[active])}>
+      {icon}
       {name}
     </Button>
   )
@@ -47,6 +48,7 @@ const Symptom = ({ name, sendUpdate }) => {
 
 Symptom.propTypes = {
   name: PropTypes.string.isRequired,
+  icon: PropTypes.func.isRequired,
   sendUpdate: PropTypes.func.isRequired,
 }
 

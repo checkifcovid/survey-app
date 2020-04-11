@@ -6,6 +6,11 @@ import Grid from '@material-ui/core/Grid'
 
 import Typography from '@material-ui/core/Typography'
 
+import FeverIcon from './Icon/FeverIcon'
+import CoughIcon from './Icon/CoughIcon'
+import ShortBreathIcon from './Icon/ShortBreathIcon'
+
+
 import Symptom from './symptom'
 
 const useStyles = makeStyles((theme) => ({
@@ -62,9 +67,9 @@ export default function Urgent({ form, update }) {
         </Container>
       </Grid>
       <Container align="center">
-        <Symptom name="Fever" sendUpdate={(response) => { update('fever', response) }} />
-        <Symptom name="Cough" sendUpdate={(response) => update('cough', response)} />
-        <Symptom name="Shortness of breath" sendUpdate={(response) => update('shortness', response)} />
+        <Symptom icon={<FeverIcon />} name="Fever" sendUpdate={(response) => { update('fever', response) }} />
+        <Symptom icon={<CoughIcon />} name="Cough" sendUpdate={(response) => update('cough', response)} />
+        <Symptom icon={<ShortBreathIcon />} name="Shortness of breath" sendUpdate={(response) => update('shortness', response)} />
       </Container>
     </>
   )
