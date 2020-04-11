@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   section: {
     margin: theme.spacing(15, 0),
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(1, 0),
+      margin: theme.spacing(1, 0),
     },
   },
   map: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     padding: theme.spacing(15, 0),
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(5, 0),
+      padding: theme.spacing(0),
     },
   },
   hero: {
