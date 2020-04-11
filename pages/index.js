@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   hero: {
-    padding: theme.spacing(15, 2),
-    background: 'url(macbook-mock.png) no-repeat 140% 50px',
+    padding: theme.spacing(8, 2),
+    background: 'url(macbook-mock.png) no-repeat 150% 50px',
     backgroundSize: 'contain',
     height: 680,
     [theme.breakpoints.down('sm')]: {
