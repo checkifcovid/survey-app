@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function Nav({
-  currentStep, totalSteps, previousStep, nextStep,
+  currentStep, totalSteps, previousStep, nextStep, totalSelected,
 }) {
   const classes = useStyles()
   const isFirst = currentStep === 1
@@ -30,6 +30,13 @@ export default function Nav({
       { !isLast
       && (
       <>
+        <Grid item xs={12}>
+          (
+          {totalSelected}
+          )
+          {' '}
+          symptoms selected
+        </Grid>
         <Grid item xs={6} align="right">
           <Button className={classes.action} disabled={isFirst} variant="contained" onClick={previousStep}>Previous</Button>
         </Grid>

@@ -57,6 +57,7 @@ export default function Index() {
 
   const [state, updateState] = useState({
     form: {
+      total: 0,
       next: false,
     },
   })
@@ -67,6 +68,8 @@ export default function Index() {
 
   const updateForm = (key, value) => {
     const { form } = state
+
+    form.total = (value === 'true') ? form.total + 1 : form.total - 1
 
     form[key] = value
     updateState({
@@ -83,7 +86,7 @@ export default function Index() {
         </Toolbar>
       </AppBar>
       <Grid container>
-        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} />}>
+        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} totalSelected={state.form.total} />}>
           <Urgent form={state.form} update={updateForm} />
           <Others form={state.form} update={updateForm} />
           <Additional form={state.form} update={updateForm} />
