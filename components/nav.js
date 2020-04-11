@@ -34,9 +34,7 @@ export default function Nav({
       && (
       <>
         <Grid item xs={12}>
-          (
           {totalSelected}
-          )
           {' '}
           symptoms selected
         </Grid>

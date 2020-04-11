@@ -99,9 +99,11 @@ const Index = () => {
             <Typography className={classes.herotext} variant="h2" component="h1" gutterBottom>
               <span className={classes.bold}>{process.env.site_name}</span>
               {' '}
-              collects and analyzes data for symptoms of
+              calculates the probability of
               {' '}
               <span className={classes.primaryText}>{process.env.disease}</span>
+              {' '}
+              based on symptoms and location
             </Typography>
           </Container>
           <Container>
