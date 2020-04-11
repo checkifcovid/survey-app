@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 25,
     width: 180,
     alignItems: 'center',
+    justifyContent: 'center',
     border: 'solid 2px rgba(255,255,255,0.1)',
     margin: theme.spacing(1),
     '&:hover': {
