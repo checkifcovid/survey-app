@@ -63,8 +63,10 @@ export default function Index() {
 
   const [state, updateState] = useState({
     form: {
-      total: 0,
       next: false,
+    },
+    symptoms: {
+      total: 0,
     },
   })
 
@@ -73,19 +75,19 @@ export default function Index() {
   }
 
   const updateForm = (key, value) => {
-    const { form } = state
+    const { symptoms } = state
 
+    // Symptoms block: Only increment/decrement symptoms
     const dontCount = ['age', 'gender', 'location']
-
-    // Only increment/decrement symptoms
     if (!dontCount.includes(key)) {
-      form.total = (value === 'true') ? form.total + 1 : form.total - 1
+      symptoms.total = (value === 'true') ? symptoms.total + 1 : symptoms.total - 1
+      symptoms[key] = value
     }
 
-    form[key] = value
+    // form[key] = value
     updateState({
       ...state,
-      form,
+      symptoms,
     })
   }
 
@@ -97,11 +99,11 @@ export default function Index() {
         </Toolbar>
       </AppBar>
       <Grid container>
-        <StepWizard className={classes.wizard} isLazyMount nav={<Nav update={updateForm} totalSelected={state.form.total} />}>
-          <Urgent form={state.form} update={updateForm} />
-          <Others form={state.form} update={updateForm} />
-          <Additional form={state.form} update={updateForm} />
-          <Underlying form={state.form} update={updateForm} />
+        <StepWizard className={classes.wizard} isLazyMount nav={<Nav update={updateForm} totalSelected={state.symptoms.total} />}>
+          <Urgent symptoms={state.symptoms} update={updateForm} />
+          <Others symptoms={state.symptoms} update={updateForm} />
+          <Additional symptoms={state.symptoms} update={updateForm} />
+          <Underlying symptoms={state.symptoms} update={updateForm} />
           <Age form={state.form} update={updateForm} />
           <Gender form={state.form} update={updateForm} />
           <Location form={state.form} update={updateForm} />
@@ -110,13 +112,13 @@ export default function Index() {
       </Grid>
       <pre>
         {
-          Object.keys(state.form).map((key) => (
+          Object.keys(state.symptoms).map((key) => (
             <div>
               {key}
               {' '}
               :
               {' '}
-              {state.form[key]}
+              {state.symptoms[key]}
             </div>
           ))
         }

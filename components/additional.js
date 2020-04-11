@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '@material-ui/core/Container'
@@ -14,25 +16,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.8rem',
     },
   },
-  badge: {
-    background: '#fff8ea',
-    color: '#f44336',
-    textAlign: 'center',
-    padding: theme.spacing(3, 0),
-  },
-  list: {
-    textAlign: 'left',
-    color: '#000',
-    padding: theme.spacing(0, 7),
-    lineHeight: 2,
-    fontSize: '18px',
-  },
 }))
 
-export default function Additional({ form, update }) {
+const Additional = ({ symptoms, update }) => {
   const classes = useStyles()
 
-  const symptoms = [
+  const options = [
     {
       name: 'Sneezing',
       key: 'sneezing',
@@ -76,11 +65,25 @@ export default function Additional({ form, update }) {
       </Container>
       <Container align="center">
         {
-          symptoms.map((symptom) => (
-            <Symptom name={symptom.name} sendUpdate={(response) => { update(symptom.key, response) }} />
-          ))
+          options.map((option) => {
+            const active = (symptoms[option.key] === 'true')
+            return (
+              <Symptom name={option.name} active={active} callback={(response) => { update(option.key, response) }} />
+            )
+          })
         }
       </Container>
     </>
   )
 }
+
+Additional.propTypes = {
+  update: PropTypes.func.isRequired,
+  symptoms: PropTypes.shape({
+    name: PropTypes.string,
+    icon: PropTypes.elementType,
+    callback: PropTypes.func.isRequired,
+  }).isRequired,
+}
+
+export default Additional

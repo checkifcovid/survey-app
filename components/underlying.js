@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '@material-ui/core/Container'
@@ -29,10 +31,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Underlying({ form, update }) {
+const Underlying = ({ symptoms, update }) => {
   const classes = useStyles()
 
-  const symptoms = [
+  const options = [
     {
       name: 'Asthma or chronic lung disease',
       key: 'asthma',
@@ -84,11 +86,25 @@ export default function Underlying({ form, update }) {
       </Container>
       <Container align="center">
         {
-          symptoms.map((symptom) => (
-            <Symptom name={symptom.name} sendUpdate={(response) => { update(symptom.key, response) }} />
-          ))
+          options.map((option) => {
+            const active = (symptoms[option.key] === 'true')
+            return (
+              <Symptom name={option.name} active={active} callback={(response) => { update(option.key, response) }} />
+            )
+          })
         }
       </Container>
     </>
   )
 }
+
+Underlying.propTypes = {
+  update: PropTypes.func.isRequired,
+  symptoms: PropTypes.shape({
+    name: PropTypes.string,
+    icon: PropTypes.elementType,
+    callback: PropTypes.func.isRequired,
+  }).isRequired,
+}
+
+export default Underlying

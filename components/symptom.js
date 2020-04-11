@@ -32,19 +32,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Symptom = ({ name, icon, sendUpdate }) => {
+const Symptom = ({
+  name, icon, callback, active,
+}) => {
   const classes = useStyles()
-  const [open, setOpen] = useState(false)
-
-  const active = open ? 'active' : 'not-active'
 
   const toggleButton = () => {
-    setOpen(!open)
-    sendUpdate(!open ? 'true' : 'false')
+    callback(!active ? 'true' : 'false')
   }
 
+  const enabled = active ? 'active' : 'not-active'
+
   return (
-    <Button onClick={toggleButton} className={clsx(classes.symptom, classes[active])}>
+    <Button onClick={toggleButton} className={clsx(classes.symptom, classes[enabled])}>
       {icon}
       {name}
     </Button>
@@ -53,8 +53,9 @@ const Symptom = ({ name, icon, sendUpdate }) => {
 
 Symptom.propTypes = {
   name: PropTypes.string.isRequired,
-  icon: PropTypes.func.isRequired,
-  sendUpdate: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
+  icon: PropTypes.elementType.isRequired,
+  callback: PropTypes.func.isRequired,
 }
 
 export default Symptom

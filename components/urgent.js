@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Button from '@material-ui/core/Button'
@@ -26,10 +27,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.8rem',
     },
   },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
   dialogTitle: {
     color: '#f44336',
     textAlign: 'center',
@@ -52,13 +49,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Urgent({ form, update }) {
+const Urgent = ({ symptoms, update }) => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
 
   const handleClose = () => {
     setOpen(false)
   }
+
+  const options = [
+    {
+      icon: <FeverIcon />,
+      name: 'Fever',
+      key: 'fever',
+    },
+    {
+      icon: <CoughIcon />,
+      name: 'Cough',
+      key: 'cough',
+    },
+    {
+      icon: <ShortBreathIcon />,
+      name: 'Shortness of breath',
+      key: 'shortness_breath',
+    },
+  ]
 
   return (
     <>
@@ -103,10 +118,26 @@ export default function Urgent({ form, update }) {
       </Container>
 
       <Container align="center">
-        <Symptom icon={<FeverIcon />} name="Fever" sendUpdate={(response) => { update('fever', response) }} />
-        <Symptom icon={<CoughIcon />} name="Cough" sendUpdate={(response) => update('cough', response)} />
-        <Symptom icon={<ShortBreathIcon />} name="Shortness of breath" sendUpdate={(response) => update('shortness', response)} />
+        {
+          options.map((option) => {
+            const active = (symptoms[option.key] === 'true')
+            return (
+              <Symptom name={option.name} active={active} icon={option.icon} callback={(response) => { update(option.key, response) }} />
+            )
+          })
+        }
       </Container>
     </>
   )
 }
+
+Urgent.propTypes = {
+  update: PropTypes.func.isRequired,
+  symptoms: PropTypes.shape({
+    name: PropTypes.string,
+    icon: PropTypes.elementType,
+    callback: PropTypes.func.isRequired,
+  }).isRequired,
+}
+
+export default Urgent
