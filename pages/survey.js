@@ -77,7 +77,10 @@ export default function Index() {
 
     const dontCount = ['age', 'gender', 'location']
 
-    form.total = (value === 'true' && !dontCount.includes(key)) ? form.total + 1 : form.total - 1
+    // Only increment/decrement symptoms
+    if (!dontCount.includes(key)) {
+      form.total = (value === 'true') ? form.total + 1 : form.total - 1
+    }
 
     form[key] = value
     updateState({
