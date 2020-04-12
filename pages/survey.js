@@ -9,11 +9,14 @@ import Nav from '../components/nav'
 import Questionnaire from '../components/questionnaire'
 import Menu from '../components/menu'
 
-import Urgent from '../components/urgent'
 import Age from '../components/age'
 import Gender from '../components/gender'
 import Location from '../components/location'
 import Result from '../components/result'
+
+import FeverIcon from '../components/Icon/FeverIcon'
+import CoughIcon from '../components/Icon/CoughIcon'
+import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -88,29 +91,29 @@ export default function Index() {
   }
 
   const questionnaires = [
-    // {
-    //   title: 'Are you experiencing any of these symptoms?',
-    //   options: [
-    //     {
-    //       icon: <FeverIcon />,
-    //       label: 'Fever',
-    //       key: 'fever',
-    //       active: false,
-    //     },
-    //     {
-    //       icon: <CoughIcon />,
-    //       label: 'Cough',
-    //       key: 'cough',
-    //       active: false,
-    //     },
-    //     {
-    //       icon: <ShortBreathIcon />,
-    //       label: 'Shortness of breath',
-    //       key: 'shortness_breath',
-    //       active: false,
-    //     },
-    //   ],
-    // },
+    {
+      title: 'Are you experiencing any of these symptoms?',
+      options: [
+        {
+          icon: <FeverIcon />,
+          label: 'Fever',
+          key: 'fever',
+          active: false,
+        },
+        {
+          icon: <CoughIcon />,
+          label: 'Cough',
+          key: 'cough',
+          active: false,
+        },
+        {
+          icon: <ShortBreathIcon />,
+          label: 'Shortness of breath',
+          key: 'shortness_breath',
+          active: false,
+        },
+      ],
+    },
     { // Slide 2
       title: 'Are you experiencing any of these other symptoms?',
       options: [
@@ -186,7 +189,7 @@ export default function Index() {
         },
       ],
     },
-    {
+    { // Slide 4
       title: 'Do you have any of the following conditions?',
       options: [
         {
@@ -248,12 +251,11 @@ export default function Index() {
       <Menu />
       <Grid container>
         <StepWizard className={classes.wizard} nav={<Nav totalSelected={state.symptoms.total} />}>
-          <Urgent symptoms={state.symptoms} update={updateSymptom} />
-          {
-            questionnaires.map((questionnaire) => (
-              <Questionnaire question={questionnaire.title} options={questionnaire.options} callback={updateSymptom} />
-            ))
-          }
+          { /* looping this doesn't work. Manual work needed */ }
+          <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
+          <Questionnaire question={questionnaires[1].title} options={questionnaires[1].options} callback={updateSymptom} />
+          <Questionnaire question={questionnaires[2].title} options={questionnaires[2].options} callback={updateSymptom} />
+          <Questionnaire question={questionnaires[3].title} options={questionnaires[3].options} callback={updateSymptom} />
           <Age callback={updateUser} />
           <Gender callback={updateUser} />
           <Location callback={updateUser} />
