@@ -11,8 +11,10 @@ const useStyles = makeStyles((theme) => ({
   result: {
 
   },
-  red: {
-    color: '#ff0000',
+  probability: {
+    background: '#ccc',
+    padding: theme.spacing(1, 3),
+    borderRadius: 5,
   },
   summary: {
     padding: theme.spacing(3, 0),
@@ -20,9 +22,14 @@ const useStyles = makeStyles((theme) => ({
   statistics: {
     padding: theme.spacing(1),
   },
+  postal_code: {
+    textDecoration: 'underline',
+    color: '#1968fc',
+    fontWeight: 'bold',
+  },
 }))
 
-export default function Result() {
+export default function Result({ symptoms, user }) {
   const classes = useStyles()
 
   return (
@@ -33,17 +40,11 @@ export default function Result() {
             <Typography className={classes.result} variant="h3" component="h3" gutterBottom>
               Result:
               {' '}
-              <span className={classes.red}>80%</span>
+              <span className={classes.probability}>?? %</span>
               {' '}
               probability for
               {' '}
               {process.env.disease}
-            </Typography>
-            <Typography variant="h4" component="h4" gutterBottom>
-              Contact Your Healthcare Provider
-            </Typography>
-            <Typography variant="body1" component="body1" gutterBottom>
-              Your answers suggest you should talk to a medical professional about getting tested for COVID‑19.
             </Typography>
           </Grid>
           <Grid className={classes.summary} item sm={6}>
@@ -82,14 +83,16 @@ export default function Result() {
           <Grid container sm={6}>
             <Grid container sm={12} alignItems="flex-end">
               <Typography variant="h6" component="h6">
-                Available Data for M4S0A5
+                Available Data for
+                {' '}
+                <span className={classes.postal_code}>{user.postal_code}</span>
               </Typography>
             </Grid>
             <Grid className={classes.statistics} item sm={6}>
-              <Statistics title="Symptoms" />
+              <Statistics title="Symptoms" data={symptoms} />
             </Grid>
             <Grid className={classes.statistics} item sm={6}>
-              <Statistics title="Testing results" />
+              <Statistics title="Testing results" data={symptoms} />
             </Grid>
           </Grid>
         </Grid>

@@ -30,7 +30,7 @@ export default function Nav({
 
   return (
     <Grid container className={classes.navigation}>
-
+      {!isLast && (
       <>
         <Grid item xs={12}>
           {totalSelected}
@@ -44,6 +44,7 @@ export default function Nav({
           <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
         </Grid>
       </>
+      )}
     </Grid>
   )
 }

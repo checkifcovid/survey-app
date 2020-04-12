@@ -56,11 +56,9 @@ export default function Index() {
 
   const [state, updateState] = useState({
     user: {
-      next: false,
-    },
-    symptoms: {
       total: 0,
     },
+    symptoms: {},
   })
 
   const handleSave = () => {
@@ -68,9 +66,9 @@ export default function Index() {
   }
 
   const updateSymptom = (key, value) => {
-    const { symptoms } = state
+    const { symptoms, user } = state
 
-    symptoms.total = (value === true) ? symptoms.total + 1 : symptoms.total - 1
+    user.total = (value === true) ? user.total + 1 : user.total - 1
     symptoms[key] = value
 
     updateState({
@@ -250,7 +248,7 @@ export default function Index() {
     <>
       <Menu />
       <Grid container>
-        <StepWizard className={classes.wizard} nav={<Nav totalSelected={state.symptoms.total} />}>
+        <StepWizard className={classes.wizard} nav={<Nav totalSelected={state.user.total} />}>
           { /* looping this doesn't work. Manual work needed */ }
           <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
           <Questionnaire question={questionnaires[1].title} options={questionnaires[1].options} callback={updateSymptom} />
@@ -259,7 +257,7 @@ export default function Index() {
           <Age callback={updateUser} />
           <Gender callback={updateUser} />
           <Location callback={updateUser} />
-          <Result />
+          <Result symptoms={state.symptoms} user={state.user} />
         </StepWizard>
       </Grid>
       <pre>

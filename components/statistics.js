@@ -12,9 +12,8 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+  none: {
+    color: '#ccc',
   },
 }))
 
@@ -22,20 +21,13 @@ const createData = (name, count) => ({
   name, count,
 })
 
-const symptoms = [
-  createData('Cough', 159),
-  createData('Fever', 237),
-  createData('Runny nose', 262),
-  createData('Difficulty Breathing', 305),
-]
-
 const results = [
   createData('Positive', 24),
   createData('Negative', 237),
 
 ]
 
-const Statistics = ({ title }) => {
+const Statistics = ({ title, data }) => {
   const classes = useStyles()
 
   return (
@@ -51,12 +43,12 @@ const Statistics = ({ title }) => {
         </TableHead>
         <TableBody>
           {(title === 'Symptoms')
-            ? symptoms.map((row) => (
-              <TableRow key={row.name}>
+            ? Object.keys(data).map((symptom) => (
+              <TableRow key={symptom}>
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {symptom}
                 </TableCell>
-                <TableCell align="right">{row.count}</TableCell>
+                <TableCell align="right" className={classes.none}>No data</TableCell>
               </TableRow>
             ))
             : results.map((row) => (
@@ -64,7 +56,7 @@ const Statistics = ({ title }) => {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.count}</TableCell>
+                <TableCell align="right" className={classes.none}>No data</TableCell>
               </TableRow>
             ))}
         </TableBody>
