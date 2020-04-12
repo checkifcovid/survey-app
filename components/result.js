@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   probability: {
     background: '#ccc',
-    padding: theme.spacing(1, 3),
+    padding: theme.spacing(1, 2),
     borderRadius: 5,
   },
   summary: {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import StepWizard from 'react-step-wizard'
 
@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
 import Nav from '../components/nav'
+import Urgency from '../components/urgency'
 import Questionnaire from '../components/questionnaire'
 import Menu from '../components/menu'
 
@@ -248,6 +249,7 @@ export default function Index() {
     <>
       <Menu />
       <Grid container>
+        <Urgency />
         <StepWizard className={classes.wizard} nav={<Nav totalSelected={state.user.total} />}>
           { /* looping this doesn't work. Manual work needed */ }
           <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
@@ -260,7 +262,7 @@ export default function Index() {
           <Result symptoms={state.symptoms} user={state.user} />
         </StepWizard>
       </Grid>
-      <pre>
+      {/* <pre>
         {
           Object.keys(state.symptoms).map((key) => (
             <div>
@@ -283,7 +285,7 @@ export default function Index() {
             </div>
           ))
         }
-      </pre>
+      </pre> */}
     </>
   )
 }
