@@ -4,11 +4,10 @@ import StepWizard from 'react-step-wizard'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
 
 import Nav from '../components/nav'
 import Questionnaire from '../components/questionnaire'
+import Menu from '../components/menu'
 
 import Urgent from '../components/urgent'
 import Age from '../components/age'
@@ -17,13 +16,6 @@ import Location from '../components/location'
 import Result from '../components/result'
 
 const useStyles = makeStyles((theme) => ({
-  appbar: {
-    margin: theme.spacing(0, 0, 2, 0),
-    flexGrow: 1,
-  },
-  logo: {
-    width: 200,
-  },
   hero: {
     margin: theme.spacing(1),
     display: 'flex',
@@ -253,11 +245,7 @@ export default function Index() {
 
   return (
     <>
-      <AppBar color="transparent" className={classes.appbar} position="static">
-        <Toolbar>
-          <img src="/logo.png" alt={process.env.site_name} className={classes.logo} />
-        </Toolbar>
-      </AppBar>
+      <Menu />
       <Grid container>
         <StepWizard className={classes.wizard} nav={<Nav totalSelected={state.symptoms.total} />}>
           <Urgent symptoms={state.symptoms} update={updateSymptom} />

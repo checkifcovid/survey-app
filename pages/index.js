@@ -1,12 +1,12 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
+
+import Menu from '../components/menu'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,11 +88,7 @@ const Index = () => {
   const classes = useStyles()
   return (
     <>
-      <AppBar color="transparent" className={classes.appbar} position="static">
-        <Toolbar>
-          <img src="/logo.png" alt={process.env.site_name} className={classes.logo} />
-        </Toolbar>
-      </AppBar>
+      <Menu />
       <Grid container className={classes.hero}>
         <Grid item sm={6}>
           <Container>
