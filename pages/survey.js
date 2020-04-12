@@ -16,10 +16,6 @@ import Gender from '../components/gender'
 import Location from '../components/location'
 import Result from '../components/result'
 
-import FeverIcon from '../components/Icon/FeverIcon'
-import CoughIcon from '../components/Icon/CoughIcon'
-import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
-
 const useStyles = makeStyles((theme) => ({
   appbar: {
     margin: theme.spacing(0, 0, 2, 0),
