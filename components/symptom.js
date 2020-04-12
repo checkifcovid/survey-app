@@ -36,15 +36,17 @@ const Symptom = ({
   name, icon, callback, active,
 }) => {
   const classes = useStyles()
+  const [enabled, setEnabled] = React.useState(active)
 
   const toggleButton = () => {
-    callback(!active ? 'true' : 'false')
+    setEnabled(!enabled)
+    callback(!enabled)
   }
 
-  const enabled = active ? 'active' : 'not-active'
+  const highlight = enabled ? 'active' : 'not-active'
 
   return (
-    <Button onClick={toggleButton} className={clsx(classes.symptom, classes[enabled])}>
+    <Button onClick={toggleButton} className={clsx(classes.symptom, classes[highlight])}>
       {icon}
       {name}
     </Button>

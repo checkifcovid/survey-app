@@ -8,10 +8,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
 import Nav from '../components/nav'
+import Questionnaire from '../components/questionnaire'
+
 import Urgent from '../components/urgent'
-import Others from '../components/others'
-import Additional from '../components/additional'
-import Underlying from '../components/underlying'
 import Age from '../components/age'
 import Gender from '../components/gender'
 import Location from '../components/location'
@@ -77,10 +76,10 @@ export default function Index() {
   const updateForm = (key, value) => {
     const { symptoms } = state
 
-    // Symptoms block: Only increment/decrement symptoms
+    // Symptoms: Only increment/decrement symptoms
     const dontCount = ['age', 'gender', 'location']
     if (!dontCount.includes(key)) {
-      symptoms.total = (value === 'true') ? symptoms.total + 1 : symptoms.total - 1
+      symptoms.total = (value === true) ? symptoms.total + 1 : symptoms.total - 1
       symptoms[key] = value
     }
 
@@ -91,6 +90,139 @@ export default function Index() {
     })
   }
 
+  const questionnaires = [
+    { // Slide 2
+      title: 'Are you experiencing any of these other symptoms?',
+      options: [
+        {
+          label: 'Chills or sweating',
+          key: 'chills',
+          active: false,
+        },
+        {
+          label: 'Chest pain or pressure',
+          key: 'chest_pain',
+          active: false,
+        },
+        {
+          label: 'Body aches',
+          key: 'body_pain',
+          active: false,
+        },
+        {
+          label: 'Headache',
+          key: 'headache',
+          active: false,
+        },
+        {
+          label: 'Diarrhea',
+          key: 'diarrhea',
+          active: false,
+        },
+      ],
+    },
+    { // Slide 3
+      title: 'Are you experiencing any of these other symptoms? (Additional)',
+      options: [
+        {
+          label: 'Sneezing',
+          key: 'sneezing',
+          active: false,
+        },
+        {
+          label: 'Runny nose',
+          key: 'runny_nose',
+          active: false,
+        },
+        {
+          label: 'Rash',
+          key: 'rash',
+          active: false,
+        },
+        {
+          label: 'Sore throat',
+          key: 'sore_throat',
+          active: false,
+        },
+        {
+          label: 'Abdominal pain',
+          key: 'abdominal_pain',
+          active: false,
+        },
+        {
+          label: 'Nausea or vomitting',
+          key: 'nausea',
+          active: false,
+        },
+        {
+          label: 'Fatigue and/or weakness',
+          key: 'fatigue',
+          active: false,
+        },
+        {
+          label: 'Reduced sense of taste and/or smell',
+          key: 'reduced_smell_taste',
+          active: false,
+        },
+      ],
+    },
+    {
+      title: 'Do you have any of the following conditions?',
+      options: [
+        {
+          label: 'Asthma or chronic lung disease',
+          key: 'asthma',
+          active: false,
+        },
+        {
+          label: 'Diabetes',
+          key: 'diabetes',
+          active: false,
+        },
+        {
+          label: 'High blood pressure',
+          key: 'high_blood',
+          active: false,
+        },
+        {
+          label: 'Kidney disease',
+          key: 'kidney_disease',
+          active: false,
+        },
+        {
+          label: 'Liver disease',
+          key: 'liver_disease',
+          active: false,
+        },
+        {
+          label: 'Cardiovascular disease',
+          key: 'cardiovascular_disease',
+          active: false,
+        },
+        {
+          label: 'Congestive heart failure',
+          key: 'congestive_heart',
+          active: false,
+        },
+        {
+          label: 'Obesity',
+          key: 'obesity',
+          active: false,
+        },
+        {
+          label: 'Pregnancy',
+          key: 'pregnancy',
+          active: false,
+        },
+        {
+          label: 'Weakened immune system',
+          key: 'weakened_immune',
+          active: false,
+        },
+      ],
+    },
+  ]
+
   return (
     <>
       <AppBar color="transparent" className={classes.appbar} position="static">
@@ -99,11 +231,13 @@ export default function Index() {
         </Toolbar>
       </AppBar>
       <Grid container>
-        <StepWizard className={classes.wizard} isLazyMount nav={<Nav update={updateForm} totalSelected={state.symptoms.total} />}>
+        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} totalSelected={state.symptoms.total} />}>
           <Urgent symptoms={state.symptoms} update={updateForm} />
-          <Others symptoms={state.symptoms} update={updateForm} />
-          <Additional symptoms={state.symptoms} update={updateForm} />
-          <Underlying symptoms={state.symptoms} update={updateForm} />
+          {
+            questionnaires.map((questionnaire) => (
+              <Questionnaire question={questionnaire.title} options={questionnaire.options} callback={updateForm} />
+            ))
+          }
           <Age form={state.form} update={updateForm} />
           <Gender form={state.form} update={updateForm} />
           <Location form={state.form} update={updateForm} />
@@ -118,7 +252,18 @@ export default function Index() {
               {' '}
               :
               {' '}
-              {state.symptoms[key]}
+              {state.symptoms[key].toString()}
+            </div>
+          ))
+        }
+        {
+          Object.keys(state.form).map((key) => (
+            <div>
+              {key}
+              {' '}
+              :
+              {' '}
+              {state.form[key].toString()}
             </div>
           ))
         }
