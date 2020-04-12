@@ -42,9 +42,9 @@ const Questionnaire = ({ question, options, callback }) => {
 Questionnaire.propTypes = {
   question: PropTypes.string.isRequired,
   options: PropTypes.shape({
-    name: PropTypes.string,
-    icon: PropTypes.elementType,
-    callback: PropTypes.func.isRequired,
+    label: PropTypes.string,
+    key: PropTypes.string,
+    active: PropTypes.bool,
   }).isRequired,
   callback: PropTypes.func.isRequired,
 }

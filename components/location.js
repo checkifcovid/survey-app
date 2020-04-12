@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Location({ form, update }) {
+export default function Location({ callback }) {
   const classes = useStyles()
 
   return (

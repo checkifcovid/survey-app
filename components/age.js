@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Age({ form, update }) {
+export default function Age({ callback }) {
   const classes = useStyles()
 
   const options = [
@@ -49,7 +49,7 @@ export default function Age({ form, update }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { update('age', response) }} />
+        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { callback('age', response) }} />
       </Container>
     </>
   )

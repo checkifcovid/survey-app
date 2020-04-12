@@ -107,7 +107,7 @@ const Index = () => {
             </Typography>
           </Container>
           <Container>
-            <Typography className={classes.subText} variant="p" component="p" gutterBottom>
+            <Typography className={classes.subText} variant="body1" component="body1" gutterBottom>
               The availability of testing for COVID-19 is limited. Our aim is to collect geographic data of symptoms, analyze clusters, and predict outbreaks. Our ultimate goal is to recognize and prevent community infection.
             </Typography>
             <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
@@ -130,7 +130,7 @@ const Index = () => {
                 <Typography variant="h3" component="h3" gutterBottom>
                   Get answers through data
                 </Typography>
-                <Typography variant="p" component="p" gutterBottom>
+                <Typography variant="body1" component="body1" gutterBottom>
                   The availability of data for symptoms is critical to answer questions like:
                   <ul className={classes.list}>
                     <li>
@@ -167,10 +167,10 @@ const Index = () => {
                   <Typography variant="h3" component="h3" gutterBottom>
                     The power of crowdsourcing
                   </Typography>
-                  <Typography variant="p" component="p" gutterBottom>
+                  <Typography variant="body1" component="body1" gutterBottom>
                     Data is very important in making decisions but isn't always available. Data for active cases (and deaths) is available but we need more data on the population who are experiencing only some of the symptoms.
                   </Typography>
-                  <Typography variant="p" component="p" gutterBottom>
+                  <Typography variant="body1" component="body1" gutterBottom>
                     By conducting survey sampling, especially during an outbreak, data will be collected, analyzed and made available.
                   </Typography>
                 </Grid>

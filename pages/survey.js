@@ -61,7 +61,7 @@ export default function Index() {
   const classes = useStyles()
 
   const [state, updateState] = useState({
-    form: {
+    user: {
       next: false,
     },
     symptoms: {
@@ -73,20 +73,26 @@ export default function Index() {
     // ...
   }
 
-  const updateForm = (key, value) => {
+  const updateSymptom = (key, value) => {
     const { symptoms } = state
 
-    // Symptoms: Only increment/decrement symptoms
-    const dontCount = ['age', 'gender', 'location']
-    if (!dontCount.includes(key)) {
-      symptoms.total = (value === true) ? symptoms.total + 1 : symptoms.total - 1
-      symptoms[key] = value
-    }
+    symptoms.total = (value === true) ? symptoms.total + 1 : symptoms.total - 1
+    symptoms[key] = value
 
-    // form[key] = value
     updateState({
       ...state,
       symptoms,
+    })
+  }
+
+  const updateUser = (key, value) => {
+    const { user } = state
+
+    user[key] = value
+
+    updateState({
+      ...state,
+      user,
     })
   }
 
@@ -231,17 +237,17 @@ export default function Index() {
         </Toolbar>
       </AppBar>
       <Grid container>
-        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} totalSelected={state.symptoms.total} />}>
-          <Urgent symptoms={state.symptoms} update={updateForm} />
+        <StepWizard className={classes.wizard} nav={<Nav totalSelected={state.symptoms.total} />}>
+          <Urgent symptoms={state.symptoms} update={updateSymptom} />
           {
             questionnaires.map((questionnaire) => (
-              <Questionnaire question={questionnaire.title} options={questionnaire.options} callback={updateForm} />
+              <Questionnaire question={questionnaire.title} options={questionnaire.options} callback={updateSymptom} />
             ))
           }
-          <Age form={state.form} update={updateForm} />
-          <Gender form={state.form} update={updateForm} />
-          <Location form={state.form} update={updateForm} />
-          <Result form={state.form} />
+          <Age callback={updateUser} />
+          <Gender callback={updateUser} />
+          <Location callback={updateUser} />
+          <Result />
         </StepWizard>
       </Grid>
       <pre>
@@ -257,13 +263,13 @@ export default function Index() {
           ))
         }
         {
-          Object.keys(state.form).map((key) => (
+          Object.keys(state.user).map((key) => (
             <div>
               {key}
               {' '}
               :
               {' '}
-              {state.form[key].toString()}
+              {state.user[key].toString()}
             </div>
           ))
         }
