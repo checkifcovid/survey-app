@@ -28,16 +28,20 @@ export default function Age({ callback }) {
       label: '0-10',
     },
     {
-      key: '11-20',
-      label: '11-20',
+      key: '11-30',
+      label: '11-30',
     },
     {
-      key: '21-30',
-      label: '21-30',
+      key: '31-50',
+      label: '31-50',
     },
     {
-      key: '31-40',
-      label: '31-40',
+      key: '51-70',
+      label: '51-70',
+    },
+    {
+      key: 'above-70',
+      label: 'Above 70',
     },
   ]
 

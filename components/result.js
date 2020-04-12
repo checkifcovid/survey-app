@@ -40,7 +40,7 @@ export default function Result({ symptoms, user }) {
             <Typography className={classes.result} variant="h3" component="h3" gutterBottom>
               Result:
               {' '}
-              <span className={classes.probability}>?? %</span>
+              <span className={classes.probability}>__ %</span>
               {' '}
               probability for
               {' '}
