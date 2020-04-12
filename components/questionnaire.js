@@ -31,7 +31,7 @@ const Questionnaire = ({ question, options, callback }) => {
       <Container align="center">
         {
           options.map((option) => (
-            <Symptom name={option.label} active={option.active} callback={(response) => { callback(option.key, response) }} />
+            <Symptom icon={option.icon} name={option.label} active={option.active} callback={(response) => { callback(option.key, response) }} />
           ))
         }
       </Container>
@@ -41,11 +41,12 @@ const Questionnaire = ({ question, options, callback }) => {
 
 Questionnaire.propTypes = {
   question: PropTypes.string.isRequired,
-  options: PropTypes.shape({
+  options: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.elementType,
     label: PropTypes.string,
     key: PropTypes.string,
     active: PropTypes.bool,
-  }).isRequired,
+  })).isRequired,
   callback: PropTypes.func.isRequired,
 }
 

@@ -16,6 +16,9 @@ import Gender from '../components/gender'
 import Location from '../components/location'
 import Result from '../components/result'
 
+import FeverIcon from '../components/Icon/FeverIcon'
+import CoughIcon from '../components/Icon/CoughIcon'
+import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -97,6 +100,29 @@ export default function Index() {
   }
 
   const questionnaires = [
+    // {
+    //   title: 'Are you experiencing any of these symptoms?',
+    //   options: [
+    //     {
+    //       icon: <FeverIcon />,
+    //       label: 'Fever',
+    //       key: 'fever',
+    //       active: false,
+    //     },
+    //     {
+    //       icon: <CoughIcon />,
+    //       label: 'Cough',
+    //       key: 'cough',
+    //       active: false,
+    //     },
+    //     {
+    //       icon: <ShortBreathIcon />,
+    //       label: 'Shortness of breath',
+    //       key: 'shortness_breath',
+    //       active: false,
+    //     },
+    //   ],
+    // },
     { // Slide 2
       title: 'Are you experiencing any of these other symptoms?',
       options: [
