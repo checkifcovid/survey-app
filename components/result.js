@@ -88,11 +88,13 @@ export default function Result({ symptoms, user }) {
                 <span className={classes.postal_code}>{user.postal_code}</span>
               </Typography>
             </Grid>
-            <Grid className={classes.statistics} item sm={6}>
-              <Statistics title="Symptoms" data={symptoms} />
-            </Grid>
-            <Grid className={classes.statistics} item sm={6}>
-              <Statistics title="Testing results" data={symptoms} />
+            <Grid container>
+              <Grid className={classes.statistics} item sm={6} xs={6}>
+                <Statistics title="Symptoms" data={symptoms} />
+              </Grid>
+              <Grid className={classes.statistics} item sm={6} xs={6}>
+                <Statistics title="Results" data={symptoms} />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

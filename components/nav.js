@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#fff',
     width: '100%',
     zIndex: 2,
+    justifyContent: 'space-between',
   },
   action: {
     margin: theme.spacing(1),
@@ -37,10 +38,8 @@ export default function Nav({
           {' '}
           symptoms selected
         </Grid>
-        <Grid item xs={6} align="right">
-          <Button className={classes.action} disabled={isFirst} variant="contained" onClick={previousStep}>Previous</Button>
-        </Grid>
-        <Grid item xs={6} align="left">
+
+        <Grid item xs={12}>
           <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
         </Grid>
       </>
