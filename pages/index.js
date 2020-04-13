@@ -109,11 +109,11 @@ const Index = () => {
           </Container>
           <Container>
             <Typography className={classes.subText} variant="body1" component="body1" gutterBottom>
-              The availability of testing for COVID-19 is limited. This online tool uses the data from confirmed
+              The availability and speed of testing for COVID-19 is limited. This online tool calculates the probability of an infection using the published data of confirmed
               {' '}
               {process.env.disease}
               {' '}
-              cases and self-reported symptoms.
+              cases and previous self-reported symptoms.
             </Typography>
             <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
               Wondering if you or someone you know may have COVID-19?
