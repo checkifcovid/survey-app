@@ -23,16 +23,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+
 export default function Nav({
-  currentStep, totalSteps, previousStep, nextStep, totalSelected,
+  currentStep, totalSteps, nextStep, totalSelected, handleSubmit,
 }) {
   const classes = useStyles()
-  const isFirst = currentStep === 1
   const isLast = currentStep === totalSteps
 
   return (
     <Grid container className={classes.navigation}>
-      {!isLast && (
       <>
         <Grid item xs={12}>
           {totalSelected}
@@ -41,10 +40,15 @@ export default function Nav({
         </Grid>
 
         <Grid item xs={12}>
-          <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
+          {
+            // Submit button on last slide
+            isLast
+              ? <Button className={classes.action} color="primary" variant="contained" onClick={handleSubmit}>Submit</Button>
+              : <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
+
+            }
         </Grid>
       </>
-      )}
     </Grid>
   )
 }

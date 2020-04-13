@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-
+import uuid from 'react-uuid'
 import StepWizard from 'react-step-wizard'
+import Router from 'next/router'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -13,7 +14,6 @@ import Menu from '../components/menu'
 import Age from '../components/age'
 import Gender from '../components/gender'
 import Location from '../components/location'
-import Result from '../components/result'
 
 import FeverIcon from '../components/Icon/FeverIcon'
 import CoughIcon from '../components/Icon/CoughIcon'
@@ -62,10 +62,6 @@ export default function Index() {
     symptoms: {},
   })
 
-  const handleSave = () => {
-    // ...
-  }
-
   const updateSymptom = (key, value) => {
     const { symptoms, user } = state
 
@@ -87,6 +83,42 @@ export default function Index() {
       ...state,
       user,
     })
+  }
+
+  const handleErrors = (response) => {
+    if (response.status !== 200) {
+      throw Error(response.statusText)
+    }
+    return response
+  }
+
+  const handleSubmit = () => {
+    // @TODO: Clean this up
+    const sessionId = uuid()
+    const payload = {
+      survey_id: '001',
+      user_id: sessionId,
+      report_date: new Date(),
+      report_source: 'survey_app',
+      gender: state.user.gender,
+      age: state.user.age,
+      postcode: state.user.postal_code,
+      country: 'United States of America',
+      country_code: 'USA',
+      symptoms: state.symptoms,
+    }
+
+    fetch('/api/survey', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
+      .then(handleErrors)
+      .then((response) => {
+        if (response.status === 200) {
+          Router.push('/result', { query: { id: sessionId } })
+        }
+      })
+      .catch((error) => console.log(error))
   }
 
   const questionnaires = [
@@ -250,7 +282,7 @@ export default function Index() {
       <Menu />
       <Grid container>
         <Urgency />
-        <StepWizard className={classes.wizard} nav={<Nav totalSelected={state.user.total} />}>
+        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} totalSelected={state.user.total} />}>
           { /* looping this doesn't work. Manual work needed */ }
           <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
           <Questionnaire question={questionnaires[1].title} options={questionnaires[1].options} callback={updateSymptom} />
@@ -259,7 +291,6 @@ export default function Index() {
           <Age callback={updateUser} />
           <Gender callback={updateUser} />
           <Location callback={updateUser} />
-          <Result symptoms={state.symptoms} user={state.user} />
         </StepWizard>
       </Grid>
       {/* <pre>

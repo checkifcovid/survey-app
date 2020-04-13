@@ -5,7 +5,8 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import Statistics from './statistics'
+import Menu from '../components/menu'
+import Statistics from '../components/statistics'
 
 const useStyles = makeStyles((theme) => ({
   result: {
@@ -33,11 +34,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Result({ symptoms, user }) {
+export default function Result({}) {
   const classes = useStyles()
+
+  const symptoms = []
+  const user = []
 
   return (
     <>
+      <Menu />
       <Container>
         <Grid container>
           <Grid item sm={12}>
