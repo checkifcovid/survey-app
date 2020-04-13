@@ -19,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     border: 'solid 2px rgba(255,255,255,0.1)',
     margin: theme.spacing(1),
-    '&:hover': {
-      border: 'solid 2px #1968fc',
-      background: '#fff',
-    },
     [theme.breakpoints.down('sm')]: {
       width: 155,
       height: 130,
