@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   logo: {
-    width: 200,
+    width: 48,
   },
 }))
 

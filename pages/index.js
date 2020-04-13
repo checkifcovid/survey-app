@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
+import Link from '@material-ui/core/Link'
 
 import Menu from '../components/menu'
 
@@ -87,6 +88,13 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '13px',
     },
   },
+  footer: {
+    flexDirection: 'column',
+    textAlign: 'center',
+  },
+  footerlinks: {
+    padding: theme.spacing(1),
+  },
 }))
 
 const Index = () => {
@@ -113,7 +121,7 @@ const Index = () => {
               {' '}
               {process.env.disease}
               {' '}
-              cases and previous self-reported symptoms.
+              cases and previously self-reported symptoms.
             </Typography>
             <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
               Wondering if you or someone you know may have COVID-19?
@@ -184,6 +192,29 @@ const Index = () => {
                 </Grid>
               </Grid>
             </Container>
+          </Grid>
+        </Grid>
+        <Grid className={classes.footer} container>
+          <Grid item>
+            <Typography variant="body2" color="textSecondary" align="center">
+              {'Copyright © '}
+              <Link color="inherit" href="/">
+                {process.env.site_name}
+              </Link>
+              {' '}
+              {new Date().getFullYear()}
+              .
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2" color="textSecondary" align="center">
+              Powered by: FindTheCluster
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Link target="_blank" className={classes.footerlinks} href="https://github.com/findthecluster/api-app/wiki">Developer API</Link>
+            <Link className={classes.footerlinks} href="/">Privacy Policy</Link>
+            <Link className={classes.footerlinks} href="/">Contact Us</Link>
           </Grid>
         </Grid>
       </Grid>

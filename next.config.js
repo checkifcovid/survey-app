@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    site_name: 'FindTheCluster',
+    site_name: 'CheckIfCovid',
     disease: 'COVID-19',
     api: {
       url: 'https://28geu7g1z5.execute-api.us-east-2.amazonaws.com',
