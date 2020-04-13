@@ -15,14 +15,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
+    width: '250px',
     border: 'solid 2px rgba(255,255,255,0.1)',
     margin: theme.spacing(1),
     '&:hover': {
       border: 'solid 2px #1968fc',
       background: '#fff',
-    },
-    [theme.breakpoints.down('sm')]: {
-      width: 155,
     },
   },
   active: {
@@ -30,13 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Options = ({ options, style, sendUpdate }) => {
+const Options = ({ options, sendUpdate }) => {
   const classes = useStyles()
   const [option, setOption] = useState(null)
 
 
   const handleOption = (e) => {
-    console.log('e', e.target.id)
     setOption(e.target.id)
     sendUpdate(e.target.id)
   }
@@ -47,7 +44,7 @@ const Options = ({ options, style, sendUpdate }) => {
       options.map((value) => {
         const active = (option === value.key) ? 'active' : 'not-active'
         return (
-          <Button id={value.key} onClick={(e) => handleOption(e)} className={clsx(classes.symptom, classes[active])} style={style}>
+          <Button id={value.key} onClick={(e) => handleOption(e)} className={clsx(classes.symptom, classes[active])}>
             {value.label}
           </Button>
         )

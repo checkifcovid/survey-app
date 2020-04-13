@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
   statistics: {
     padding: theme.spacing(1),
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(0),
+    },
   },
   postal_code: {
     textDecoration: 'underline',
@@ -89,10 +93,10 @@ export default function Result({ symptoms, user }) {
               </Typography>
             </Grid>
             <Grid container>
-              <Grid className={classes.statistics} item sm={6} xs={6}>
+              <Grid className={classes.statistics} item sm={6}>
                 <Statistics title="Symptoms" data={symptoms} />
               </Grid>
-              <Grid className={classes.statistics} item sm={6} xs={6}>
+              <Grid className={classes.statistics} item sm={6}>
                 <Statistics title="Results" data={symptoms} />
               </Grid>
             </Grid>

@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme) => ({
   options: {
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      width: 300,
+    },
   },
+
 }))
 
 export default function Age({ callback }) {
@@ -53,7 +57,7 @@ export default function Age({ callback }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { callback('age', response) }} />
+        <Options options={options} sendUpdate={(response) => { callback('age', response) }} />
       </Container>
     </>
   )

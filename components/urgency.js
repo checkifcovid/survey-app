@@ -49,7 +49,7 @@ const Urgency = () => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle className={classes.dialogTitle} id="alert-dialog-title"> If you have any of the following symptoms, please seek medical attention immediately. Please call 911 if experiencing:</DialogTitle>
+      <DialogTitle className={classes.dialogTitle} id="alert-dialog-title">If you have any of the following symptoms, please seek medical attention immediately. Please call 911 if experiencing:</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           <Grid container className={classes.badge}>
@@ -72,7 +72,7 @@ const Urgency = () => {
       </DialogContent>
       <DialogActions>
         <Button className={classes.continue} onClick={handleClose}>
-          I don't have any of these
+          Continue
         </Button>
       </DialogActions>
     </Dialog>

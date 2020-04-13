@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   section: {
     margin: theme.spacing(15, 0),
     [theme.breakpoints.down('sm')]: {
-      margin: theme.spacing(1, 0),
+      margin: theme.spacing(2, 0),
     },
   },
   map: {

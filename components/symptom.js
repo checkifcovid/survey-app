@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('sm')]: {
       width: 155,
+      height: 130,
     },
   },
   active: {
