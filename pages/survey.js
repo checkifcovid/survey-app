@@ -115,7 +115,7 @@ export default function Index() {
       .then(handleErrors)
       .then((response) => {
         if (response.status === 200) {
-          Router.push('/result', { query: { id: sessionId } })
+          Router.push({ pathname: '/result', query: { id: sessionId } })
         }
       })
       .catch((error) => console.log(error))
