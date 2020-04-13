@@ -40,7 +40,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   primaryText: {
+    padding: theme.spacing(3, 0),
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1, 0),
+      textAlign: 'center',
+    },
   },
   subText: {
     lineHeight: '40px',
@@ -61,9 +66,6 @@ const useStyles = makeStyles((theme) => ({
   cluster: {
     width: 200,
   },
-  logo: {
-    width: 200,
-  },
   image: {
     maxWidth: '100%',
     textAlign: 'center',
@@ -71,6 +73,9 @@ const useStyles = makeStyles((theme) => ({
   action: {
     margin: theme.spacing(3, 0),
     width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
   list: {
     padding: theme.spacing(0, 2),
@@ -110,7 +115,7 @@ const Index = () => {
               Wondering if you or someone you know may have COVID-19?
             </Typography>
             <Grid className={classes.action}>
-              <Button href="/survey" variant="contained" color="primary">Report your symptoms</Button>
+              <Button href="/survey" variant="contained" color="primary">Check your symptoms</Button>
             </Grid>
           </Container>
         </Grid>
