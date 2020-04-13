@@ -27,7 +27,7 @@ export default function Menu() {
     <AppBar color="transparent" className={classes.appbar} position="static">
       <Toolbar className={classes.toolbar}>
         <Link href="/"><img src="/logo.png" alt={process.env.site_name} className={classes.logo} /></Link>
-        <Button target="_blank" href="https://devpost.com/software/findthecluster" color="inherit">Learn more</Button>
+        <Button target="_blank" variant="outlined" href="https://devpost.com/software/findthecluster" color="primary">Learn more</Button>
       </Toolbar>
     </AppBar>
   )

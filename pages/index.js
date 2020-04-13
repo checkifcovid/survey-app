@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   subText: {
-    lineHeight: '40px',
+    fontSize: '1.6rem',
     padding: theme.spacing(3, 0),
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1, 0),
@@ -109,7 +109,11 @@ const Index = () => {
           </Container>
           <Container>
             <Typography className={classes.subText} variant="body1" component="body1" gutterBottom>
-              The availability of testing for COVID-19 is limited. Our aim is to collect geographic data of symptoms, analyze clusters, and predict outbreaks. Our ultimate goal is to recognize and prevent community infection.
+              The availability of testing for COVID-19 is limited. This online tool uses the data from confirmed
+              {' '}
+              {process.env.disease}
+              {' '}
+              cases and self-reported symptoms.
             </Typography>
             <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
               Wondering if you or someone you know may have COVID-19?
