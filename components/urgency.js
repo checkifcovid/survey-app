@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '14px',
+    },
   },
 }))
 
@@ -55,7 +58,7 @@ const Urgency = () => {
           <Grid container className={classes.badge}>
             <Container maxWidth="md">
               <Grid container>
-                <Grid item sm={6}>
+                <Grid item sm={12}>
                   <ul className={classes.list}>
                     <li>Difficulty breathing</li>
                     <li>Persistent chest pain or pressure</li>
@@ -71,7 +74,7 @@ const Urgency = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button className={classes.continue} onClick={handleClose}>
+        <Button className={classes.continue} color="primary" variant="outlined" onClick={handleClose}>
           Continue
         </Button>
       </DialogActions>
