@@ -117,7 +117,7 @@ const Index = () => {
           </Container>
           <Container>
             <Typography className={classes.subText} variant="body1" component="body1" gutterBottom>
-              The availability and speed of testing for COVID-19 is limited. This online tool calculates the likelihood of an infection using the published data of confirmed
+              The availability and speed of testing for COVID-19 is limited. This online tool calculates the likelihood of an infection using the data from confirmed
               {' '}
               {process.env.disease}
               {' '}
