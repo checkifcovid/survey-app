@@ -12,7 +12,7 @@ import Menu from '../components/menu'
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    margin: theme.spacing(15, 0),
+    margin: theme.spacing(5),
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(2, 0),
     },
@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     padding: theme.spacing(0, 2),
+    lineHeight: '40px',
   },
   italics: {
     fontStyle: 'italic',
@@ -141,54 +142,63 @@ const Index = () => {
               </Grid>
               <Grid item sm={7}>
                 <Typography variant="h3" component="h3" gutterBottom>
-                  Get answers through data
+                  How it works
                 </Typography>
-                <Typography variant="body1" component="body1" gutterBottom>
-                  The availability of data for symptoms is critical to answer questions like:
-                  <ul className={classes.list}>
-                    <li>
-                      Which community or neighbourhood is
-                      {' '}
-                      <strong>fever</strong>
-                      {' '}
-                      prevalent? Which particular region experiences
-                      {' '}
-                      <strong>cough</strong>
-                      {' '}
-                      more often?
-                    </li>
-                    <li>Is there anyone within the cluster who travelled recently to hot zones such as China?</li>
-                    <li>How do symptoms progresses or gets trasmitted to other locations over time?</li>
-                    <li>
-                      Is there an increasing cases of
-                      {' '}
-                      <strong>runny nose</strong>
-                      {' '}
-                      in my neighbourhood?
-                    </li>
-                  </ul>
-                </Typography>
+                <ol className={classes.list}>
+                  <li>We scrape data from online sources such as CSSEGIS, ECDC, GISAID, and KAGGLE </li>
+                  <li>Collect data from self-reported symptoms through our tool</li>
+                  <li>Apply machine learning to all collected data</li>
+                  <li>Use the trained data to calculate the probability</li>
+                  <li>Open the data for other use cases</li>
+                </ol>
               </Grid>
             </Grid>
           </Container>
         </Grid>
-        <Grid container className={classes.section}>
+        <Grid container>
           <Grid container>
-            <Container>
+            <Container className={classes.section}>
               <Grid container>
-                <Grid item sm={7}>
+                <Grid item sm={12}>
                   <Typography variant="h3" component="h3" gutterBottom>
-                    The power of crowdsourcing
+                    Features
                   </Typography>
-                  <Typography variant="body1" component="body1" gutterBottom>
-                    Data is very important in making decisions but isn't always available. Data for active cases (and deaths) is available but we need more data on the population who are experiencing only some of the symptoms.
-                  </Typography>
-                  <Typography variant="body1" component="body1" gutterBottom>
-                    By conducting survey sampling, especially during an outbreak, data will be collected, analyzed and made available.
-                  </Typography>
+                  <Grid container>
+                    <Grid item sm={6}>
+                      <Typography variant="h6" component="h6" gutterBottom>
+                        For the General Public
+                      </Typography>
+                      <ul className={classes.list}>
+                        <li>Help make smart decision when to seek urgent medical help</li>
+                        <li>Get realtime information about your neighbourhood and areas to avoid</li>
+                      </ul>
+                    </Grid>
+                    <Grid item sm={6}>
+                      <Typography variant="h6" component="h6" gutterBottom>
+                        For the Authorities
+                      </Typography>
+                      <ul className={classes.list}>
+                        <li>Get insights on clusters of symptoms within your jurisdiction</li>
+                        <li>Enable targeted testing based on data collected</li>
+                        <li>Deploy your own self-assessment tool using the open source survey app</li>
+                      </ul>
+                    </Grid>
+                  </Grid>
                 </Grid>
-                <Grid item align="center" sm={5}>
+              </Grid>
+            </Container>
+            <Container className={classes.section}>
+              <Grid container>
+                <Grid item align="center" sm={4}>
                   <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
+                </Grid>
+                <Grid item sm={8}>
+                  <Typography variant="h3" component="h3" gutterBottom>
+                    The Power of Open Source
+                  </Typography>
+                  <Typography variant="body1" component="body1" gutterBottom>
+                    We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+                  </Typography>
                 </Grid>
               </Grid>
             </Container>
@@ -204,11 +214,6 @@ const Index = () => {
               {' '}
               {new Date().getFullYear()}
               .
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body2" color="textSecondary" align="center">
-              Powered by: FindTheCluster
             </Typography>
           </Grid>
           <Grid item>
