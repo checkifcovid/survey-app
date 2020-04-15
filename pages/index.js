@@ -89,9 +89,16 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '13px',
     },
   },
+  open: {
+    padding: theme.spacing(5, 0),
+    marginBottom: theme.spacing(10),
+    background: '#f4f4f4',
+  },
   footer: {
     flexDirection: 'column',
     textAlign: 'center',
+    padding: theme.spacing(5, 0),
+
   },
   footerlinks: {
     padding: theme.spacing(1),
@@ -187,7 +194,9 @@ const Index = () => {
                 </Grid>
               </Grid>
             </Container>
-            <Container className={classes.section}>
+          </Grid>
+          <Grid container className={classes.open}>
+            <Container>
               <Grid container>
                 <Grid item align="center" sm={4}>
                   <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
@@ -219,7 +228,7 @@ const Index = () => {
           <Grid item>
             <Link target="_blank" className={classes.footerlinks} href="https://github.com/findthecluster/api-app/wiki">Developer API</Link>
             <Link className={classes.footerlinks} href="/">Privacy Policy</Link>
-            <Link className={classes.footerlinks} href="/">Contact Us</Link>
+            <Link className={classes.footerlinks} href="https://github.com/findthecluster" target="_blank">Contact Us</Link>
           </Grid>
         </Grid>
       </Grid>
