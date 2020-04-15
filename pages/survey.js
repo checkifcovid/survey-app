@@ -113,10 +113,9 @@ export default function Index() {
       body: JSON.stringify(payload),
     })
       .then(handleErrors)
+      .then((response) => response.json())
       .then((response) => {
-        if (response.status === 200) {
-          Router.push({ pathname: '/result', query: { id: sessionId } })
-        }
+        Router.push({ pathname: '/result', query: { id: response.user_id } })
       })
       .catch((error) => console.log(error))
   }

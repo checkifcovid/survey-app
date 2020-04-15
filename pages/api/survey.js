@@ -5,17 +5,14 @@ export default (req, res) => {
   fetch(`${process.env.api.url}/dev/survey`, {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
       'Content-Type': 'application/json',
       'x-api-key': process.env.api.key,
     },
-    body: JSON.stringify(req.body),
+    body: req.body,
   })
+    .then((response) => response.json())
     .then((response) => {
-      res.status(response.status).json({
-        status: response.status,
-        message: response.statusText,
-      })
+      res.status(response.statusCode).json(response.body)
     })
     .catch((error) => console.log(error))
 }
