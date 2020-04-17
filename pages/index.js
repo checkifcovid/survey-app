@@ -152,7 +152,7 @@ const Index = () => {
                   How it works
                 </Typography>
                 <ol className={classes.list}>
-                  <li>We scrape data from online sources such as CSSEGIS, ECDC, GISAID, and KAGGLE </li>
+                  <li>We scrape data about confirmed Covid-19 patients and their symptoms from online sources such as CSSEGIS, ECDC, GISAID, and Kaggle </li>
                   <li>Collect data from self-reported symptoms through our tool</li>
                   <li>Apply machine learning to all collected data</li>
                   <li>Use the trained data to calculate the probability</li>
@@ -195,41 +195,41 @@ const Index = () => {
               </Grid>
             </Container>
           </Grid>
-          <Grid container className={classes.open}>
-            <Container>
-              <Grid container>
-                <Grid item align="center" sm={4}>
-                  <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
-                </Grid>
-                <Grid item sm={8}>
-                  <Typography variant="h3" component="h3" gutterBottom>
-                    The Power of Open Source
-                  </Typography>
-                  <Typography variant="body1" component="body1" gutterBottom>
-                    We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Container>
-          </Grid>
         </Grid>
-        <Grid className={classes.footer} container>
-          <Grid item>
-            <Typography variant="body2" color="textSecondary" align="center">
-              {'Copyright © '}
-              <Link color="inherit" href="/">
-                {process.env.site_name}
-              </Link>
-              {' '}
-              {new Date().getFullYear()}
-              .
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Link target="_blank" className={classes.footerlinks} href="https://github.com/findthecluster/api-app/wiki">Developer API</Link>
-            <Link className={classes.footerlinks} href="/">Privacy Policy</Link>
-            <Link className={classes.footerlinks} href="https://github.com/findthecluster" target="_blank">Contact Us</Link>
-          </Grid>
+        <Grid container className={classes.open}>
+          <Container>
+            <Grid container>
+              <Grid item align="center" sm={4}>
+                <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
+              </Grid>
+              <Grid item sm={8}>
+                <Typography variant="h3" component="h3" gutterBottom>
+                  The Power of Open Source
+                </Typography>
+                <Typography variant="body1" component="body1" gutterBottom>
+                  We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Container>
+        </Grid>
+      </Grid>
+      <Grid className={classes.footer} container>
+        <Grid item>
+          <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <Link color="inherit" href="/">
+              {process.env.site_name}
+            </Link>
+            {' '}
+            {new Date().getFullYear()}
+            .
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Link target="_blank" className={classes.footerlinks} href="https://github.com/findthecluster/api-app/wiki">Developer API</Link>
+          <Link className={classes.footerlinks} href="/">Privacy Policy</Link>
+          <Link className={classes.footerlinks} href="https://github.com/findthecluster" target="_blank">Contact Us</Link>
         </Grid>
       </Grid>
     </>
