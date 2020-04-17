@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import fetch from 'isomorphic-unfetch'
 
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -9,8 +10,11 @@ import Menu from '../components/menu'
 import Statistics from '../components/statistics'
 
 const useStyles = makeStyles((theme) => ({
-  result: {
-
+  Positive: {
+    color: 'red',
+  },
+  Negative: {
+    color: 'green',
   },
   probability: {
     background: '#ccc',
@@ -34,11 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Result({}) {
+const Result = ({ probability, assessment }) => {
   const classes = useStyles()
 
   const symptoms = []
   const user = []
+
+  console.log(assessment)
 
   return (
     <>
@@ -49,11 +55,28 @@ export default function Result({}) {
             <Typography className={classes.result} variant="h3" component="h3" gutterBottom>
               Result:
               {' '}
-              <span className={classes.probability}>__ %</span>
+              {
+                probability
+                  ? (
+                    <span className={classes[assessment]}>
+                      {probability}
+                    </span>
+                  )
+                  : (
+                    <span>
+                      Inconclusive
+                    </span>
+
+                  )
+              }
               {' '}
-              probability for
+              probability
+              of
               {' '}
               {process.env.disease}
+            </Typography>
+            <Typography variant="body1" component="body1" className={classes.Positive} gutterBottom>
+              Percentage is still a work in progress. You'll get a random result here.
             </Typography>
           </Grid>
           <Grid className={classes.summary} item sm={6}>
@@ -73,14 +96,6 @@ export default function Result({}) {
             </Typography>
             <Typography variant="body1" component="body1" gutterBottom>
               Eat well, drink fluids, and get plenty of rest.
-            </Typography>
-            <Typography variant="h6" component="h6" gutterBottom>
-              Talk to Someone About Testing
-            </Typography>
-            <Typography variant="body1" component="body1" gutterBottom>
-              Your answers suggest you may need to get tested for COVID‑19. You should get in touch with your doctor’s office or your state or local health department for more information.
-
-              Testing access may vary by location and provider.
             </Typography>
             <Typography variant="h6" component="h6" gutterBottom>
               Monitor Symptoms
@@ -111,3 +126,23 @@ export default function Result({}) {
     </>
   )
 }
+
+Result.getInitialProps = async function () {
+  const res = await fetch(`${process.env.api.url}/dev/stats`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.api.key,
+    },
+    body: JSON.stringify({ foo: 'bar' }),
+  })
+
+  const data = await res.json()
+
+  return {
+    probability: `${data.body.probability.toFixed(4) * 100}%`,
+    assessment: data.body.Diagnosed,
+  }
+}
+
+export default Result
