@@ -7,6 +7,9 @@ import Container from '@material-ui/core/Container'
 
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,8 +19,14 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.8rem',
     },
   },
+  formControl: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: 250,
+    padding: theme.spacing(2, 0),
+  },
   input: {
-    margin: theme.spacing(2, 0),
+    padding: theme.spacing(1, 0),
   },
 }))
 
@@ -28,15 +37,37 @@ const Location = ({ callback }) => {
     callback('postal_code', e.target.value)
   }
 
+  const handleCountry = (e) => {
+    callback('country', e.target.value)
+  }
+
   return (
     <>
       <Container maxWidth="lg">
         <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
-          What is your Zip Code?
+          Where are you located?
         </Typography>
       </Container>
       <Container align="center">
-        <TextField className={classes.input} id="zip-code" label="Zip code" variant="filled" onChange={handleChange} />
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="country">Country</InputLabel>
+          <Select
+            native
+            onChange={handleCountry}
+            inputProps={{
+              name: 'country',
+              id: 'country',
+            }}
+          >
+            <option aria-label="None" value="" />
+            <option value="United States of America">United States of America</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Canada">Canada</option>
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <TextField className={classes.input} id="zip-code" label="Zip code" onChange={handleChange} />
+        </FormControl>
       </Container>
     </>
   )
