@@ -11,6 +11,23 @@ npm run dev
 
 Overview of some development tools, processes, and guidelines for this hackathon
 
+## Configure
+A deployment can be configured through `next.config.js`. Each deployment is specific to a country so you need to change the values:
+```sh
+{
+  ...
+  country: {
+    name: 'United States of America',
+    short: 'US',
+    coordinates: {
+        lat: '',
+        lng: '',
+      },
+      emergency: '911', // Local emergency number
+  }
+  ...
+}
+
 ### Typescript
 
 Try to type your components as much as possible :) 
