@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 
 import Menu from '../components/menu'
 import Statistics from '../components/statistics'
+import StatisticsCountry from '../components/statistics/country'
 
 const useStyles = makeStyles((theme) => ({
   Positive: {
@@ -59,7 +60,6 @@ const Result = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log('r', response)
         setResult({
           probability: response.probability.toFixed(4) * 100,
           diagnosis: response.diagnosis,
@@ -67,8 +67,6 @@ const Result = () => {
       })
       .catch((error) => console.log(error))
   }, [])
-
-  console.log('rrr', result)
 
   return (
     <>
@@ -135,7 +133,7 @@ const Result = () => {
           <Grid container sm={6}>
             <Grid container sm={12} alignItems="flex-end">
               <Typography variant="h6" component="h6">
-                Available Data for
+                Yesterday's data
                 {' '}
                 <span className={classes.postal_code}>{user.postal_code}</span>
               </Typography>
@@ -145,7 +143,7 @@ const Result = () => {
                 <Statistics title="Symptoms" data={symptoms} />
               </Grid>
               <Grid className={classes.statistics} item sm={6}>
-                <Statistics title="Results" data={symptoms} />
+                <StatisticsCountry country="US" />
               </Grid>
             </Grid>
           </Grid>
