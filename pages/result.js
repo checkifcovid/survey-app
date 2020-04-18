@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import fetch from 'isomorphic-unfetch'
 
@@ -38,13 +38,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Result = ({ probability, assessment }) => {
+const Result = () => {
   const classes = useStyles()
+  const [result, setResult] = useState({
+    probability: null,
+    diagnosis: null,
+  })
 
   const symptoms = []
   const user = []
 
-  console.log(assessment)
+  useEffect(() => {
+    fetch('/api/stats', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.api.key,
+      },
+      body: JSON.stringify({}),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log('r', response)
+        setResult({
+          probability: response.probability.toFixed(4) * 100,
+          diagnosis: result.Diagnosed,
+        })
+      })
+      .catch((error) => console.log(error))
+  }, [])
 
   return (
     <>
@@ -56,10 +78,12 @@ const Result = ({ probability, assessment }) => {
               Result:
               {' '}
               {
-                probability
+                result.probability
                   ? (
-                    <span className={classes[assessment]}>
-                      {probability}
+                    <span className={classes[result.diagnosis]}>
+                      {result.probability}
+                      {' '}
+                      % probability
                     </span>
                   )
                   : (
@@ -70,7 +94,6 @@ const Result = ({ probability, assessment }) => {
                   )
               }
               {' '}
-              probability
               of
               {' '}
               {process.env.disease}
@@ -125,24 +148,6 @@ const Result = ({ probability, assessment }) => {
       </Container>
     </>
   )
-}
-
-Result.getInitialProps = async function () {
-  const res = await fetch(`${process.env.api.url}/dev/stats`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.api.key,
-    },
-    body: JSON.stringify({ foo: 'bar' }),
-  })
-
-  const data = await res.json()
-
-  return {
-    probability: `${data.body.probability.toFixed(4) * 100}%`,
-    assessment: data.body.Diagnosed,
-  }
 }
 
 export default Result
