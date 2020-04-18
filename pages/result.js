@@ -62,11 +62,13 @@ const Result = () => {
         console.log('r', response)
         setResult({
           probability: response.probability.toFixed(4) * 100,
-          diagnosis: result.Diagnosed,
+          diagnosis: response.diagnosis,
         })
       })
       .catch((error) => console.log(error))
   }, [])
+
+  console.log('rrr', result)
 
   return (
     <>
@@ -80,11 +82,14 @@ const Result = () => {
               {
                 result.probability
                   ? (
-                    <span className={classes[result.diagnosis]}>
-                      {result.probability}
-                      {' '}
-                      % probability
-                    </span>
+                    <>
+                      <span className={classes[result.diagnosis]}>
+                        {result.probability}
+                        %
+                        {' '}
+                      </span>
+                      probability
+                    </>
                   )
                   : (
                     <span>
@@ -99,7 +104,7 @@ const Result = () => {
               {process.env.disease}
             </Typography>
             <Typography variant="body1" component="body1" className={classes.Positive} gutterBottom>
-              Percentage is still a work in progress. You'll get a random result here.
+              Percentage is still a work in progress. We are still building the model and scraping data. You'll get a random result here.
             </Typography>
           </Grid>
           <Grid className={classes.summary} item sm={6}>
