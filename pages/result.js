@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 
 import Menu from '../components/menu'
 import Statistics from '../components/statistics'
-import StatisticsCountry from '../components/statistics/country'
+import StatisticsCountry from '../components/Statistics/country'
 
 const useStyles = makeStyles((theme) => ({
   Positive: {
