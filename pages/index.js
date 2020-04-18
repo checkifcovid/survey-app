@@ -227,9 +227,9 @@ const Index = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <Link target="_blank" className={classes.footerlinks} href="https://github.com/findthecluster/api-app/wiki">Developer API</Link>
+          <Link target="_blank" className={classes.footerlinks} href="https://github.com/checkifcovid/api-app/wiki">Developer API</Link>
           <Link className={classes.footerlinks} href="/">Privacy Policy</Link>
-          <Link className={classes.footerlinks} href="https://github.com/findthecluster" target="_blank">Contact Us</Link>
+          <Link className={classes.footerlinks} href="https://github.com/checkifcovid" target="_blank">Contact Us</Link>
         </Grid>
       </Grid>
     </>
