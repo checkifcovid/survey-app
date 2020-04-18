@@ -5,10 +5,6 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import Link from '@material-ui/core/Link'
-
-import Menu from '../components/menu'
-
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -94,22 +90,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(10),
     background: '#f4f4f4',
   },
-  footer: {
-    flexDirection: 'column',
-    textAlign: 'center',
-    padding: theme.spacing(5, 0),
-
-  },
-  footerlinks: {
-    padding: theme.spacing(1),
-  },
 }))
 
 const Index = () => {
   const classes = useStyles()
   return (
     <>
-      <Menu />
       <Grid container className={classes.hero}>
         <Grid item sm={6}>
           <Container>
@@ -212,24 +198,6 @@ const Index = () => {
               </Grid>
             </Grid>
           </Container>
-        </Grid>
-      </Grid>
-      <Grid className={classes.footer} container>
-        <Grid item>
-          <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="/">
-              {process.env.site_name}
-            </Link>
-            {' '}
-            {new Date().getFullYear()}
-            .
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Link target="_blank" className={classes.footerlinks} href="https://github.com/checkifcovid/api-app/wiki">Developer API</Link>
-          <Link className={classes.footerlinks} href="/">Privacy Policy</Link>
-          <Link className={classes.footerlinks} href="https://github.com/checkifcovid" target="_blank">Contact Us</Link>
         </Grid>
       </Grid>
     </>

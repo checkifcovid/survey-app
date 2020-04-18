@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid'
 import Nav from '../components/nav'
 import Urgency from '../components/urgency'
 import Questionnaire from '../components/questionnaire'
-import Menu from '../components/menu'
 
 import Age from '../components/age'
 import Gender from '../components/gender'
@@ -278,7 +277,6 @@ export default function Index() {
 
   return (
     <>
-      <Menu />
       <Grid container>
         <Urgency />
         <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} totalSelected={state.user.total} />}>

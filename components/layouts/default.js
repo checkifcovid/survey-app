@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react'
-
+import React from 'react'
+import Menu from './menu'
+import Footer from './footer'
 
 const Layout = ({ children }) => (
-  <div>
+  <>
+    <Menu />
     {children}
-  </div>
+    <Footer />
+  </>
 )
 export default Layout

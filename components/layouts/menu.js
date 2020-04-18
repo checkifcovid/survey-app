@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Menu() {
+const Menu = () => {
   const classes = useStyles()
 
   return (
@@ -32,3 +32,5 @@ export default function Menu() {
     </AppBar>
   )
 }
+
+export default Menu

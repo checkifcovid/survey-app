@@ -1,7 +1,6 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core/styles'
-import Layout from '../components/layouts/default'
 
 import { GA_TRACKING_ID } from '../lib/gtag'
 
@@ -37,9 +36,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Layout>
-            <Main />
-          </Layout>
+          <Main />
           <NextScript />
         </body>
       </html>
