@@ -27,6 +27,7 @@ A deployment can be configured through `next.config.js`. Each deployment is spec
   }
   ...
 }
+```
 
 ### Typescript
 
