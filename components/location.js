@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '@material-ui/core/Container'
-
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
+
+import ReactCountryFlag from 'react-country-flag'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +44,14 @@ const Location = ({ callback }) => {
         </Typography>
       </Container>
       <Container align="center">
-        {}
+        <Typography variant="h4" component="h4" gutterBottom>
+          <ReactCountryFlag
+            countryCode={process.env.country.short}
+            className={classes.site}
+          />
+          {' '}
+          {process.env.country.name}
+        </Typography>
         <FormControl className={classes.formControl}>
           <TextField className={classes.input} id="zip-code" label="Zip code" onChange={handleChange} />
         </FormControl>
