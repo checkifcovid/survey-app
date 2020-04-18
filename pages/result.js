@@ -6,7 +6,6 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import Menu from '../components/menu'
 import Statistics from '../components/statistics'
 import StatisticsCountry from '../components/Statistics/country'
 
@@ -70,7 +69,6 @@ const Result = () => {
 
   return (
     <>
-      <Menu />
       <Container>
         <Grid container>
           <Grid item sm={12}>
