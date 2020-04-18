@@ -7,7 +7,7 @@ export default (req, res) => {
     .then((response) => {
       // console.log('rrr', response)
       if (response.length > 0) {
-        const data = response.find((o) => o.Country_Region === 'US' && o.Province_State === 'New York')
+        const data = response.find((o) => o.Country_Region === 'US' && o.Province_State === 'New York' && o.Admin2 === 'New York City')
         res.status(200).json(data)
       }
     })

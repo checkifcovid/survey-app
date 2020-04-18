@@ -76,7 +76,7 @@ const StatisticsCountry = () => {
       Last Updated:
       {' '}
       {result.updateDate}
-      <a href="https://github.com/summyfeb12/COVID-19-JHU-Data-API">Source</a>
+      <a href="https://github.com/summyfeb12/COVID-19-JHU-Data-API" target="_blank">Source</a>
     </>
   )
 }
