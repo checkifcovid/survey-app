@@ -1,7 +1,7 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core/styles'
-
+import Layout from '../components/layouts/default'
 
 import theme from '../src/theme'
 
@@ -18,7 +18,9 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Main />
+          <Layout>
+            <Main />
+          </Layout>
           <NextScript />
         </body>
       </html>
