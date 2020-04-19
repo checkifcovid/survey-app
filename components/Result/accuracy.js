@@ -34,7 +34,7 @@ const Accuracy = ({ title }) => {
         This tool currently has an accuracy level of
         {' '}
         <strong>48%</strong>
-        .
+        . We use a threshold of > 75% to identify a positive probability (coloured as red).
       </Typography>
       <Typography variant="body2" component="body2" gutterBottom>
         This is based on the current data we have and improves over time as we get more data. The result you get now might be different from what you will get tomorrow. We suggest to keep using this tool each day as long as you have your symptoms present.
