@@ -54,7 +54,7 @@ const Location = ({ callback }) => {
           initialValues={{ postcode: '' }}
           validationSchema={Yup.object().shape({
             postcode: Yup.string()
-              .test('len', 'Must be exactly 5 characters', (val) => val.toString().length === 5).matches(process.env.country.zip.regex, `Invalid ${process.env.country.short} zip code`)
+              .test('len', 'Must be exactly 5 characters', (val) => val.toString().length === process.env.country.zip.min).matches(process.env.country.zip.regex, `Invalid ${process.env.country.short} zip code`)
             ,
           })}
         >
