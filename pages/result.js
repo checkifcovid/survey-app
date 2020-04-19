@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography'
 import Statistics from '../components/statistics'
 import StatisticsCountry from '../components/Statistics/country'
 
+import ResultLinks from '../components/Result/links'
+import Accuracy from '../components/Result/accuracy'
 
 const useStyles = makeStyles((theme) => ({
   Positive: {
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 0),
   },
   statistics: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(1, 1),
     width: '100%',
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(0),
@@ -74,7 +76,7 @@ const Result = () => {
     <>
       <Container>
         <Grid container>
-          <Grid item sm={12}>
+          <Grid className={classes.summary} item sm={8}>
             <Typography className={classes.result} variant="h3" component="h3" gutterBottom>
               Result:
               {' '}
@@ -104,8 +106,24 @@ const Result = () => {
             <Typography variant="body1" component="body1" className={classes.Positive} gutterBottom>
               Percentage is still a work in progress. We are still building the model and scraping data. You'll get a random result here.
             </Typography>
-          </Grid>
-          <Grid className={classes.summary} item sm={6}>
+            <Grid container>
+              <Grid item sm={6} className={classes.statistics}>
+                <Typography variant="h6" component="h6">
+                  Symptoms near you
+                  {' '}
+                  <span className={classes.postal_code}>{user.postal_code}</span>
+                </Typography>
+                <Statistics title="Symptoms" data={symptoms} />
+              </Grid>
+              <Grid item sm={6} className={classes.statistics}>
+                <Typography variant="h6" component="h6">
+                  Confirmed COVID-19 near you
+                  {' '}
+                  <span className={classes.postal_code}>{user.postal_code}</span>
+                </Typography>
+                <StatisticsCountry country="US" postal_code="12345" />
+              </Grid>
+            </Grid>
             <Typography variant="h5" component="h5" gutterBottom>
               Your Next Steps
             </Typography>
@@ -130,21 +148,10 @@ const Result = () => {
               Watch for COVID‑19 symptoms such as cough, fever, and difficulty breathing. If your symptoms get worse, contact your doctor’s office.
             </Typography>
           </Grid>
-          <Grid container sm={6}>
-            <Grid container sm={12} alignItems="flex-end">
-              <Typography variant="h6" component="h6">
-                Yesterday's data
-                {' '}
-                <span className={classes.postal_code}>{user.postal_code}</span>
-              </Typography>
-            </Grid>
-            <Grid container>
-              <Grid className={classes.statistics} item sm={6}>
-                <Statistics title="Symptoms" data={symptoms} />
-              </Grid>
-              <Grid className={classes.statistics} item sm={6}>
-                <StatisticsCountry country="US" />
-              </Grid>
+          <Grid container sm={4}>
+            <Grid className={classes.statistics} item>
+              <Accuracy />
+              <ResultLinks />
             </Grid>
           </Grid>
         </Grid>
