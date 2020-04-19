@@ -6,60 +6,77 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 
-
 const useStyles = makeStyles((theme) => ({
   section: {
-    margin: theme.spacing(15, 0),
+    margin: theme.spacing(5),
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(2, 0),
+    },
+  },
+  map: {
+    background: theme.palette.primary.main,
+    color: '#fff',
+    padding: theme.spacing(15, 0),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(0),
+    },
   },
   hero: {
-    padding: theme.spacing(15, 2),
-    textAlign: 'center',
-    background: 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(hero.jpg) no-repeat 0',
-    backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
-    color: '#dfe3ee',
-    height: 500,
+    padding: theme.spacing(8, 2),
+    background: 'url(macbook-mock.png) no-repeat 150% 50px',
+    backgroundSize: 'contain',
+    height: 680,
     [theme.breakpoints.down('sm')]: {
-      height: 280,
+      fontSize: '1rem',
+      height: 430,
       padding: theme.spacing(2, 1),
-      backgroundAttachment: 'inherit',
-      backgroundSize: '100%',
-      background: 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(hero.jpg) no-repeat 100%',
+      background: 'none',
+    },
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  primaryText: {
+    padding: theme.spacing(3, 0),
+    color: theme.palette.primary.main,
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1, 0),
+      textAlign: 'center',
+    },
+  },
+  subText: {
+    fontSize: '1.6rem',
+    padding: theme.spacing(3, 0),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1, 0),
+      lineHeight: '20px',
+      fontSize: '12px',
     },
   },
   herotext: {
     zIndex: 1,
-    fontWeight: 'bold',
+    fontSize: '50px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '20px',
-    },
-  },
-  text: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '13px',
+      fontSize: '30px',
     },
   },
   cluster: {
     width: 200,
   },
-  button: {
-    margin: theme.spacing(0, 1),
-  },
   image: {
     maxWidth: '100%',
-    width: 300,
     textAlign: 'center',
   },
   action: {
-    margin: theme.spacing(2, 0),
-    textAlign: 'center',
+    margin: theme.spacing(3, 0),
     width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
   list: {
     padding: theme.spacing(0, 2),
-  },
-  crowdsourcing: {
-    width: 200,
+    lineHeight: '40px',
   },
   italics: {
     fontStyle: 'italic',
@@ -68,93 +85,121 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '13px',
     },
   },
+  open: {
+    padding: theme.spacing(5, 0),
+    marginBottom: theme.spacing(10),
+    background: '#f4f4f4',
+  },
 }))
 
 const Index = () => {
   const classes = useStyles()
   return (
     <>
-      <Grid className={classes.hero}>
-        <Typography className={classes.herotext} align="center" variant="h2" component="h1" gutterBottom>
-          {process.env.site_name}
-          {' '}
-          collects and analyzes data of health symptoms across Toronto and London
-        </Typography>
-        <Container>
-          <Typography className={classes.text} align="center" variant="h5" component="h4" gutterBottom>
-            Getting tested for COVID-19 is a challenge due to limited testing kits and health care systems getting overwhelmed with patients. There is a population of people who only experiences some of the symptoms (or even asymptomatic) but are often overlooked and less prioritized to undergo testing. Our aim is to collect geographic data of symptoms, analyze clusters, predict outbreaks and avoid community infection.
-          </Typography>
-        </Container>
-      </Grid>
-      <Container maxWidth="md">
-        <Grid container>
-          <Grid item>
-            <Typography className={classes.italics} variant="p" component="p">
-              {process.env.site_name}
+      <Grid container className={classes.hero}>
+        <Grid item sm={6}>
+          <Container>
+            <Typography className={classes.herotext} variant="h2" component="h1" gutterBottom>
+              <span className={classes.bold}>{process.env.site_name}</span>
               {' '}
-              does not provide a medical diagnosis based on your responses but the data gathered will be used to identify patterns of symptoms across locations. This will be used for building data models and identifying clusters so that predicting outbreaks of diseases (such as COVID-19) is possible.
+              calculates the probability of
+              {' '}
+              <span className={classes.primaryText}>{process.env.disease}</span>
+              {' '}
+              based on symptoms and location
             </Typography>
-          </Grid>
-          <Grid item className={classes.action}>
-            <Button className={classes.button} href="/features" variant="contained">Learn more</Button>
-            <Button className={classes.button} href="/survey" variant="contained" color="primary">Start survey</Button>
+          </Container>
+          <Container>
+            <Typography className={classes.subText} variant="body1" component="body1" gutterBottom>
+              The availability and speed of testing for COVID-19 is limited. This tool calculates the likelihood of an infection by comparing your symptoms with the data from confirmed
+              {' '}
+              {process.env.disease}
+              {' '}
+              cases and previously self-reported symptoms.
+            </Typography>
+            <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
+              Wondering if you or someone you know may have COVID-19?
+            </Typography>
+            <Grid className={classes.action}>
+              <Button href="/survey" variant="contained" color="primary">Check your symptoms</Button>
+            </Grid>
+          </Container>
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Grid container className={classes.map}>
+          <Container>
+            <Grid container>
+              <Grid item sm={5}>
+                <img className={classes.image} src="/cluster-map.png" alt="Cluster Map" />
+              </Grid>
+              <Grid item sm={7}>
+                <Typography variant="h3" component="h3" gutterBottom>
+                  How it works
+                </Typography>
+                <ol className={classes.list}>
+                  <li>We scrape data about confirmed Covid-19 patients and their symptoms from online sources such as CSSEGIS, ECDC, GISAID, and Kaggle </li>
+                  <li>Collect data from self-reported symptoms through our tool</li>
+                  <li>Apply machine learning to all collected data</li>
+                  <li>Use the trained data to calculate the probability</li>
+                  <li>Open the data for other use cases</li>
+                </ol>
+              </Grid>
+            </Grid>
+          </Container>
+        </Grid>
+        <Grid container>
+          <Grid container>
+            <Container className={classes.section}>
+              <Grid container>
+                <Grid item sm={12}>
+                  <Typography variant="h3" component="h3" gutterBottom>
+                    Features
+                  </Typography>
+                  <Grid container>
+                    <Grid item sm={6}>
+                      <Typography variant="h6" component="h6" gutterBottom>
+                        For the General Public
+                      </Typography>
+                      <ul className={classes.list}>
+                        <li>Help make smart decision when to seek urgent medical help</li>
+                        <li>Get realtime information about your neighbourhood and areas to avoid</li>
+                      </ul>
+                    </Grid>
+                    <Grid item sm={6}>
+                      <Typography variant="h6" component="h6" gutterBottom>
+                        For the Authorities
+                      </Typography>
+                      <ul className={classes.list}>
+                        <li>Get insights on clusters of symptoms within your jurisdiction</li>
+                        <li>Enable targeted testing based on data collected</li>
+                        <li>Deploy your own self-assessment tool using the open source survey app</li>
+                      </ul>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Container>
           </Grid>
         </Grid>
-        <Grid container className={classes.section}>
-          <Grid item sm={4}>
-            <img className={classes.image} src="/cluster-map.jpg" alt="Cluster Map" />
-          </Grid>
-          <Grid item sm={8}>
-            <Typography variant="h5" component="h5" gutterBottom>
-              Get answers through data
-            </Typography>
-            <Typography variant="p" component="p" gutterBottom>
-              The availability of data for symptoms is critical to answer questions like:
-              <ul className={classes.list}>
-                <li>
-                  Which community or neighbourhood is
-                  {' '}
-                  <strong>fever</strong>
-                  {' '}
-                  prevalent? Which particular region experiences
-                  {' '}
-                  <strong>cough</strong>
-                  {' '}
-                  more often?
-                </li>
-                <li>Is there anyone within the cluster who travelled recently to hot zones such as China?</li>
-                <li>How do symptoms progresses or gets trasmitted to other locations over time?</li>
-                <li>
-                  Is there an increasing cases of
-                  {' '}
-                  <strong>runny nose</strong>
-                  {' '}
-                  in my neighbourhood?
-                </li>
-              </ul>
-            </Typography>
-          </Grid>
+        <Grid container className={classes.open}>
+          <Container>
+            <Grid container>
+              <Grid item align="center" sm={4}>
+                <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
+              </Grid>
+              <Grid item sm={8}>
+                <Typography variant="h3" component="h3" gutterBottom>
+                  The Power of Open Source
+                </Typography>
+                <Typography variant="body1" component="body1" gutterBottom>
+                  We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Container>
         </Grid>
-        <Grid maxWidth="sm" container className={classes.section}>
-          <Grid item sm={8}>
-            <Typography variant="h5" component="h5" gutterBottom>
-              The power of crowdsourcing
-            </Typography>
-            <Typography variant="p" component="p" gutterBottom>
-              Data is very important in making decisions but isn't always available. Data for active cases (and deaths) is available but we need more data on the population who are experiencing only some of the symptoms.
-            </Typography>
-            <Typography variant="p" component="p" gutterBottom>
-              By conducting survey sampling, especially during an outbreak, data will be collected, analyzed and made available.
-            </Typography>
-          </Grid>
-          <Grid item sm={4}>
-            <img className={classes.crowdsourcing} src="/crowdsourcing.png" alt="Crowdsourcing" />
-          </Grid>
-        </Grid>
-        <Grid className={classes.action}>
-          <Button href="/survey" variant="contained" color="primary">Start survey</Button>
-        </Grid>
-      </Container>
+      </Grid>
     </>
   )
 }

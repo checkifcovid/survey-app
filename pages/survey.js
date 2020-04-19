@@ -1,27 +1,24 @@
 import React, { useState } from 'react'
-
+import uuid from 'react-uuid'
 import StepWizard from 'react-step-wizard'
+import Router from 'next/router'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import LinearProgress from '@material-ui/core/LinearProgress'
+import Grid from '@material-ui/core/Grid'
 
 import Nav from '../components/nav'
-import Personal from '../components/personal'
-import Cough from '../components/cough'
-import Fever from '../components/fever'
-import Travel from '../components/travel'
-import Exposure from '../components/exposure'
-import Weakness from '../components/weakness'
+import Urgency from '../components/urgency'
+import Questionnaire from '../components/questionnaire'
+
+import Age from '../components/age'
+import Gender from '../components/gender'
+import Location from '../components/location'
+
+import FeverIcon from '../components/Icon/FeverIcon'
+import CoughIcon from '../components/Icon/CoughIcon'
+import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
 
 const useStyles = makeStyles((theme) => ({
-  appbar: {
-    margin: theme.spacing(0, 0, 2, 0),
-    flexGrow: 1,
-  },
   hero: {
     margin: theme.spacing(1),
     display: 'flex',
@@ -43,6 +40,13 @@ const useStyles = makeStyles((theme) => ({
   wizard: {
     display: 'flex',
     flexDirection: 'column-reverse',
+    justifyContent: 'flex-end',
+    width: '100%',
+    alignContent: 'top',
+    margin: theme.spacing(5, 0),
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(2, 0),
+    },
   },
 }))
 
@@ -51,60 +55,266 @@ export default function Index() {
   const classes = useStyles()
 
   const [state, updateState] = useState({
-    form: {
-      next: false,
-      status: 10,
+    user: {
+      total: 0,
     },
+    symptoms: {},
   })
 
-  const handleSave = () => {
-    // ...
-  }
+  const updateSymptom = (key, value) => {
+    const { symptoms, user } = state
 
-  const updateForm = (key, value) => {
-    const { form } = state
+    user.total = (value === true) ? user.total + 1 : user.total - 1
+    symptoms[key] = value
 
-    form[key] = value
     updateState({
       ...state,
-      form,
+      symptoms,
     })
   }
 
+  const updateUser = (key, value) => {
+    const { user } = state
+
+    user[key] = value
+
+    updateState({
+      ...state,
+      user,
+    })
+  }
+
+  const handleErrors = (response) => {
+    if (response.status !== 200) {
+      throw Error(response.statusText)
+    }
+    return response
+  }
+
+  const handleSubmit = () => {
+    // @TODO: Clean this up
+    const sessionId = uuid()
+    const payload = {
+      survey_id: '001',
+      user_id: sessionId,
+      report_date: new Date(),
+      report_source: 'survey_app',
+      gender: state.user.gender,
+      age: state.user.age,
+      postcode: state.user.postcode,
+      country: process.env.country.name,
+      country_code: process.env.country.short,
+      symptoms: state.symptoms,
+    }
+
+    console.log('p', payload)
+    fetch('/api/survey', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
+      .then(handleErrors)
+      .then((response) => response.json())
+      .then((response) => {
+        Router.push({ pathname: '/result', query: { id: response.user_id } })
+      })
+      .catch((error) => console.log(error))
+  }
+
+  const questionnaires = [
+    {
+      title: 'Are you experiencing any of these symptoms?',
+      options: [
+        {
+          icon: <FeverIcon />,
+          label: 'Fever',
+          key: 'fever',
+          active: false,
+        },
+        {
+          icon: <CoughIcon />,
+          label: 'Cough',
+          key: 'cough',
+          active: false,
+        },
+        {
+          icon: <ShortBreathIcon />,
+          label: 'Shortness of breath',
+          key: 'shortness_breath',
+          active: false,
+        },
+      ],
+    },
+    { // Slide 2
+      title: 'Are you experiencing any of these other symptoms?',
+      options: [
+        {
+          label: 'Chills or sweating',
+          key: 'chills',
+          active: false,
+        },
+        {
+          label: 'Chest pain or pressure',
+          key: 'chest_pain',
+          active: false,
+        },
+        {
+          label: 'Body aches',
+          key: 'body_pain',
+          active: false,
+        },
+        {
+          label: 'Headache',
+          key: 'headache',
+          active: false,
+        },
+        {
+          label: 'Diarrhea',
+          key: 'diarrhea',
+          active: false,
+        },
+      ],
+    },
+    { // Slide 3
+      title: 'Are you experiencing any of these other symptoms? (Additional)',
+      options: [
+        {
+          label: 'Sneezing',
+          key: 'sneezing',
+          active: false,
+        },
+        {
+          label: 'Runny nose',
+          key: 'runny_nose',
+          active: false,
+        },
+        {
+          label: 'Rash',
+          key: 'rash',
+          active: false,
+        },
+        {
+          label: 'Sore throat',
+          key: 'sore_throat',
+          active: false,
+        },
+        {
+          label: 'Abdominal pain',
+          key: 'abdominal_pain',
+          active: false,
+        },
+        {
+          label: 'Nausea or vomitting',
+          key: 'nausea',
+          active: false,
+        },
+        {
+          label: 'Fatigue and/or weakness',
+          key: 'fatigue',
+          active: false,
+        },
+        {
+          label: 'Reduced sense of taste and/or smell',
+          key: 'reduced_smell_taste',
+          active: false,
+        },
+      ],
+    },
+    { // Slide 4
+      title: 'Do you have any of the following conditions?',
+      options: [
+        {
+          label: 'Asthma or chronic lung disease',
+          key: 'asthma',
+          active: false,
+        },
+        {
+          label: 'Diabetes',
+          key: 'diabetes',
+          active: false,
+        },
+        {
+          label: 'High blood pressure',
+          key: 'high_blood',
+          active: false,
+        },
+        {
+          label: 'Kidney disease',
+          key: 'kidney_disease',
+          active: false,
+        },
+        {
+          label: 'Liver disease',
+          key: 'liver_disease',
+          active: false,
+        },
+        {
+          label: 'Cardiovascular disease',
+          key: 'cardiovascular_disease',
+          active: false,
+        },
+        {
+          label: 'Congestive heart failure',
+          key: 'congestive_heart',
+          active: false,
+        },
+        {
+          label: 'Obesity',
+          key: 'obesity',
+          active: false,
+        },
+        {
+          label: 'Pregnancy',
+          key: 'pregnancy',
+          active: false,
+        },
+        {
+          label: 'Weakened immune system',
+          key: 'weakened_immune',
+          active: false,
+        },
+      ],
+    },
+  ]
+
   return (
     <>
-      <AppBar className={classes.appbar} position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            {process.env.site_name}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Container>
-        <LinearProgress className={classes.progress} variant="determinate" value={state.form.status} />
-        <StepWizard className={classes.wizard} nav={<Nav update={updateForm} />}>
-          <Personal form={state.form} update={updateForm} />
-          <Cough form={state.form} update={updateForm} />
-          <Fever form={state.form} update={updateForm} />
-          <Travel form={state.form} update={updateForm} />
-          <Exposure form={state.form} update={updateForm} />
-          <Weakness form={state.form} update={updateForm} />
+      <Grid container>
+        <Urgency />
+        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} totalSelected={state.user.total} />}>
+          { /* looping this doesn't work. Manual work needed */ }
+          <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
+          <Questionnaire question={questionnaires[1].title} options={questionnaires[1].options} callback={updateSymptom} />
+          <Questionnaire question={questionnaires[2].title} options={questionnaires[2].options} callback={updateSymptom} />
+          <Questionnaire question={questionnaires[3].title} options={questionnaires[3].options} callback={updateSymptom} />
+          <Age callback={updateUser} />
+          <Gender callback={updateUser} />
+          <Location callback={updateUser} />
         </StepWizard>
-
-        <pre>
-          {
-          Object.keys(state.form).map((key) => (
+      </Grid>
+      {/* <pre>
+        {
+          Object.keys(state.symptoms).map((key) => (
             <div>
               {key}
               {' '}
               :
               {' '}
-              {state.form[key]}
+              {state.symptoms[key].toString()}
             </div>
           ))
         }
-        </pre>
-      </Container>
+        {
+          Object.keys(state.user).map((key) => (
+            <div>
+              {key}
+              {' '}
+              :
+              {' '}
+              {state.user[key].toString()}
+            </div>
+          ))
+        }
+      </pre> */}
     </>
   )
 }
