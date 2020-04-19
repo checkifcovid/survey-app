@@ -75,9 +75,13 @@ const Location = ({ callback }) => {
                   className={classes.textField}
                   value={values.postcode}
                   onChange={(e) => {
-                    const value = e.target.value.toUpperCase()
-                    setFieldValue('postcode', value)
-                    callback('postcode', value)
+                    if (e.keyCode === 32) {
+                      e.preventDefault()
+                    } else {
+                      const value = e.target.value.toUpperCase().replace(/\s/g, '')
+                      setFieldValue('postcode', value)
+                      callback('postcode', value)
+                    }
                   }}
                   onBlur={handleBlur}
                   helperText={(errors.postcode && touched.postcode) && errors.postcode}
