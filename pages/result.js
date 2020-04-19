@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import fetch from 'isomorphic-unfetch'
 
+import NumberFormat from 'react-number-format'
+
+
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 import Statistics from '../components/statistics'
 import StatisticsCountry from '../components/Statistics/country'
+
 
 const useStyles = makeStyles((theme) => ({
   Positive: {
@@ -80,8 +84,7 @@ const Result = () => {
                   ? (
                     <>
                       <span className={classes[result.diagnosis]}>
-                        {result.probability}
-                        %
+                        <NumberFormat value={result.probability} displayType="text" suffix="%" decimalScale={2} />
                         {' '}
                       </span>
                       probability

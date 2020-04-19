@@ -7,6 +7,9 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 
+import NumberFormat from 'react-number-format'
+
+
 const StatisticsCountry = () => {
   const [result, setResult] = useState({
     confirmed: 'No data',
@@ -56,19 +59,19 @@ const StatisticsCountry = () => {
               <TableCell component="th" scope="row">
                 Confirmed
               </TableCell>
-              <TableCell align="right">{result.confirmed}</TableCell>
+              <TableCell align="right"><NumberFormat value={result.confirmed} displayType="text" thousandSeparator /></TableCell>
             </TableRow>
             <TableRow key="deaths">
               <TableCell component="th" scope="row">
                 Deaths
               </TableCell>
-              <TableCell align="right">{result.deaths}</TableCell>
+              <TableCell align="right"><NumberFormat value={result.deaths} displayType="text" thousandSeparator /></TableCell>
             </TableRow>
             <TableRow key="recovered">
               <TableCell component="th" scope="row">
                 Recovered
               </TableCell>
-              <TableCell align="right">{result.recovered}</TableCell>
+              <TableCell align="right"><NumberFormat value={result.recovered} displayType="text" thousandSeparator /></TableCell>
             </TableRow>
           </TableBody>
         </Table>

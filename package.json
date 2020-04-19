@@ -17,6 +17,7 @@
     "react-country-flag": "^2.0.1",
     "react-dom": "latest",
     "react-ga": "^2.7.0",
+    "react-number-format": "^4.4.1",
     "react-step-wizard": "^5.3.2",
     "react-uuid": "^1.0.2",
     "yup": "^0.28.3"
