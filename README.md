@@ -20,10 +20,10 @@ A deployment can be configured through `next.config.js`. Each deployment is spec
     name: 'United States of America',
     short: 'US',
     coordinates: {
-        lat: '',
-        lng: '',
-      },
-      emergency: '911', // Local emergency number
+      lat: '',
+      lon: '',
+    },
+    emergency: '911', // Local emergency number
   }
   ...
 }

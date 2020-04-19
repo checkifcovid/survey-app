@@ -101,12 +101,13 @@ export default function Index() {
       report_source: 'survey_app',
       gender: state.user.gender,
       age: state.user.age,
-      postcode: state.user.postal_code,
-      country: 'United States of America',
-      country_code: 'USA',
+      postcode: state.user.postcode,
+      country: process.env.country.name,
+      country_code: process.env.country.short,
       symptoms: state.symptoms,
     }
 
+    console.log('p', payload)
     fetch('/api/survey', {
       method: 'POST',
       body: JSON.stringify(payload),
