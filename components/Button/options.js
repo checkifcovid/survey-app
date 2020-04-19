@@ -41,15 +41,15 @@ const Options = ({ options, sendUpdate }) => {
   return (
     <>
       {
-      options.map((value) => {
-        const active = (option === value.key) ? 'active' : 'not-active'
-        return (
-          <Button id={value.key} onClick={(e) => handleOption(e)} className={clsx(classes.symptom, classes[active])}>
-            {value.label}
-          </Button>
-        )
-      })
-    }
+        options.map((value) => {
+          const active = (option === value.key) ? 'active' : 'not-active'
+          return (
+            <Button key={value.key} id={value.key} onClick={(e) => handleOption(e)} className={clsx(classes.symptom, classes[active])}>
+              {value.label}
+            </Button>
+          )
+        })
+      }
     </>
   )
 }
