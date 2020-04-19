@@ -54,7 +54,7 @@ const Location = ({ callback }) => {
           initialValues={{ postcode: '' }}
           validationSchema={Yup.object().shape({
             postcode: Yup.string()
-              .test('len', 'Must be exactly 5 characters', (val) => val.toString().length === process.env.country.zip.min).matches(process.env.country.zip.regex, `Invalid ${process.env.country.short} zip code`)
+              .test('len', `Must be exactly ${process.env.country.zip.min} characters`, (val) => val.toString().length === process.env.country.zip.min).matches(process.env.country.zip.regex, `Invalid ${process.env.country.short} zip code`)
             ,
           })}
         >
@@ -75,8 +75,9 @@ const Location = ({ callback }) => {
                   className={classes.textField}
                   value={values.postcode}
                   onChange={(e) => {
-                    setFieldValue('postcode', e.target.value)
-                    callback('postcode', e.target.value)
+                    const value = e.target.value.toUpperCase()
+                    setFieldValue('postcode', value)
+                    callback('postcode', value)
                   }}
                   onBlur={handleBlur}
                   helperText={(errors.postcode && touched.postcode) && errors.postcode}
