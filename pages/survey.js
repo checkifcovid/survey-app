@@ -256,7 +256,7 @@ const Survey = ({
     <>
       <Grid container>
         <Urgency />
-        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} totalSelected={user.total} />}>
+        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} />}>
           { /* looping this doesn't work. Manual work needed */}
           <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
           <Questionnaire question={questionnaires[1].title} options={questionnaires[1].options} callback={updateSymptom} />
