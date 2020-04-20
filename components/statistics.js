@@ -42,7 +42,7 @@ const Statistics = ({ title, data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(title === 'Symptoms')
+          {(title === 'Symptom')
             ? Object.keys(data).map((symptom) => (
               <TableRow key={symptom}>
                 <TableCell component="th" scope="row">

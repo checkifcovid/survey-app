@@ -50,7 +50,7 @@ export default function Gender({ callback }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { callback('gender', response) }} />
+        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { callback({ field: 'gender', value: response }) }} />
       </Container>
     </>
   )

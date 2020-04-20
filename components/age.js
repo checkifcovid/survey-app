@@ -57,7 +57,7 @@ export default function Age({ callback }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} sendUpdate={(response) => { callback('age', response) }} />
+        <Options options={options} sendUpdate={(response) => { callback({ field: 'age', value: response }) }} />
       </Container>
     </>
   )
