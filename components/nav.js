@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Nav({
-  currentStep, totalSteps, nextStep, totalSelected, handleSubmit,
+  currentStep, totalSteps, nextStep, handleSubmit,
 }) {
   const classes = useStyles()
   const isLast = currentStep === totalSteps
