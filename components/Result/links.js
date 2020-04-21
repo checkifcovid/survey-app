@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import ShareIcon from '@material-ui/icons/Share'
-import WorkIcon from '@material-ui/icons/Work'
-import BeachAccessIcon from '@material-ui/icons/BeachAccess'
+import MapIcon from '@material-ui/icons/Map'
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,15 +35,15 @@ const ResultLinks = ({ title }) => {
         <ListItem button>
           <ListItemAvatar>
             <Avatar>
-              <WorkIcon />
+              <MapIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Check risk by location" secondary="Traveling to another place? Check your risk with the location." />
+          <ListItemText primary="Check risk by location" secondary="Traveling to another place? Check your risk when visiting the location." />
         </ListItem>
         <ListItem button>
           <ListItemAvatar>
             <Avatar>
-              <BeachAccessIcon />
+              <LocalHospitalIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Find a testing center" secondary="Get a list of nearby testing centers" />

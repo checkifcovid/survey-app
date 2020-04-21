@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import uuid from 'react-uuid'
 import StepWizard from 'react-step-wizard'
 import Router from 'next/router'
+import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -9,7 +10,6 @@ import Grid from '@material-ui/core/Grid'
 import Nav from '../components/nav'
 import Urgency from '../components/urgency'
 import Questionnaire from '../components/questionnaire'
-
 import Age from '../components/age'
 import Gender from '../components/gender'
 import Location from '../components/location'
@@ -17,6 +17,10 @@ import Location from '../components/location'
 import FeverIcon from '../components/Icon/FeverIcon'
 import CoughIcon from '../components/Icon/CoughIcon'
 import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
+
+import { updateSymptom } from '../redux/actions/symptomActions'
+import { updateUser } from '../redux/actions/userActions'
+
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -51,38 +55,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default function Index() {
+const Survey = ({
+  symptoms, user, updateSymptom, updateUser,
+}) => {
   const classes = useStyles()
-
-  const [state, updateState] = useState({
-    user: {
-      total: 0,
-    },
-    symptoms: {},
-  })
-
-  const updateSymptom = (key, value) => {
-    const { symptoms, user } = state
-
-    user.total = (value === true) ? user.total + 1 : user.total - 1
-    symptoms[key] = value
-
-    updateState({
-      ...state,
-      symptoms,
-    })
-  }
-
-  const updateUser = (key, value) => {
-    const { user } = state
-
-    user[key] = value
-
-    updateState({
-      ...state,
-      user,
-    })
-  }
 
   const handleErrors = (response) => {
     if (response.status !== 200) {
@@ -99,12 +75,12 @@ export default function Index() {
       user_id: sessionId,
       report_date: new Date(),
       report_source: 'survey_app',
-      gender: state.user.gender,
-      age: state.user.age,
-      postcode: state.user.postcode,
+      gender: user.gender,
+      age: user.age,
+      postcode: user.postcode,
       country: process.env.country.name,
       country_code: process.env.country.short,
-      symptoms: state.symptoms,
+      symptoms,
     }
 
     console.log('p', payload)
@@ -280,8 +256,8 @@ export default function Index() {
     <>
       <Grid container>
         <Urgency />
-        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} totalSelected={state.user.total} />}>
-          { /* looping this doesn't work. Manual work needed */ }
+        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} />}>
+          { /* looping this doesn't work. Manual work needed */}
           <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
           <Questionnaire question={questionnaires[1].title} options={questionnaires[1].options} callback={updateSymptom} />
           <Questionnaire question={questionnaires[2].title} options={questionnaires[2].options} callback={updateSymptom} />
@@ -318,3 +294,14 @@ export default function Index() {
     </>
   )
 }
+
+const mapStateToProps = ({ symptoms, user }) => ({
+  symptoms,
+  user,
+})
+
+const mapDispatchToProps = {
+  updateSymptom,
+  updateUser,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Survey)

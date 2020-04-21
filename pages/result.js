@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import fetch from 'isomorphic-unfetch'
+import { connect } from 'react-redux'
+
 
 import NumberFormat from 'react-number-format'
 
@@ -43,15 +45,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Result = () => {
+const Result = ({ symptoms, user }) => {
   const classes = useStyles()
   const [result, setResult] = useState({
     probability: null,
     diagnosis: null,
   })
-
-  const symptoms = []
-  const user = []
 
   useEffect(() => {
     fetch('/api/stats', {
@@ -109,17 +108,17 @@ const Result = () => {
             <Grid container>
               <Grid item sm={6} className={classes.statistics}>
                 <Typography variant="h6" component="h6">
-                  Symptoms near you
+                  Symptoms near
                   {' '}
-                  <span className={classes.postal_code}>{user.postal_code}</span>
+                  <span className={classes.postal_code}>{user.postcode}</span>
                 </Typography>
-                <Statistics title="Symptoms" data={symptoms} />
+                <Statistics title="Symptom" data={symptoms} />
               </Grid>
               <Grid item sm={6} className={classes.statistics}>
                 <Typography variant="h6" component="h6">
-                  Confirmed COVID-19 near you
+                  Confirmed COVID-19 near
                   {' '}
-                  <span className={classes.postal_code}>{user.postal_code}</span>
+                  <span className={classes.postal_code}>{user.postcode}</span>
                 </Typography>
                 <StatisticsCountry country="US" postal_code="12345" />
               </Grid>
@@ -160,4 +159,9 @@ const Result = () => {
   )
 }
 
-export default Result
+const mapStateToProps = ({ symptoms, user }) => ({
+  symptoms,
+  user,
+})
+
+export default connect(mapStateToProps, null)(Result)

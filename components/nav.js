@@ -25,30 +25,22 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Nav({
-  currentStep, totalSteps, nextStep, totalSelected, handleSubmit,
+  currentStep, totalSteps, nextStep, handleSubmit,
 }) {
   const classes = useStyles()
   const isLast = currentStep === totalSteps
 
   return (
     <Grid container className={classes.navigation}>
-      <>
-        <Grid item xs={12}>
-          {totalSelected}
-          {' '}
-          symptoms selected
-        </Grid>
+      <Grid item xs={12}>
+        {
+          // Submit button on last slide
+          isLast
+            ? <Button className={classes.action} color="primary" variant="contained" onClick={handleSubmit}>Submit</Button>
+            : <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
 
-        <Grid item xs={12}>
-          {
-            // Submit button on last slide
-            isLast
-              ? <Button className={classes.action} color="primary" variant="contained" onClick={handleSubmit}>Submit</Button>
-              : <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
-
-            }
-        </Grid>
-      </>
+        }
+      </Grid>
     </Grid>
   )
 }

@@ -80,7 +80,7 @@ const Location = ({ callback }) => {
                     } else {
                       const value = e.target.value.toUpperCase().replace(/\s/g, '')
                       setFieldValue('postcode', value)
-                      callback('postcode', value)
+                      callback({ field: 'postcode', value })
                     }
                   }}
                   onBlur={handleBlur}
