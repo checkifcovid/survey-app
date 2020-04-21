@@ -194,7 +194,7 @@ const Index = () => {
                   Have you recently been tested for COVID-19? Share your experience anonymously and help others. The more data we can work with, the more accurate our prediction will be.
                 </Typography>
                 <Grid item sm={12}>
-                  <Button className={classes.button} variant="contained" color="primary">Yes, I wanna help</Button>
+                  <Button href="/mycovid" className={classes.button} variant="contained" color="primary">Yes, I want to help</Button>
                 </Grid>
               </Grid>
             </Grid>
