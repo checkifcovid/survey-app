@@ -90,6 +90,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(10),
     background: '#f4f4f4',
   },
+  button: {
+    margin: theme.spacing(2, 0),
+    padding: theme.spacing(1, 3),
+  },
 }))
 
 const Index = () => {
@@ -148,39 +152,33 @@ const Index = () => {
             </Grid>
           </Container>
         </Grid>
-        <Grid container>
-          <Grid container>
-            <Container className={classes.section}>
-              <Grid container>
-                <Grid item sm={12}>
-                  <Typography variant="h3" component="h3" gutterBottom>
-                    Features
-                  </Typography>
-                  <Grid container>
-                    <Grid item sm={6}>
-                      <Typography variant="h6" component="h6" gutterBottom>
-                        For the General Public
-                      </Typography>
-                      <ul className={classes.list}>
-                        <li>Help make smart decision when to seek urgent medical help</li>
-                        <li>Get realtime information about your neighbourhood and areas to avoid</li>
-                      </ul>
-                    </Grid>
-                    <Grid item sm={6}>
-                      <Typography variant="h6" component="h6" gutterBottom>
-                        For the Authorities
-                      </Typography>
-                      <ul className={classes.list}>
-                        <li>Get insights on clusters of symptoms within your jurisdiction</li>
-                        <li>Enable targeted testing based on data collected</li>
-                        <li>Deploy your own self-assessment tool using the open source survey app</li>
-                      </ul>
-                    </Grid>
-                  </Grid>
-                </Grid>
+        <Grid container className={classes.section}>
+          <Container>
+            <Typography variant="h3" component="h3" gutterBottom>
+              Features
+            </Typography>
+            <Grid container>
+              <Grid item sm={6}>
+                <Typography variant="h6" component="h6" gutterBottom>
+                  For the General Public
+                </Typography>
+                <ul className={classes.list}>
+                  <li>Help make smart decision when to seek urgent medical help</li>
+                  <li>Get realtime information about your neighbourhood and areas to avoid</li>
+                </ul>
               </Grid>
-            </Container>
-          </Grid>
+              <Grid item sm={6}>
+                <Typography variant="h6" component="h6" gutterBottom>
+                  For the Authorities
+                </Typography>
+                <ul className={classes.list}>
+                  <li>Get insights on clusters of symptoms within your jurisdiction</li>
+                  <li>Enable targeted testing based on data collected</li>
+                  <li>Deploy your own self-assessment tool using the open source survey app</li>
+                </ul>
+              </Grid>
+            </Grid>
+          </Container>
         </Grid>
         <Grid container className={classes.open}>
           <Container>
@@ -190,15 +188,30 @@ const Index = () => {
               </Grid>
               <Grid item sm={8}>
                 <Typography variant="h3" component="h3" gutterBottom>
-                  The Power of Open Source
+                  A Call for Help
                 </Typography>
                 <Typography variant="body1" component="body1" gutterBottom>
-                  We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+                  Have you recently been tested for COVID-19? Share your experience anonymously and help others. The more data we can work with, the more accurate our prediction will be.
                 </Typography>
+                <Grid item sm={12}>
+                  <Button className={classes.button} variant="contained" color="primary">Yes, I wanna help</Button>
+                </Grid>
               </Grid>
             </Grid>
           </Container>
         </Grid>
+        <Container>
+          <Grid container>
+            <Grid item sm={12}>
+              <Typography variant="h3" component="h3" gutterBottom>
+                The Power of Open Source
+              </Typography>
+              <Typography variant="body1" component="body1" gutterBottom>
+                We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
       </Grid>
     </>
   )
