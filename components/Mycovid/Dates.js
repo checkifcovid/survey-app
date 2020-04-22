@@ -57,7 +57,7 @@ const Dates = ({ callback }) => {
       <Container align="center">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           {options.map((option, id) => (
-            <Grid item className={classes.question}>
+            <Grid key={`key-${id}`} item className={classes.question}>
               <Typography className={classes.title} variant="h4" component="h4" gutterBottom>
                 {option.question}
               </Typography>
