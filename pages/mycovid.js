@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
 import Nav from '../components/nav'
+import Dates from '../components/Mycovid/Dates'
 import Diagnosis from '../components/Mycovid/Diagnosis'
 import DiagnosisCheck from '../components/Mycovid/DiagnosisCheck'
 import Questionnaire from '../components/questionnaire'
@@ -144,6 +145,7 @@ const Survey = ({
           <DiagnosisCheck callback={updateUser} />
           <Diagnosis callback={updateUser} />
           <Questionnaire question="What were your symptoms?" options={options} callback={updateSymptom} />
+          <Dates callback={updateUser} />
           <Age callback={updateUser} />
           <Gender callback={updateUser} />
           <Location callback={updateUser} />
