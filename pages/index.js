@@ -99,6 +99,11 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(2, 0),
     padding: theme.spacing(1, 3),
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(0),
+      padding: theme.spacing(1, 2),
+      fontSize: '11px',
+    },
   },
 }))
 
@@ -132,12 +137,12 @@ const Index = () => {
             </Typography>
             <Grid container className={classes.action}>
               <Grid item className={classes.buttongroup}>
-                <Button href="/mycovid" variant="contained">
-                  Report a diagnosis
-                </Button>
+                <Button className={classes.button} href="/survey" variant="contained" color="primary">Check your symptoms</Button>
               </Grid>
               <Grid item className={classes.buttongroup}>
-                <Button href="/survey" variant="contained" color="primary">Check your symptoms</Button>
+                <Button className={classes.button} href="/mycovid" variant="contained">
+                  Report a diagnosis
+                </Button>
               </Grid>
             </Grid>
           </Container>
