@@ -35,6 +35,10 @@ export default function DiagnosisCheck({ callback }) {
       key: 'negative',
       label: 'Negative',
     },
+    {
+      key: 'waiting',
+      label: 'Waiting for results',
+    },
   ]
 
   return (
@@ -45,7 +49,7 @@ export default function DiagnosisCheck({ callback }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} sendUpdate={(response) => { callback({ field: 'diagnosed', value: response }) }} />
+        <Options options={options} sendUpdate={(value) => { callback({ field: 'result', value }) }} />
       </Container>
     </>
   )

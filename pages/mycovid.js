@@ -17,9 +17,10 @@ import Age from '../components/age'
 import Gender from '../components/gender'
 import Location from '../components/location'
 
+import { updateCalendar } from '../redux/actions/calendarActions'
+import { updateDiagnosis } from '../redux/actions/diagnosisActions'
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
-import { updateCalendar } from '../redux/actions/calendarActions'
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Mycovid = ({
-  calendar, symptoms, user, updateCalendar, updateSymptom, updateUser,
+  calendar, diagnosis, symptoms, user, updateCalendar, updateDiagnosis, updateSymptom, updateUser,
 }) => {
   const classes = useStyles()
 
@@ -79,8 +80,9 @@ const Mycovid = ({
       postcode: user.postcode,
       country: process.env.country.name,
       country_code: process.env.country.short,
-      symptoms,
       calendar,
+      diagnosis,
+      symptoms,
     }
 
     console.log('p', payload)
@@ -143,8 +145,8 @@ const Mycovid = ({
     <>
       <Grid container>
         <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} />}>
-          <DiagnosisCheck callback={updateUser} />
-          <Diagnosis callback={updateUser} />
+          <DiagnosisCheck callback={updateDiagnosis} />
+          <Diagnosis callback={updateDiagnosis} />
           <Questionnaire question="What were your symptoms?" options={options} callback={updateSymptom} />
           <Dates calendar={calendar} callback={updateCalendar} />
           <Age callback={updateUser} />
@@ -156,14 +158,18 @@ const Mycovid = ({
   )
 }
 
-const mapStateToProps = ({ calendar, symptoms, user }) => ({
+const mapStateToProps = ({
+  calendar, diagnosis, symptoms, user,
+}) => ({
   calendar,
+  diagnosis,
   symptoms,
   user,
 })
 
 const mapDispatchToProps = {
   updateCalendar,
+  updateDiagnosis,
   updateSymptom,
   updateUser,
 }

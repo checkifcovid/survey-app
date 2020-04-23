@@ -45,7 +45,7 @@ export default function DiagnosisCheck({ callback }) {
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} sendUpdate={(response) => { callback({ field: 'diagnosed', value: response }) }} />
+        <Options options={options} sendUpdate={(value) => { callback({ field: 'tested', value }) }} />
       </Container>
     </>
   )
