@@ -11,6 +11,7 @@ import Nav from '../components/nav'
 import Dates from '../components/Mycovid/Dates'
 import Diagnosis from '../components/Mycovid/Diagnosis'
 import DiagnosisCheck from '../components/Mycovid/DiagnosisCheck'
+import DiagnosisIntro from '../components/Mycovid/DiagnosisIntro'
 import Questionnaire from '../components/questionnaire'
 
 import Age from '../components/age'
@@ -159,6 +160,7 @@ const Mycovid = ({
   return (
     <>
       <Grid container>
+        <DiagnosisIntro />
         <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} />}>
           <DiagnosisCheck callback={updateDiagnosis} />
           <Diagnosis callback={updateDiagnosis} />
