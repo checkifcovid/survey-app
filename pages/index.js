@@ -201,7 +201,7 @@ const Index = () => {
               </Grid>
               <Grid item sm={8}>
                 <Typography variant="h3" component="h3" gutterBottom>
-                  A Call for Help
+                  MyCOVID: A Call for Help
                 </Typography>
                 <Typography variant="body1" component="body1" gutterBottom>
                   We want to get as much information about COVID-19 as possible to people who need it. That starts with reporting COVID-19 diagnoses. We are asking individuals who've been tested to self-report their symptoms and clinical information. The data is anonymous and can't be traced back to the person reporting it. This reporting method aims to set the stage for a globally shared database useful for COVID-19 diagnostics.
