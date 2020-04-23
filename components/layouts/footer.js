@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import Typography from '@material-ui/core/Typography'
+import GitHubIcon from '@material-ui/icons/GitHub'
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -40,6 +41,9 @@ const Footer = () => {
           <Link className={classes.footerlinks} href="/contribute">Contribute</Link>
           <Link className={classes.footerlinks} href="/">Privacy Policy</Link>
           <Link className={classes.footerlinks} href="https://github.com/checkifcovid" target="_blank">Contact Us</Link>
+        </Grid>
+        <Grid item>
+          <Link className={classes.footerlinks} href="https://github.com/checkifcovid" target="_blank"><GitHubIcon /></Link>
         </Grid>
       </Grid>
     </Container>

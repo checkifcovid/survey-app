@@ -90,6 +90,16 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(10),
     background: '#f4f4f4',
   },
+  buttongroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: theme.spacing(1),
+  },
+  button: {
+    margin: theme.spacing(2, 0),
+    padding: theme.spacing(1, 3),
+  },
 }))
 
 const Index = () => {
@@ -120,8 +130,15 @@ const Index = () => {
             <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
               Wondering if you or someone you know may have COVID-19?
             </Typography>
-            <Grid className={classes.action}>
-              <Button href="/survey" variant="contained" color="primary">Check your symptoms</Button>
+            <Grid container className={classes.action}>
+              <Grid item className={classes.buttongroup}>
+                <Button href="/mycovid" variant="contained">
+                  Report a diagnosis
+                </Button>
+              </Grid>
+              <Grid item className={classes.buttongroup}>
+                <Button href="/survey" variant="contained" color="primary">Check your symptoms</Button>
+              </Grid>
             </Grid>
           </Container>
         </Grid>
@@ -138,7 +155,7 @@ const Index = () => {
                   How it works
                 </Typography>
                 <ol className={classes.list}>
-                  <li>We scrape data about confirmed Covid-19 patients and their symptoms from online sources such as CSSEGIS, ECDC, GISAID, and Kaggle </li>
+                  <li>We scrape data on confirmed Covid-19 patients and their symptoms from online sources such as CSSEGIS, ECDC, GISAID, and Kaggle </li>
                   <li>Collect data from self-reported symptoms through our tool</li>
                   <li>Apply machine learning to all collected data</li>
                   <li>Use the trained data to calculate the probability</li>
@@ -148,57 +165,66 @@ const Index = () => {
             </Grid>
           </Container>
         </Grid>
-        <Grid container>
-          <Grid container>
-            <Container className={classes.section}>
-              <Grid container>
-                <Grid item sm={12}>
-                  <Typography variant="h3" component="h3" gutterBottom>
-                    Features
-                  </Typography>
-                  <Grid container>
-                    <Grid item sm={6}>
-                      <Typography variant="h6" component="h6" gutterBottom>
-                        For the General Public
-                      </Typography>
-                      <ul className={classes.list}>
-                        <li>Help make smart decision when to seek urgent medical help</li>
-                        <li>Get realtime information about your neighbourhood and areas to avoid</li>
-                      </ul>
-                    </Grid>
-                    <Grid item sm={6}>
-                      <Typography variant="h6" component="h6" gutterBottom>
-                        For the Authorities
-                      </Typography>
-                      <ul className={classes.list}>
-                        <li>Get insights on clusters of symptoms within your jurisdiction</li>
-                        <li>Enable targeted testing based on data collected</li>
-                        <li>Deploy your own self-assessment tool using the open source survey app</li>
-                      </ul>
-                    </Grid>
-                  </Grid>
-                </Grid>
+        <Grid container className={classes.section}>
+          <Container>
+            <Typography variant="h3" component="h3" gutterBottom>
+              Features
+            </Typography>
+            <Grid container>
+              <Grid item sm={6}>
+                <Typography variant="h6" component="h6" gutterBottom>
+                  For the General Public
+                </Typography>
+                <ul className={classes.list}>
+                  <li>Help make smart decision when to seek urgent medical help</li>
+                  <li>Get realtime information about your neighbourhood and areas to avoid</li>
+                </ul>
               </Grid>
-            </Container>
-          </Grid>
+              <Grid item sm={6}>
+                <Typography variant="h6" component="h6" gutterBottom>
+                  For the Authorities
+                </Typography>
+                <ul className={classes.list}>
+                  <li>Get insights on clusters of symptoms within your jurisdiction</li>
+                  <li>Enable targeted testing based on data collected</li>
+                  <li>Deploy your own self-assessment tool using the open source survey app</li>
+                </ul>
+              </Grid>
+            </Grid>
+          </Container>
         </Grid>
         <Grid container className={classes.open}>
           <Container>
-            <Grid container>
+            <Grid id="share" container>
               <Grid item align="center" sm={4}>
                 <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
               </Grid>
               <Grid item sm={8}>
                 <Typography variant="h3" component="h3" gutterBottom>
-                  The Power of Open Source
+                  MyCOVID: A Call for Help
                 </Typography>
                 <Typography variant="body1" component="body1" gutterBottom>
-                  We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+                  We want to get as much information about COVID-19 as possible to people who need it. That starts with reporting COVID-19 diagnoses. We are asking individuals who've been tested to self-report their symptoms and clinical information. The data is anonymous and can't be traced back to the person reporting it. This reporting method aims to set the stage for a globally shared database useful for COVID-19 diagnostics.
                 </Typography>
+                <Grid item sm={12}>
+                  <Button href="/mycovid" className={classes.button} variant="contained" color="primary">Report my diagnosis</Button>
+                </Grid>
               </Grid>
             </Grid>
           </Container>
         </Grid>
+        <Container>
+          <Grid container>
+            <Grid item sm={12}>
+              <Typography variant="h3" component="h3" gutterBottom>
+                The Power of Open Source
+              </Typography>
+              <Typography variant="body1" component="body1" gutterBottom>
+                We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
       </Grid>
     </>
   )
