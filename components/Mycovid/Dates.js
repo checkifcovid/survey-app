@@ -24,36 +24,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Dates = ({ callback }) => {
+const Dates = ({ calendar, callback }) => {
   const classes = useStyles()
-
-  const [selectedDate, setSelectedDate] = React.useState(new Date())
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date)
-  }
 
   const options = [
     {
       key: 'tested',
-      question: 'What was the date you got your test?',
+      question: 'When did you get tested?',
     },
     {
       key: 'onset',
-      question: 'What was the date your symptoms started?',
+      question: 'When did the first symptom start?',
     },
     {
       key: 'subsided',
-      question: 'What was the date your symptoms subsided?',
+      question: 'When did the symptoms subsided?',
     },
   ]
+
   return (
     <>
-      <Container maxWidth="lg">
-        <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
-          Important dates
-        </Typography>
-      </Container>
       <Container align="center">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           {options.map((option, id) => (
@@ -62,13 +52,14 @@ const Dates = ({ callback }) => {
                 {option.question}
               </Typography>
               <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
+                autoOk
+                variant="dialog"
+                showTodayButton
                 format="MM/dd/yyyy"
                 margin="normal"
                 id={`date-${id}`}
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={calendar[option.key]}
+                onChange={(raw, value) => callback({ field: option.key, value })}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}

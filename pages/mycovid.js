@@ -19,7 +19,7 @@ import Location from '../components/location'
 
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
-
+import { updateCalendar } from '../redux/actions/calendarActions'
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const Survey = ({
-  symptoms, user, updateSymptom, updateUser,
+const Mycovid = ({
+  calendar, symptoms, user, updateCalendar, updateSymptom, updateUser,
 }) => {
   const classes = useStyles()
 
@@ -80,6 +80,7 @@ const Survey = ({
       country: process.env.country.name,
       country_code: process.env.country.short,
       symptoms,
+      calendar,
     }
 
     console.log('p', payload)
@@ -145,7 +146,7 @@ const Survey = ({
           <DiagnosisCheck callback={updateUser} />
           <Diagnosis callback={updateUser} />
           <Questionnaire question="What were your symptoms?" options={options} callback={updateSymptom} />
-          <Dates callback={updateUser} />
+          <Dates calendar={calendar} callback={updateCalendar} />
           <Age callback={updateUser} />
           <Gender callback={updateUser} />
           <Location callback={updateUser} />
@@ -155,13 +156,15 @@ const Survey = ({
   )
 }
 
-const mapStateToProps = ({ symptoms, user }) => ({
+const mapStateToProps = ({ calendar, symptoms, user }) => ({
+  calendar,
   symptoms,
   user,
 })
 
 const mapDispatchToProps = {
+  updateCalendar,
   updateSymptom,
   updateUser,
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Survey)
+export default connect(mapStateToProps, mapDispatchToProps)(Mycovid)

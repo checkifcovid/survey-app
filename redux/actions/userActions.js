@@ -2,7 +2,7 @@
 export const UPDATE_USER = 'UPDATE_USER'
 
 // Action Creator
-export const updateUser = (symptom) => ({
+export const updateUser = (user) => ({
   type: UPDATE_USER,
-  payload: symptom,
+  payload: user,
 })

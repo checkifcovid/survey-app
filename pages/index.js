@@ -90,6 +90,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(10),
     background: '#f4f4f4',
   },
+  buttongroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: theme.spacing(1),
+  },
   button: {
     margin: theme.spacing(2, 0),
     padding: theme.spacing(1, 3),
@@ -124,8 +130,15 @@ const Index = () => {
             <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
               Wondering if you or someone you know may have COVID-19?
             </Typography>
-            <Grid className={classes.action}>
-              <Button href="/survey" variant="contained" color="primary">Check your symptoms</Button>
+            <Grid container className={classes.action}>
+              <Grid item className={classes.buttongroup}>
+                <Button href="/mycovid" variant="contained">
+                  Report a diagnosis
+                </Button>
+              </Grid>
+              <Grid item className={classes.buttongroup}>
+                <Button href="/survey" variant="contained" color="primary">Check your symptoms</Button>
+              </Grid>
             </Grid>
           </Container>
         </Grid>
@@ -183,6 +196,7 @@ const Index = () => {
         <Grid container className={classes.open}>
           <Container>
             <Grid container>
+              <a name="share" id="share" />
               <Grid item align="center" sm={4}>
                 <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
               </Grid>
@@ -191,10 +205,10 @@ const Index = () => {
                   A Call for Help
                 </Typography>
                 <Typography variant="body1" component="body1" gutterBottom>
-                  Have you recently been tested for COVID-19? Share your experience anonymously and help others. The more data we can work with, the more accurate our prediction will be.
+                  We want to get as much information about COVID-19 as possible to people who need it. That starts with reporting COVID-19 diagnoses. We are asking individuals who've been tested to self-report their symptoms and clinical information. The data is anonymous and can't be traced back to the person reporting it. This reporting method aims to set the stage for a globally shared database useful for COVID-19 diagnostics.
                 </Typography>
                 <Grid item sm={12}>
-                  <Button href="/mycovid" className={classes.button} variant="contained" color="primary">Yes, I want to help</Button>
+                  <Button href="/mycovid" className={classes.button} variant="contained" color="primary">Report my diagnosis</Button>
                 </Grid>
               </Grid>
             </Grid>
