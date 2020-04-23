@@ -135,6 +135,21 @@ const Mycovid = ({
       active: false,
     },
     {
+      label: 'Sneezing',
+      key: 'sneezing',
+      active: false,
+    },
+    {
+      label: 'Runny nose',
+      key: 'runny_nose',
+      active: false,
+    },
+    {
+      label: 'Fatigue and/or weakness',
+      key: 'fatigue',
+      active: false,
+    },
+    {
       label: 'Diarrhea',
       key: 'diarrhea',
       active: false,

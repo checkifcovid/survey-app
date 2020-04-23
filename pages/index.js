@@ -155,7 +155,7 @@ const Index = () => {
                   How it works
                 </Typography>
                 <ol className={classes.list}>
-                  <li>We scrape data about confirmed Covid-19 patients and their symptoms from online sources such as CSSEGIS, ECDC, GISAID, and Kaggle </li>
+                  <li>We scrape data on confirmed Covid-19 patients and their symptoms from online sources such as CSSEGIS, ECDC, GISAID, and Kaggle </li>
                   <li>Collect data from self-reported symptoms through our tool</li>
                   <li>Apply machine learning to all collected data</li>
                   <li>Use the trained data to calculate the probability</li>
@@ -195,8 +195,7 @@ const Index = () => {
         </Grid>
         <Grid container className={classes.open}>
           <Container>
-            <Grid container>
-              <a name="share" id="share" />
+            <Grid id="share" container>
               <Grid item align="center" sm={4}>
                 <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
               </Grid>

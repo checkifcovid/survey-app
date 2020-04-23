@@ -53,8 +53,9 @@ const Dates = ({ calendar, callback }) => {
               </Typography>
               <KeyboardDatePicker
                 autoOk
+                disableToolbar
+                disableFuture
                 variant="dialog"
-                showTodayButton
                 format="MM/dd/yyyy"
                 margin="normal"
                 id={`date-${id}`}
