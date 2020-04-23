@@ -72,10 +72,10 @@ const Mycovid = ({
     // @TODO: Clean this up
     const sessionId = uuid()
     const payload = {
-      survey_id: '001',
+      survey_id: '002',
       user_id: sessionId,
       report_date: new Date(),
-      report_source: 'survey_app',
+      report_source: 'report_diagnosis',
       gender: user.gender,
       age: user.age,
       postcode: user.postcode,
