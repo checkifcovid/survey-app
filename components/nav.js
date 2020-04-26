@@ -35,8 +35,7 @@ export default function Nav({
   return (
     <Grid container className={classes.navigation}>
       <Grid item xs={12}>
-        {// Submit button on last slide
-        isLast ? (
+        {isLast ? (
           <Button
             className={classes.action}
             color="primary"
