@@ -1,4 +1,4 @@
-name: Node.js CI
+name: CheckIfCovid US
 
 on: [push]
 
