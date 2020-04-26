@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Button from '@material-ui/core/FormControl'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   symptom: {
     cursor: 'pointer',
     fontSize: 16,
@@ -32,24 +32,26 @@ const Options = ({ options, sendUpdate }) => {
   const classes = useStyles()
   const [option, setOption] = useState(null)
 
-
-  const handleOption = (e) => {
+  const handleOption = e => {
     setOption(e.target.id)
     sendUpdate(e.target.id)
   }
 
   return (
     <>
-      {
-        options.map((value) => {
-          const active = (option === value.key) ? 'active' : 'not-active'
-          return (
-            <Button key={value.key} id={value.key} onClick={(e) => handleOption(e)} className={clsx(classes.symptom, classes[active])}>
-              {value.label}
-            </Button>
-          )
-        })
-      }
+      {options.map(value => {
+        const active = option === value.key ? 'active' : 'not-active'
+        return (
+          <Button
+            key={value.key}
+            id={value.key}
+            onClick={e => handleOption(e)}
+            className={clsx(classes.symptom, classes[active])}
+          >
+            {value.label}
+          </Button>
+        )
+      })}
     </>
   )
 }

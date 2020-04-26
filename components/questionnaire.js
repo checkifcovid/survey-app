@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 
 import Symptom from './symptom'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   title: {
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -24,16 +24,27 @@ const Questionnaire = ({ question, options, callback }) => {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
+        <Typography
+          className={classes.title}
+          variant="h3"
+          component="h3"
+          gutterBottom
+        >
           {question}
         </Typography>
       </Container>
       <Container align="center">
-        {
-          options.map((option) => (
-            <Symptom key={option.label} icon={option.icon} name={option.label} active={option.active} callback={(response) => { callback(option.key, response) }} />
-          ))
-        }
+        {options.map(option => (
+          <Symptom
+            key={option.label}
+            icon={option.icon}
+            name={option.label}
+            active={option.active}
+            callback={response => {
+              callback(option.key, response)
+            }}
+          />
+        ))}
       </Container>
     </>
   )
@@ -41,12 +52,14 @@ const Questionnaire = ({ question, options, callback }) => {
 
 Questionnaire.propTypes = {
   question: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.elementType,
-    label: PropTypes.string,
-    key: PropTypes.string,
-    active: PropTypes.bool,
-  })).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.elementType,
+      label: PropTypes.string,
+      key: PropTypes.string,
+      active: PropTypes.bool,
+    })
+  ).isRequired,
   callback: PropTypes.func.isRequired,
 }
 

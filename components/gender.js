@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 
 import Options from './Button/options'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   title: {
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -46,12 +46,23 @@ export default function Gender({ callback }) {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
+        <Typography
+          className={classes.title}
+          variant="h3"
+          component="h3"
+          gutterBottom
+        >
           What is your gender?
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} style={{ width: 400 }} sendUpdate={(response) => { callback({ field: 'gender', value: response }) }} />
+        <Options
+          options={options}
+          style={{ width: 400 }}
+          sendUpdate={response => {
+            callback({ field: 'gender', value: response })
+          }}
+        />
       </Container>
     </>
   )

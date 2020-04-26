@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 
 import Options from './Button/options'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   title: {
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
       width: 300,
     },
   },
-
 }))
 
 export default function Age({ callback }) {
@@ -53,12 +52,22 @@ export default function Age({ callback }) {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
+        <Typography
+          className={classes.title}
+          variant="h3"
+          component="h3"
+          gutterBottom
+        >
           How old are you?
         </Typography>
       </Container>
       <Container className={classes.options} align="center">
-        <Options options={options} sendUpdate={(response) => { callback({ field: 'age', value: response }) }} />
+        <Options
+          options={options}
+          sendUpdate={response => {
+            callback({ field: 'age', value: response })
+          }}
+        />
       </Container>
     </>
   )

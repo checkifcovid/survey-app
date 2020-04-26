@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(2),
   },
@@ -18,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-
-const Accuracy = ({ title }) => {
+const Accuracy = () => {
   const classes = useStyles()
 
   return (
@@ -31,13 +30,15 @@ const Accuracy = ({ title }) => {
         <InfoOutlinedIcon color="primary" />
       </Grid>
       <Typography variant="body2" component="body2" gutterBottom>
-        This tool currently has an accuracy level of
-        {' '}
-        <strong>48%</strong>
-        . We use a threshold of > 75% to identify a positive probability (coloured as red).
+        This tool currently has an accuracy level of <strong>48%</strong>. We
+        use a threshold of > 75% to identify a positive probability (coloured as
+        red).
       </Typography>
       <Typography variant="body2" component="body2" gutterBottom>
-        This is based on the current data we have and improves over time as we get more data. The result you get now might be different from what you will get tomorrow. We suggest to keep using this tool each day as long as you have your symptoms present.
+        This is based on the current data we have and improves over time as we
+        get more data. The result you get now might be different from what you
+        will get tomorrow. We suggest to keep using this tool each day as long
+        as you have your symptoms present.
       </Typography>
     </Paper>
   )

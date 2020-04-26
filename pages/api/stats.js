@@ -11,9 +11,9 @@ export default (req, res) => {
     },
     body: JSON.stringify({}),
   })
-    .then((response) => response.json())
-    .then((response) => {
+    .then(response => response.json())
+    .then(response => {
       res.status(response.statusCode).json(response.body)
     })
-    .catch((error) => console.log(error))
+    .catch(error => console.log(error))
 }

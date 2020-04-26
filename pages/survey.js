@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import uuid from 'react-uuid'
 import StepWizard from 'react-step-wizard'
 import Router from 'next/router'
@@ -21,8 +21,7 @@ import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   hero: {
     margin: theme.spacing(1),
     display: 'flex',
@@ -54,13 +53,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-
-const Survey = ({
-  symptoms, user, updateSymptom, updateUser,
-}) => {
+const Survey = ({ symptoms, user, updateSymptom, updateUser }) => {
   const classes = useStyles()
 
-  const handleErrors = (response) => {
+  const handleErrors = response => {
     if (response.status !== 200) {
       throw Error(response.statusText)
     }
@@ -89,11 +85,11 @@ const Survey = ({
       body: JSON.stringify(payload),
     })
       .then(handleErrors)
-      .then((response) => response.json())
-      .then((response) => {
+      .then(response => response.json())
+      .then(response => {
         Router.push({ pathname: '/result', query: { id: response.user_id } })
       })
-      .catch((error) => console.log(error))
+      .catch(error => console.log(error))
   }
 
   const questionnaires = [
@@ -120,7 +116,8 @@ const Survey = ({
         },
       ],
     },
-    { // Slide 2
+    {
+      // Slide 2
       title: 'Are you experiencing any of these other symptoms?',
       options: [
         {
@@ -150,7 +147,8 @@ const Survey = ({
         },
       ],
     },
-    { // Slide 3
+    {
+      // Slide 3
       title: 'Are you experiencing any of these other symptoms? (Additional)',
       options: [
         {
@@ -195,7 +193,8 @@ const Survey = ({
         },
       ],
     },
-    { // Slide 4
+    {
+      // Slide 4
       title: 'Do you have any of the following conditions?',
       options: [
         {
@@ -256,12 +255,31 @@ const Survey = ({
     <>
       <Grid container>
         <Urgency />
-        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} />}>
-          { /* looping this doesn't work. Manual work needed */}
-          <Questionnaire question={questionnaires[0].title} options={questionnaires[0].options} callback={updateSymptom} />
-          <Questionnaire question={questionnaires[1].title} options={questionnaires[1].options} callback={updateSymptom} />
-          <Questionnaire question={questionnaires[2].title} options={questionnaires[2].options} callback={updateSymptom} />
-          <Questionnaire question={questionnaires[3].title} options={questionnaires[3].options} callback={updateSymptom} />
+        <StepWizard
+          className={classes.wizard}
+          nav={<Nav handleSubmit={handleSubmit} />}
+        >
+          {/* looping this doesn't work. Manual work needed */}
+          <Questionnaire
+            question={questionnaires[0].title}
+            options={questionnaires[0].options}
+            callback={updateSymptom}
+          />
+          <Questionnaire
+            question={questionnaires[1].title}
+            options={questionnaires[1].options}
+            callback={updateSymptom}
+          />
+          <Questionnaire
+            question={questionnaires[2].title}
+            options={questionnaires[2].options}
+            callback={updateSymptom}
+          />
+          <Questionnaire
+            question={questionnaires[3].title}
+            options={questionnaires[3].options}
+            callback={updateSymptom}
+          />
           <Age callback={updateUser} />
           <Gender callback={updateUser} />
           <Location callback={updateUser} />

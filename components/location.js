@@ -8,12 +8,10 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 
 import ReactCountryFlag from 'react-country-flag'
-import {
-  Formik, Form, Field, ErrorMessage,
-} from 'formik'
+import { Formik } from 'formik'
 import * as Yup from 'yup'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   title: {
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -37,7 +35,12 @@ const Location = ({ callback }) => {
   return (
     <>
       <Container maxWidth="lg">
-        <Typography className={classes.title} variant="h3" component="h3" gutterBottom>
+        <Typography
+          className={classes.title}
+          variant="h3"
+          component="h3"
+          gutterBottom
+        >
           Where are you located?
         </Typography>
       </Container>
@@ -46,19 +49,25 @@ const Location = ({ callback }) => {
           <ReactCountryFlag
             countryCode={process.env.country.short}
             className={classes.site}
-          />
-          {' '}
+          />{' '}
           {process.env.country.name}
         </Typography>
         <Formik
           initialValues={{ postcode: '' }}
           validationSchema={Yup.object().shape({
             postcode: Yup.string()
-              .test('len', `Must be exactly ${process.env.country.zip.min} characters`, (val) => val.toString().length === process.env.country.zip.min).matches(process.env.country.zip.regex, `Invalid ${process.env.country.short} zip code`)
-            ,
+              .test(
+                'len',
+                `Must be exactly ${process.env.country.zip.min} characters`,
+                val => val.toString().length === process.env.country.zip.min
+              )
+              .matches(
+                process.env.country.zip.regex,
+                `Invalid ${process.env.country.short} zip code`
+              ),
           })}
         >
-          {(props) => {
+          {props => {
             const {
               values,
               touched,
@@ -74,17 +83,21 @@ const Location = ({ callback }) => {
                   name="postcode"
                   className={classes.textField}
                   value={values.postcode}
-                  onChange={(e) => {
+                  onChange={e => {
                     if (e.keyCode === 32) {
                       e.preventDefault()
                     } else {
-                      const value = e.target.value.toUpperCase().replace(/\s/g, '')
+                      const value = e.target.value
+                        .toUpperCase()
+                        .replace(/\s/g, '')
                       setFieldValue('postcode', value)
                       callback({ field: 'postcode', value })
                     }
                   }}
                   onBlur={handleBlur}
-                  helperText={(errors.postcode && touched.postcode) && errors.postcode}
+                  helperText={
+                    errors.postcode && touched.postcode && errors.postcode
+                  }
                   margin="normal"
                 />
               </form>
