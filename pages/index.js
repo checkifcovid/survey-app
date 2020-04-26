@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import Head from 'next/head'
 
+import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
@@ -111,6 +112,11 @@ const Index = () => {
   const classes = useStyles()
   return (
     <>
+      <Head>
+        <title>CheckIfCovid - Calculate the probability of COVID-19 based on symptoms and location</title>
+        <meta property="og:title" content="CheckIfCovid" key="title" />
+        <meta property="og:description" content="Calculate the probability of COVID-19 based on symptoms and location" key="description" />
+      </Head>
       <Grid container className={classes.hero}>
         <Grid item sm={6}>
           <Container>
