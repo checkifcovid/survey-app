@@ -1,3 +1,5 @@
+![CheckIfCovid US](https://github.com/checkifcovid/survey-app/workflows/CheckIfCovid%20US/badge.svg)
+
 ## How to use
 
 Install it and run:
