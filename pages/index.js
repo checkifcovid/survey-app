@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   section: {
     margin: theme.spacing(5),
     [theme.breakpoints.down('sm')]: {
@@ -113,40 +113,69 @@ const Index = () => {
   return (
     <>
       <Head>
-        <title>CheckIfCovid - Calculate the probability of COVID-19 based on symptoms and location</title>
+        <title>
+          CheckIfCovid - Calculate the probability of COVID-19 based on symptoms
+          and location
+        </title>
         <meta property="og:title" content="CheckIfCovid" key="title" />
-        <meta property="og:description" content="Calculate the probability of COVID-19 based on symptoms and location" key="description" />
+        <meta
+          property="og:description"
+          content="Calculate the probability of COVID-19 based on symptoms and location"
+          key="description"
+        />
       </Head>
       <Grid container className={classes.hero}>
         <Grid item sm={6}>
           <Container>
-            <Typography className={classes.herotext} variant="h2" component="h1" gutterBottom>
-              <span className={classes.bold}>{process.env.site_name}</span>
-              {' '}
-              calculates the probability of
-              {' '}
-              <span className={classes.primaryText}>{process.env.disease}</span>
-              {' '}
+            <Typography
+              className={classes.herotext}
+              variant="h2"
+              component="h1"
+              gutterBottom
+            >
+              <span className={classes.bold}>{process.env.site_name}</span>{' '}
+              calculates the probability of{' '}
+              <span className={classes.primaryText}>{process.env.disease}</span>{' '}
               based on symptoms and location
             </Typography>
           </Container>
           <Container>
-            <Typography className={classes.subText} variant="body1" component="body1" gutterBottom>
-              The availability and speed of testing for COVID-19 is limited. This tool calculates the likelihood of an infection by comparing your symptoms with the data from confirmed
-              {' '}
-              {process.env.disease}
-              {' '}
+            <Typography
+              className={classes.subText}
+              variant="body1"
+              component="body1"
+              gutterBottom
+            >
+              The availability and speed of testing for COVID-19 is limited.
+              This tool calculates the likelihood of an infection by comparing
+              your symptoms with the data from confirmed {process.env.disease}{' '}
               cases and previously self-reported symptoms.
             </Typography>
-            <Typography className={classes.primaryText} variant="h6" component="h6" gutterBottom>
+            <Typography
+              className={classes.primaryText}
+              variant="h6"
+              component="h6"
+              gutterBottom
+            >
               Wondering if you or someone you know may have COVID-19?
             </Typography>
             <Grid container className={classes.action}>
               <Grid item className={classes.buttongroup}>
-                <Button className={classes.button} href="/survey" variant="contained" color="primary">Check your symptoms</Button>
+                <Button
+                  className={classes.button}
+                  href="/survey"
+                  variant="contained"
+                  color="primary"
+                >
+                  Check your symptoms
+                </Button>
               </Grid>
               <Grid item className={classes.buttongroup}>
-                <Button className={classes.button} href="/mycovid" variant="contained">
+                <Button
+                  className={classes.button}
+                  href="/mycovid"
+                  variant="contained"
+                >
                   Report a diagnosis
                 </Button>
               </Grid>
@@ -159,15 +188,25 @@ const Index = () => {
           <Container>
             <Grid container>
               <Grid item sm={5}>
-                <img className={classes.image} src="/cluster-map.png" alt="Cluster Map" />
+                <img
+                  className={classes.image}
+                  src="/cluster-map.png"
+                  alt="Cluster Map"
+                />
               </Grid>
               <Grid item sm={7}>
                 <Typography variant="h3" component="h3" gutterBottom>
                   How it works
                 </Typography>
                 <ol className={classes.list}>
-                  <li>We scrape data on confirmed Covid-19 patients and their symptoms from online sources such as CSSEGIS, ECDC, GISAID, and Kaggle </li>
-                  <li>Collect data from self-reported symptoms through our tool</li>
+                  <li>
+                    We scrape data on confirmed Covid-19 patients and their
+                    symptoms from online sources such as CSSEGIS, ECDC, GISAID,
+                    and Kaggle{' '}
+                  </li>
+                  <li>
+                    Collect data from self-reported symptoms through our tool
+                  </li>
                   <li>Apply machine learning to all collected data</li>
                   <li>Use the trained data to calculate the probability</li>
                   <li>Open the data for other use cases</li>
@@ -187,8 +226,13 @@ const Index = () => {
                   For the General Public
                 </Typography>
                 <ul className={classes.list}>
-                  <li>Help make smart decision when to seek urgent medical help</li>
-                  <li>Get realtime information about your neighbourhood and areas to avoid</li>
+                  <li>
+                    Help make smart decision when to seek urgent medical help
+                  </li>
+                  <li>
+                    Get realtime information about your neighbourhood and areas
+                    to avoid
+                  </li>
                 </ul>
               </Grid>
               <Grid item sm={6}>
@@ -196,9 +240,15 @@ const Index = () => {
                   For the Authorities
                 </Typography>
                 <ul className={classes.list}>
-                  <li>Get insights on clusters of symptoms within your jurisdiction</li>
+                  <li>
+                    Get insights on clusters of symptoms within your
+                    jurisdiction
+                  </li>
                   <li>Enable targeted testing based on data collected</li>
-                  <li>Deploy your own self-assessment tool using the open source survey app</li>
+                  <li>
+                    Deploy your own self-assessment tool using the open source
+                    survey app
+                  </li>
                 </ul>
               </Grid>
             </Grid>
@@ -208,17 +258,34 @@ const Index = () => {
           <Container>
             <Grid id="share" container>
               <Grid item align="center" sm={4}>
-                <img className={classes.crowdsourcing} src="/crowdsource.png" alt="Crowdsourcing" />
+                <img
+                  className={classes.crowdsourcing}
+                  src="/crowdsource.png"
+                  alt="Crowdsourcing"
+                />
               </Grid>
               <Grid item sm={8}>
                 <Typography variant="h3" component="h3" gutterBottom>
                   MyCOVID: A Call for Help
                 </Typography>
                 <Typography variant="body1" component="body1" gutterBottom>
-                  We want to get as much information about COVID-19 as possible to people who need it. That starts with reporting COVID-19 diagnoses. We are asking individuals who've been tested to self-report their symptoms and clinical information. The data is anonymous and can't be traced back to the person reporting it. This reporting method aims to set the stage for a globally shared database useful for COVID-19 diagnostics.
+                  We want to get as much information about COVID-19 as possible
+                  to people who need it. That starts with reporting COVID-19
+                  diagnoses. We are asking individuals who've been tested to
+                  self-report their symptoms and clinical information. The data
+                  is anonymous and can't be traced back to the person reporting
+                  it. This reporting method aims to set the stage for a globally
+                  shared database useful for COVID-19 diagnostics.
                 </Typography>
                 <Grid item sm={12}>
-                  <Button href="/mycovid" className={classes.button} variant="contained" color="primary">Report my diagnosis</Button>
+                  <Button
+                    href="/mycovid"
+                    className={classes.button}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Report my diagnosis
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
@@ -231,7 +298,11 @@ const Index = () => {
                 The Power of Open Source
               </Typography>
               <Typography variant="body1" component="body1" gutterBottom>
-                We are a group of volunteers and this project is non-profit. All the data produced will be open and available through the API. If you are a developer who wants to contribute, or has a network who will benefit from the software and data, please get in touch.
+                We are a group of volunteers and this project is non-profit. All
+                the data produced will be open and available through the API. If
+                you are a developer who wants to contribute, or has a network
+                who will benefit from the software and data, please get in
+                touch.
               </Typography>
             </Grid>
           </Grid>

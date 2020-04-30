@@ -12,7 +12,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   title: {
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -48,7 +48,12 @@ const Dates = ({ calendar, callback }) => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           {options.map((option, id) => (
             <Grid key={`key-${id}`} item className={classes.question}>
-              <Typography className={classes.title} variant="h4" component="h4" gutterBottom>
+              <Typography
+                className={classes.title}
+                variant="h4"
+                component="h4"
+                gutterBottom
+              >
                 {option.question}
               </Typography>
               <KeyboardDatePicker
@@ -60,7 +65,9 @@ const Dates = ({ calendar, callback }) => {
                 margin="normal"
                 id={`date-${id}`}
                 value={calendar[option.key]}
-                onChange={(raw, value) => callback({ field: option.key, value })}
+                onChange={(raw, value) =>
+                  callback({ field: option.key, value })
+                }
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}

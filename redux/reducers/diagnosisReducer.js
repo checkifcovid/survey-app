@@ -1,9 +1,12 @@
 import { UPDATE_DIAGNOSIS } from '../actions/diagnosisActions'
 
-const diagnosisReducer = (state = {
-  tested: false,
-  result: false,
-}, action) => {
+const diagnosisReducer = (
+  state = {
+    tested: false,
+    result: false,
+  },
+  action
+) => {
   switch (action.type) {
     case UPDATE_DIAGNOSIS: {
       return {

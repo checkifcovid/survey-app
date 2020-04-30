@@ -11,21 +11,18 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   none: {
     color: '#ccc',
   },
 }))
 
 const createData = (name, count) => ({
-  name, count,
+  name,
+  count,
 })
 
-const results = [
-  createData('Positive', 24),
-  createData('Negative', 237),
-
-]
+const results = [createData('Positive', 24), createData('Negative', 237)]
 
 const Statistics = ({ title, data }) => {
   const classes = useStyles()
@@ -35,30 +32,32 @@ const Statistics = ({ title, data }) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>
-              {title}
-            </TableCell>
+            <TableCell>{title}</TableCell>
             <TableCell align="right">Count</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {(title === 'Symptom')
-            ? Object.keys(data).map((symptom) => (
-              <TableRow key={symptom}>
-                <TableCell component="th" scope="row">
-                  {symptom}
-                </TableCell>
-                <TableCell align="right" className={classes.none}>No data</TableCell>
-              </TableRow>
-            ))
-            : results.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right" className={classes.none}>No data</TableCell>
-              </TableRow>
-            ))}
+          {title === 'Symptom'
+            ? Object.keys(data).map(symptom => (
+                <TableRow key={symptom}>
+                  <TableCell component="th" scope="row">
+                    {symptom}
+                  </TableCell>
+                  <TableCell align="right" className={classes.none}>
+                    No data
+                  </TableCell>
+                </TableRow>
+              ))
+            : results.map(row => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right" className={classes.none}>
+                    No data
+                  </TableCell>
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
     </TableContainer>

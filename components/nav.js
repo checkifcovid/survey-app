@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   navigation: {
     textAlign: 'center',
     margin: theme.spacing(6, 0),
@@ -23,9 +23,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-
 export default function Nav({
-  currentStep, totalSteps, nextStep, handleSubmit,
+  currentStep,
+  totalSteps,
+  nextStep,
+  handleSubmit,
 }) {
   const classes = useStyles()
   const isLast = currentStep === totalSteps
@@ -33,13 +35,26 @@ export default function Nav({
   return (
     <Grid container className={classes.navigation}>
       <Grid item xs={12}>
-        {
-          // Submit button on last slide
-          isLast
-            ? <Button className={classes.action} color="primary" variant="contained" onClick={handleSubmit}>Submit</Button>
-            : <Button className={classes.action} disabled={isLast} color="primary" variant="contained" onClick={nextStep}>Next</Button>
-
-        }
+        {isLast ? (
+          <Button
+            className={classes.action}
+            color="primary"
+            variant="contained"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        ) : (
+          <Button
+            className={classes.action}
+            disabled={isLast}
+            color="primary"
+            variant="contained"
+            onClick={nextStep}
+          >
+            Next
+          </Button>
+        )}
       </Grid>
     </Grid>
   )

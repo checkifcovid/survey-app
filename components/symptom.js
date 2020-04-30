@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 
@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Button from '@material-ui/core/FormControl'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   symptom: {
     cursor: 'pointer',
     fontSize: 16,
@@ -29,9 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Symptom = ({
-  name, icon, callback, active,
-}) => {
+const Symptom = ({ name, icon, callback, active }) => {
   const classes = useStyles()
   const [enabled, setEnabled] = React.useState(active)
 
@@ -43,7 +41,10 @@ const Symptom = ({
   const highlight = enabled ? 'active' : 'not-active'
 
   return (
-    <Button onClick={toggleButton} className={clsx(classes.symptom, classes[highlight])}>
+    <Button
+      onClick={toggleButton}
+      className={clsx(classes.symptom, classes[highlight])}
+    >
       {icon}
       {name}
     </Button>

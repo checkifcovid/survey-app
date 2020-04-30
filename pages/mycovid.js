@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import uuid from 'react-uuid'
 import StepWizard from 'react-step-wizard'
 import Router from 'next/router'
@@ -23,7 +23,7 @@ import { updateDiagnosis } from '../redux/actions/diagnosisActions'
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   hero: {
     margin: theme.spacing(1),
     display: 'flex',
@@ -55,13 +55,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-
 const Mycovid = ({
-  calendar, diagnosis, symptoms, user, updateCalendar, updateDiagnosis, updateSymptom, updateUser,
+  calendar,
+  diagnosis,
+  symptoms,
+  user,
+  updateCalendar,
+  updateDiagnosis,
+  updateSymptom,
+  updateUser,
 }) => {
   const classes = useStyles()
 
-  const handleErrors = (response) => {
+  const handleErrors = response => {
     if (response.status !== 200) {
       throw Error(response.statusText)
     }
@@ -92,11 +98,11 @@ const Mycovid = ({
       body: JSON.stringify(payload),
     })
       .then(handleErrors)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(() => {
         Router.push({ pathname: '/thanks' })
       })
-      .catch((error) => console.log(error))
+      .catch(error => console.log(error))
   }
 
   const options = [
@@ -161,10 +167,17 @@ const Mycovid = ({
     <>
       <Grid container>
         <DiagnosisIntro />
-        <StepWizard className={classes.wizard} nav={<Nav handleSubmit={handleSubmit} />}>
+        <StepWizard
+          className={classes.wizard}
+          nav={<Nav handleSubmit={handleSubmit} />}
+        >
           <DiagnosisCheck callback={updateDiagnosis} />
           <Diagnosis callback={updateDiagnosis} />
-          <Questionnaire question="What were your symptoms?" options={options} callback={updateSymptom} />
+          <Questionnaire
+            question="What were your symptoms?"
+            options={options}
+            callback={updateSymptom}
+          />
           <Dates calendar={calendar} callback={updateCalendar} />
           <Age callback={updateUser} />
           <Gender callback={updateUser} />
@@ -175,9 +188,7 @@ const Mycovid = ({
   )
 }
 
-const mapStateToProps = ({
-  calendar, diagnosis, symptoms, user,
-}) => ({
+const mapStateToProps = ({ calendar, diagnosis, symptoms, user }) => ({
   calendar,
   diagnosis,
   symptoms,

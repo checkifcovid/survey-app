@@ -15,7 +15,12 @@ export default function ShortBreathIcon({ width = '68px', height = '48px' }) {
           filterUnits="objectBoundingBox"
           id="filter-2"
         >
-          <feOffset dx="0" dy="20" in="SourceAlpha" result="shadowOffsetOuter1" />
+          <feOffset
+            dx="0"
+            dy="20"
+            in="SourceAlpha"
+            result="shadowOffsetOuter1"
+          />
           <feGaussianBlur
             stdDeviation="30"
             in="shadowOffsetOuter1"
@@ -28,12 +33,27 @@ export default function ShortBreathIcon({ width = '68px', height = '48px' }) {
           />
         </filter>
       </defs>
-      <g id="Ideation" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <g id="Report-symtoms-unselected" transform="translate(-1256.000000, -583.000000)">
+      <g
+        id="Ideation"
+        stroke="none"
+        strokeWidth="1"
+        fill="none"
+        fillRule="evenodd"
+      >
+        <g
+          id="Report-symtoms-unselected"
+          transform="translate(-1256.000000, -583.000000)"
+        >
           <g id="Group-11-Copy" transform="translate(766.000000, 508.000000)">
-            <g id="icons8-sneeze-copy" transform="translate(116.000000, 0.000000)" />
+            <g
+              id="icons8-sneeze-copy"
+              transform="translate(116.000000, 0.000000)"
+            />
           </g>
-          <g id="Group-11-Copy-2" transform="translate(1140.000000, 508.000000)">
+          <g
+            id="Group-11-Copy-2"
+            transform="translate(1140.000000, 508.000000)"
+          >
             <g id="HowItWorksCardBackground">
               <use fill="black" fillOpacity="1" filter="url(#filter-2)" />
               <use fill="#FFFFFF" fillRule="evenodd" />

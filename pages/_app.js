@@ -4,8 +4,8 @@ import Head from 'next/head'
 
 // Redux
 import { Provider } from 'react-redux'
-import withRedux from "next-redux-wrapper";
-import store from '../redux/store';
+import withRedux from 'next-redux-wrapper'
+import store from '../redux/store'
 
 // Material UI
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -23,10 +23,12 @@ class MyApp extends App {
   }
 
   static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {}
 
     //Anything returned here can be accessed by the client
-    return { pageProps: pageProps };
+    return { pageProps: pageProps }
   }
 
   render() {
@@ -36,7 +38,10 @@ class MyApp extends App {
       <>
         <Head>
           <title>{process.env.site_name}</title>
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
         </Head>
         <Provider store={store}>
           <ThemeProvider theme={theme}>
@@ -52,5 +57,5 @@ class MyApp extends App {
   }
 }
 
-const makeStore = () => store;
-export default withRedux(makeStore)(MyApp);
+const makeStore = () => store
+export default withRedux(makeStore)(MyApp)

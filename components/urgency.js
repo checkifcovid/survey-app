@@ -10,7 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   dialogTitle: {
     color: '#f44336',
     textAlign: 'center',
@@ -53,11 +53,9 @@ const Urgency = () => {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle className={classes.dialogTitle} id="alert-dialog-title">
-        If you have any of the following symptoms, please seek medical attention immediately. Please call
-        {' '}
-        {process.env.country.emergency}
-        {' '}
-        if experiencing:
+        If you have any of the following symptoms, please seek medical attention
+        immediately. Please call {process.env.country.emergency} if
+        experiencing:
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
@@ -80,7 +78,12 @@ const Urgency = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button className={classes.continue} color="primary" variant="outlined" onClick={handleClose}>
+        <Button
+          className={classes.continue}
+          color="primary"
+          variant="outlined"
+          onClick={handleClose}
+        >
           Continue
         </Button>
       </DialogActions>

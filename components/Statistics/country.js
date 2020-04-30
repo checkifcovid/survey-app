@@ -9,7 +9,6 @@ import Paper from '@material-ui/core/Paper'
 
 import NumberFormat from 'react-number-format'
 
-
 const StatisticsCountry = () => {
   const [result, setResult] = useState({
     confirmed: 'No data',
@@ -28,8 +27,8 @@ const StatisticsCountry = () => {
     const report_date = `${month}-${day}-${year}`
 
     fetch(`/api/statistics?country=US&date=${report_date}`)
-      .then((response) => response.json())
-      .then((response) => {
+      .then(response => response.json())
+      .then(response => {
         console.log('hey', response)
         setResult({
           country: response.Combined_Key,
@@ -39,7 +38,7 @@ const StatisticsCountry = () => {
           updateDate: response.Last_Update,
         })
       })
-      .catch((error) => console.log(error))
+      .catch(error => console.log(error))
   }, [])
 
   return (
@@ -48,9 +47,7 @@ const StatisticsCountry = () => {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>
-                {result.country}
-              </TableCell>
+              <TableCell>{result.country}</TableCell>
               <TableCell align="right">Count</TableCell>
             </TableRow>
           </TableHead>
@@ -59,27 +56,49 @@ const StatisticsCountry = () => {
               <TableCell component="th" scope="row">
                 Confirmed
               </TableCell>
-              <TableCell align="right"><NumberFormat value={result.confirmed} displayType="text" thousandSeparator /></TableCell>
+              <TableCell align="right">
+                <NumberFormat
+                  value={result.confirmed}
+                  displayType="text"
+                  thousandSeparator
+                />
+              </TableCell>
             </TableRow>
             <TableRow key="deaths">
               <TableCell component="th" scope="row">
                 Deaths
               </TableCell>
-              <TableCell align="right"><NumberFormat value={result.deaths} displayType="text" thousandSeparator /></TableCell>
+              <TableCell align="right">
+                <NumberFormat
+                  value={result.deaths}
+                  displayType="text"
+                  thousandSeparator
+                />
+              </TableCell>
             </TableRow>
             <TableRow key="recovered">
               <TableCell component="th" scope="row">
                 Recovered
               </TableCell>
-              <TableCell align="right"><NumberFormat value={result.recovered} displayType="text" thousandSeparator /></TableCell>
+              <TableCell align="right">
+                <NumberFormat
+                  value={result.recovered}
+                  displayType="text"
+                  thousandSeparator
+                />
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
-      Last Updated:
-      {' '}
-      {result.updateDate}
-      <a href="https://github.com/summyfeb12/COVID-19-JHU-Data-API" target="_blank">Source</a>
+      Last Updated: {result.updateDate}
+      <a
+        href="https://github.com/summyfeb12/COVID-19-JHU-Data-API"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Source
+      </a>
     </>
   )
 }

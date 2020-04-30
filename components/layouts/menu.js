@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 
 import ReactCountryFlag from 'react-country-flag'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   appbar: {
     margin: theme.spacing(0, 0, 2, 0),
     flexGrow: 1,
@@ -34,9 +34,22 @@ const Menu = () => {
   return (
     <AppBar color="transparent" className={classes.appbar} position="static">
       <Toolbar className={classes.toolbar}>
-        <Link href="/"><img src="/logo.png" alt={process.env.site_name} className={classes.logo} /></Link>
+        <Link href="/">
+          <img
+            src="/logo.png"
+            alt={process.env.site_name}
+            className={classes.logo}
+          />
+        </Link>
         <Grid>
-          <Button target="_blank" variant="outlined" href="https://devpost.com/software/findthecluster" color="primary">Learn more</Button>
+          <Button
+            target="_blank"
+            variant="outlined"
+            href="https://devpost.com/software/findthecluster"
+            color="primary"
+          >
+            Learn more
+          </Button>
           <ReactCountryFlag
             countryCode={process.env.country.short}
             className={classes.site}
