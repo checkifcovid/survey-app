@@ -13,6 +13,12 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
 import Layout from '../components/layouts/default'
 
+import TagManager from 'react-gtm'
+
+const tagManagerArgs = {
+  id: 'GTM-K5VW28G', // add this to next.config.js
+}
+
 class MyApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.
@@ -20,6 +26,8 @@ class MyApp extends App {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
+
+    TagManager.initialize(tagManagerArgs)
   }
 
   static async getInitialProps({ Component, ctx }) {

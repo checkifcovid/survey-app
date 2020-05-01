@@ -21,6 +21,7 @@
     "react-country-flag": "^2.0.1",
     "react-dom": "latest",
     "react-ga": "^2.7.0",
+    "react-gtm": "github:Vadorequest/react-gtm",
     "react-number-format": "^4.4.1",
     "react-redux": "^7.2.0",
     "react-slack-feedback": "^2.1.0",
