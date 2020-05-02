@@ -54,7 +54,7 @@ const Symptom = ({ name, icon, callback, active }) => {
 Symptom.propTypes = {
   name: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
-  icon: PropTypes.elementType.isRequired,
+  icon: PropTypes.elementType,
   callback: PropTypes.func.isRequired,
 }
 

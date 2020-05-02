@@ -4,9 +4,11 @@ import StepWizard from 'react-step-wizard'
 import Router from 'next/router'
 import { connect } from 'react-redux'
 
+// Material UI
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
+// Components
 import Nav from '../components/nav'
 import Urgency from '../components/urgency'
 import Questionnaire from '../components/questionnaire'
@@ -14,10 +16,12 @@ import Age from '../components/age'
 import Gender from '../components/gender'
 import Location from '../components/location'
 
+// Icons
 import FeverIcon from '../components/Icon/FeverIcon'
 import CoughIcon from '../components/Icon/CoughIcon'
 import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
 
+// Redux
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
 
@@ -92,106 +96,41 @@ const Survey = ({ symptoms, user, updateSymptom, updateUser }) => {
       .catch(error => console.log(error))
   }
 
+  // Pre-format symptoms for UI. Add icons if they exist. Group by weight
+  const prepareSymptoms = symptoms => {
+    const icons = {
+      fever: <FeverIcon />,
+      cough: <CoughIcon />,
+      shortness_breath: <ShortBreathIcon />,
+    }
+    let processed = []
+    symptoms.map(symptom => {
+      processed[symptom.weight] = processed[symptom.weight] || []
+      processed[symptom.weight].push({
+        ...symptom,
+        active: false,
+        icon: icons[symptom.key],
+      })
+    })
+    return processed
+  }
+
+  // Load symptoms from config and prepare
+  const options = prepareSymptoms(process.env.disease.symptoms)
   const questionnaires = [
     {
       title: 'Are you experiencing any of these symptoms?',
-      options: [
-        {
-          icon: <FeverIcon />,
-          label: 'Fever',
-          key: 'fever',
-          active: false,
-        },
-        {
-          icon: <CoughIcon />,
-          label: 'Cough',
-          key: 'cough',
-          active: false,
-        },
-        {
-          icon: <ShortBreathIcon />,
-          label: 'Shortness of breath',
-          key: 'shortness_breath',
-          active: false,
-        },
-      ],
+      options: options[0],
     },
     {
       // Slide 2
       title: 'Are you experiencing any of these other symptoms?',
-      options: [
-        {
-          label: 'Chills or sweating',
-          key: 'chills',
-          active: false,
-        },
-        {
-          label: 'Chest pain or pressure',
-          key: 'chest_pain',
-          active: false,
-        },
-        {
-          label: 'Body aches',
-          key: 'body_pain',
-          active: false,
-        },
-        {
-          label: 'Headache',
-          key: 'headache',
-          active: false,
-        },
-        {
-          label: 'Diarrhea',
-          key: 'diarrhea',
-          active: false,
-        },
-      ],
+      options: options[1],
     },
     {
       // Slide 3
       title: 'Are you experiencing any of these other symptoms? (Additional)',
-      options: [
-        {
-          label: 'Sneezing',
-          key: 'sneezing',
-          active: false,
-        },
-        {
-          label: 'Runny nose',
-          key: 'runny_nose',
-          active: false,
-        },
-        {
-          label: 'Rash',
-          key: 'rash',
-          active: false,
-        },
-        {
-          label: 'Sore throat',
-          key: 'sore_throat',
-          active: false,
-        },
-        {
-          label: 'Abdominal pain',
-          key: 'abdominal_pain',
-          active: false,
-        },
-        {
-          label: 'Nausea or vomitting',
-          key: 'nausea',
-          active: false,
-        },
-        {
-          label: 'Fatigue and/or weakness',
-          key: 'fatigue',
-          active: false,
-        },
-        {
-          label: 'Reduced sense of taste and/or smell',
-          key: 'reduced_smell_taste',
-          active: false,
-        },
-      ],
+      options: options[2],
     },
     {
       // Slide 4
