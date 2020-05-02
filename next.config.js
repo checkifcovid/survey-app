@@ -7,66 +7,82 @@ module.exports = {
         {
           label: 'Fever',
           key: 'fever',
+          weight: 0,
         },
         {
           label: 'Cough',
           key: 'cough',
+          weight: 0,
         },
         {
           label: 'Shortness of breath',
           key: 'shortness_breath',
+          weight: 0,
         },
         {
           label: 'Chills or sweating',
           key: 'chills',
+          weight: 1,
         },
         {
           label: 'Chest pain or pressure',
           key: 'chest_pain',
+          weight: 1,
         },
         {
           label: 'Body aches',
           key: 'body_pain',
+          weight: 1,
         },
         {
           label: 'Headache',
           key: 'headache',
+          weight: 1,
         },
         {
           label: 'Diarrhea',
           key: 'diarrhea',
+          weight: 1,
         },
         {
           label: 'Sneezing',
           key: 'sneezing',
+          weight: 2,
         },
         {
           label: 'Runny nose',
           key: 'runny_nose',
+          weight: 2,
         },
         {
           label: 'Rash',
           key: 'rash',
+          weight: 2,
         },
         {
           label: 'Sore throat',
           key: 'sore_throat',
+          weight: 2,
         },
         {
           label: 'Abdominal pain',
           key: 'abdominal_pain',
+          weight: 2,
         },
         {
           label: 'Nausea or vomitting',
           key: 'nausea',
+          weight: 2,
         },
         {
           label: 'Fatigue and/or weakness',
           key: 'fatigue',
+          weight: 2,
         },
         {
           label: 'Reduced sense of taste and/or smell',
           key: 'reduced_smell_taste',
+          weight: 2,
         },
       ],
     },
