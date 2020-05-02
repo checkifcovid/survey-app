@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
 const useStyles = makeStyles(theme => ({
@@ -58,24 +57,18 @@ const Urgency = () => {
         experiencing:
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          <Grid container className={classes.badge}>
-            <Container maxWidth="md">
-              <Grid container>
-                <Grid item sm={12}>
-                  <ul className={classes.list}>
-                    <li>Difficulty breathing</li>
-                    <li>Persistent chest pain or pressure</li>
-                    <li>Brush lips or face</li>
-                    <li>New confusion</li>
-                    <li>Fainting or severe lightheadedness</li>
-                    <li>Any other new and concerning symptoms</li>
-                  </ul>
-                </Grid>
-              </Grid>
-            </Container>
+        <Container maxWidth="md" className={classes.badge}>
+          <Grid container>
+            <ul className={classes.list}>
+              <li>Difficulty breathing</li>
+              <li>Persistent chest pain or pressure</li>
+              <li>Brush lips or face</li>
+              <li>New confusion</li>
+              <li>Fainting or severe lightheadedness</li>
+              <li>Any other new and concerning symptoms</li>
+            </ul>
           </Grid>
-        </DialogContentText>
+        </Container>
       </DialogContent>
       <DialogActions>
         <Button

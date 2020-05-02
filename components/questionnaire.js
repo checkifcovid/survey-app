@@ -37,7 +37,7 @@ const Questionnaire = ({ question, options, callback }) => {
         {options.map(option => (
           <Symptom
             key={option.label}
-            icon={option.icon}
+            icon={option.icon || ''}
             name={option.label}
             active={option.active}
             callback={response => {

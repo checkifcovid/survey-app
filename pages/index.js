@@ -135,7 +135,9 @@ const Index = () => {
             >
               <span className={classes.bold}>{process.env.site_name}</span>{' '}
               calculates the probability of{' '}
-              <span className={classes.primaryText}>{process.env.disease}</span>{' '}
+              <span className={classes.primaryText}>
+                {process.env.disease.name}
+              </span>{' '}
               based on symptoms and location
             </Typography>
           </Container>
@@ -148,8 +150,9 @@ const Index = () => {
             >
               The availability and speed of testing for COVID-19 is limited.
               This tool calculates the likelihood of an infection by comparing
-              your symptoms with the data from confirmed {process.env.disease}{' '}
-              cases and previously self-reported symptoms.
+              your symptoms with the data from confirmed{' '}
+              {process.env.disease.name} cases and previously self-reported
+              symptoms.
             </Typography>
             <Typography
               className={classes.primaryText}
