@@ -1,7 +1,75 @@
 module.exports = {
   env: {
     site_name: 'CheckIfCovid',
-    disease: 'COVID-19',
+    disease: {
+      name: 'COVID-19',
+      symptoms: [
+        {
+          label: 'Fever',
+          key: 'fever',
+        },
+        {
+          label: 'Cough',
+          key: 'cough',
+        },
+        {
+          label: 'Shortness of breath',
+          key: 'shortness_breath',
+        },
+        {
+          label: 'Chills or sweating',
+          key: 'chills',
+        },
+        {
+          label: 'Chest pain or pressure',
+          key: 'chest_pain',
+        },
+        {
+          label: 'Body aches',
+          key: 'body_pain',
+        },
+        {
+          label: 'Headache',
+          key: 'headache',
+        },
+        {
+          label: 'Diarrhea',
+          key: 'diarrhea',
+        },
+        {
+          label: 'Sneezing',
+          key: 'sneezing',
+        },
+        {
+          label: 'Runny nose',
+          key: 'runny_nose',
+        },
+        {
+          label: 'Rash',
+          key: 'rash',
+        },
+        {
+          label: 'Sore throat',
+          key: 'sore_throat',
+        },
+        {
+          label: 'Abdominal pain',
+          key: 'abdominal_pain',
+        },
+        {
+          label: 'Nausea or vomitting',
+          key: 'nausea',
+        },
+        {
+          label: 'Fatigue and/or weakness',
+          key: 'fatigue',
+        },
+        {
+          label: 'Reduced sense of taste and/or smell',
+          key: 'reduced_smell_taste',
+        },
+      ],
+    },
     country: {
       name: 'United States of America',
       short: 'US',

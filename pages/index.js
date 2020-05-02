@@ -135,7 +135,9 @@ const Index = () => {
             >
               <span className={classes.bold}>{process.env.site_name}</span>{' '}
               calculates the probability of{' '}
-              <span className={classes.primaryText}>{process.env.disease}</span>{' '}
+              <span className={classes.primaryText}>
+                {process.env.disease.name}
+              </span>{' '}
               based on symptoms and location
             </Typography>
           </Container>
