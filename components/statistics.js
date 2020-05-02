@@ -27,6 +27,8 @@ const results = [createData('Positive', 24), createData('Negative', 237)]
 const Statistics = ({ title, data }) => {
   const classes = useStyles()
 
+  const symptoms = process.env.disease.symptoms
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -38,26 +40,31 @@ const Statistics = ({ title, data }) => {
         </TableHead>
         <TableBody>
           {title === 'Symptom'
-            ? Object.keys(data).map(symptom => (
+            ? Object.keys(data).map(symptom => {
+              const formattedSymptom = symptoms.find(
+                item => item.key == symptom
+              )
+              return (
                 <TableRow key={symptom}>
                   <TableCell component="th" scope="row">
-                    {symptom}
+                    {formattedSymptom.label}
                   </TableCell>
                   <TableCell align="right" className={classes.none}>
                     No data
-                  </TableCell>
+                    </TableCell>
                 </TableRow>
-              ))
+              )
+            })
             : results.map(row => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right" className={classes.none}>
+                  No data
                   </TableCell>
-                  <TableCell align="right" className={classes.none}>
-                    No data
-                  </TableCell>
-                </TableRow>
-              ))}
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
