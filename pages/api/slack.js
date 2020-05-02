@@ -4,7 +4,7 @@ export default (req, res) => {
   console.log('reb', req.body)
   // Call the AWS API
   fetch(
-    'https://hooks.slack.com/services/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',
+    'https://hooks.slack.com/services/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',
     {
       method: 'POST',
       headers: {
