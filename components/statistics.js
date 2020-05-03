@@ -32,34 +32,21 @@ const Statistics = ({ title, data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {title === 'Symptom'
-            ? Object.keys(data).map(symptom => {
-              const formattedSymptom = symptoms.find(
-                item => item.key === symptom
-              )
-              return (
-                formattedSymptom && (
-                  <TableRow key={symptom}>
-                    <TableCell component="th" scope="row">
-                      {formattedSymptom.label || ''}
-                    </TableCell>
-                    <TableCell align="right" className={classes.none}>
-                      No data
-                      </TableCell>
-                  </TableRow>
-                )
-              )
-            })
-            : results.map(row => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right" className={classes.none}>
-                  No data
+          {Object.keys(data).map(symptom => {
+            const formattedSymptom = symptoms.find(item => item.key === symptom)
+            return (
+              formattedSymptom && (
+                <TableRow key={symptom}>
+                  <TableCell component="th" scope="row">
+                    {formattedSymptom.label || ''}
                   </TableCell>
-              </TableRow>
-            ))}
+                  <TableCell align="right" className={classes.none}>
+                    No data
+                  </TableCell>
+                </TableRow>
+              )
+            )
+          })}
         </TableBody>
       </Table>
     </TableContainer>

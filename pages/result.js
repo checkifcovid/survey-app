@@ -95,8 +95,8 @@ const Result = ({ symptoms, user }) => {
                   probability
                 </>
               ) : (
-                  <span>Inconclusive</span>
-                )}{' '}
+                <span>Inconclusive</span>
+              )}{' '}
               of {process.env.disease.name}
             </Typography>
             <Typography
