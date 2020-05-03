@@ -20,7 +20,7 @@ import Location from '../components/location'
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
 
-import prepareSymptoms from '../lib/symptoms'
+import { prepareSymptoms } from '../lib/symptoms'
 
 const useStyles = makeStyles(theme => ({
   hero: {
