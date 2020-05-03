@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
   },
   primaryText: {
-    padding: theme.spacing(3, 0),
+    padding: theme.spacing(0),
     color: theme.palette.primary.main,
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1, 0),
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   subText: {
-    fontSize: '1.6rem',
+    fontSize: '1.2rem',
     padding: theme.spacing(3, 0),
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1, 0),
@@ -100,6 +100,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(2, 0),
     padding: theme.spacing(1, 3),
+    fontSize: '1rem',
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(0),
       padding: theme.spacing(1, 2),
