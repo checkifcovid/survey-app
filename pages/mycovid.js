@@ -23,6 +23,8 @@ import { updateDiagnosis } from '../redux/actions/diagnosisActions'
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
 
+import { prepareSymptoms } from '../lib/symptoms'
+
 const useStyles = makeStyles(theme => ({
   hero: {
     margin: theme.spacing(1),
@@ -105,63 +107,7 @@ const Mycovid = ({
       .catch(error => console.log(error))
   }
 
-  const options = [
-    {
-      label: 'Fever',
-      key: 'fever',
-      active: false,
-    },
-    {
-      label: 'Cough',
-      key: 'cough',
-      active: false,
-    },
-    {
-      label: 'Shortness of breath',
-      key: 'shortness_breath',
-      active: false,
-    },
-    {
-      label: 'Chills or sweating',
-      key: 'chills',
-      active: false,
-    },
-    {
-      label: 'Chest pain or pressure',
-      key: 'chest_pain',
-      active: false,
-    },
-    {
-      label: 'Body aches',
-      key: 'body_pain',
-      active: false,
-    },
-    {
-      label: 'Headache',
-      key: 'headache',
-      active: false,
-    },
-    {
-      label: 'Sneezing',
-      key: 'sneezing',
-      active: false,
-    },
-    {
-      label: 'Runny nose',
-      key: 'runny_nose',
-      active: false,
-    },
-    {
-      label: 'Fatigue and/or weakness',
-      key: 'fatigue',
-      active: false,
-    },
-    {
-      label: 'Diarrhea',
-      key: 'diarrhea',
-      active: false,
-    },
-  ]
+  const options = prepareSymptoms(process.env.disease.symptoms)
 
   return (
     <>
@@ -175,7 +121,17 @@ const Mycovid = ({
           <Diagnosis callback={updateDiagnosis} />
           <Questionnaire
             question="What were your symptoms?"
-            options={options}
+            options={options[0]}
+            callback={updateSymptom}
+          />
+          <Questionnaire
+            question="What were your symptoms? (continuation)"
+            options={options[1]}
+            callback={updateSymptom}
+          />
+          <Questionnaire
+            question="What were your symptoms? (continuation)"
+            options={options[2]}
             callback={updateSymptom}
           />
           <Dates calendar={calendar} callback={updateCalendar} />

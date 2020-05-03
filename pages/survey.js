@@ -16,14 +16,11 @@ import Age from '../components/age'
 import Gender from '../components/gender'
 import Location from '../components/location'
 
-// Icons
-import FeverIcon from '../components/Icon/FeverIcon'
-import CoughIcon from '../components/Icon/CoughIcon'
-import ShortBreathIcon from '../components/Icon/ShortBreathIcon'
-
 // Redux
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
+
+import prepareSymptoms from '../lib/symptoms'
 
 const useStyles = makeStyles(theme => ({
   hero: {
@@ -94,25 +91,6 @@ const Survey = ({ symptoms, user, updateSymptom, updateUser }) => {
         Router.push({ pathname: '/result', query: { id: response.user_id } })
       })
       .catch(error => console.log(error))
-  }
-
-  // Pre-format symptoms for UI. Add icons if they exist. Group by weight
-  const prepareSymptoms = symptoms => {
-    const icons = {
-      fever: <FeverIcon />,
-      cough: <CoughIcon />,
-      shortness_breath: <ShortBreathIcon />,
-    }
-    let processed = []
-    symptoms.map(symptom => {
-      processed[symptom.weight] = processed[symptom.weight] || []
-      processed[symptom.weight].push({
-        ...symptom,
-        active: false,
-        icon: icons[symptom.key],
-      })
-    })
-    return processed
   }
 
   // Load symptoms from config and prepare
