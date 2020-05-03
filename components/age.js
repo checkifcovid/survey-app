@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
-import Options from './Button/options'
+import Options from './Button/Options'
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Age({ callback }) {
+export default function Age({ user, callback }) {
   const classes = useStyles()
 
   const options = [
@@ -63,6 +63,7 @@ export default function Age({ callback }) {
       </Container>
       <Container className={classes.options} align="center">
         <Options
+          value={user.age}
           options={options}
           sendUpdate={response => {
             callback({ field: 'age', value: response })

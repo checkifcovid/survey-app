@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Location = ({ callback }) => {
+const Location = ({ user, callback }) => {
   const classes = useStyles()
 
   return (
@@ -53,7 +53,7 @@ const Location = ({ callback }) => {
           {process.env.country.name}
         </Typography>
         <Formik
-          initialValues={{ postcode: '' }}
+          initialValues={{ postcode: user.postcode }}
           validationSchema={Yup.object().shape({
             postcode: Yup.string()
               .test(

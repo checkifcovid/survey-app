@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -28,37 +27,44 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Options = ({ options, sendUpdate }) => {
-  const classes = useStyles()
-  const [option, setOption] = useState(null)
+interface User {
+  age: string,
+  gender: string
+}
 
-  const handleOption = e => {
-    setOption(e.target.id)
-    sendUpdate(e.target.id)
-  }
+interface Symptom {
+  active: boolean,
+  key: string,
+  label: string,
+  weight: number,
+}
+
+interface IProps {
+  value: string
+  options: [Symptom],
+  sendUpdate: (string) => string,
+};
+
+const Options: React.FC<IProps> = ({ value, options, sendUpdate }) => {
+  const classes = useStyles()
 
   return (
     <>
-      {options.map(value => {
-        const active = option === value.key ? 'active' : 'not-active'
+      {options?.map(item => {
+        const active = value === item.key ? 'active' : 'not-active'
         return (
           <Button
-            key={value.key}
-            id={value.key}
-            onClick={e => handleOption(e)}
+            key={item.key}
+            id={item.key}
+            onClick={e => sendUpdate(item.key)}
             className={clsx(classes.symptom, classes[active])}
           >
-            {value.label}
+            {item.label}
           </Button>
         )
       })}
     </>
   )
-}
-
-Options.propTypes = {
-  options: PropTypes.array.isRequired,
-  sendUpdate: PropTypes.func.isRequired,
 }
 
 export default Options
