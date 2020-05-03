@@ -4,7 +4,7 @@ export default (req, res) => {
   console.log('reb', req.body)
   // Call the AWS API
   fetch(
-    process.env.SLACK_HOOK || '',
+    process.env.SLACK_HOOK,
     {
       method: 'POST',
       headers: {
