@@ -25,3 +25,4 @@ jobs:
     - run: pm2 reload checkifcovid-us
       env:
         CI: true
+        SLACK_HOOK: ${{ secrets.SLACK_HOOK }}
