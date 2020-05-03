@@ -22,7 +22,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run build --if-present
-    - run: pm2 reload checkifcovid-us --update-env
+    - run: pm2 reload checkifcovid-us
       env:
         CI: true
         SLACK_HOOK: ${{ secrets.SLACK_HOOK }}
