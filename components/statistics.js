@@ -17,13 +17,6 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const createData = (name, count) => ({
-  name,
-  count,
-})
-
-const results = [createData('Positive', 24), createData('Negative', 237)]
-
 const Statistics = ({ title, data }) => {
   const classes = useStyles()
 
@@ -42,17 +35,19 @@ const Statistics = ({ title, data }) => {
           {title === 'Symptom'
             ? Object.keys(data).map(symptom => {
               const formattedSymptom = symptoms.find(
-                item => item.key == symptom
+                item => item.key === symptom
               )
               return (
-                <TableRow key={symptom}>
-                  <TableCell component="th" scope="row">
-                    {formattedSymptom.label}
-                  </TableCell>
-                  <TableCell align="right" className={classes.none}>
-                    No data
+                formattedSymptom && (
+                  <TableRow key={symptom}>
+                    <TableCell component="th" scope="row">
+                      {formattedSymptom.label || ''}
                     </TableCell>
-                </TableRow>
+                    <TableCell align="right" className={classes.none}>
+                      No data
+                      </TableCell>
+                  </TableRow>
+                )
               )
             })
             : results.map(row => (
