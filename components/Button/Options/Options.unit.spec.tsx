@@ -1,7 +1,6 @@
 import React from "react";
-import sinon from "sinon";
 import { render, cleanup, fireEvent } from "@testing-library/react";
-import Options from "../Options";
+import Options from "./Options";
 
 const options = [{ key: 'test', label: 'Test' }, { key: 'test', label: 'Test' },]
 
