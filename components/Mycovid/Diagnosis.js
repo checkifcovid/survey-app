@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
-import Options from '../Button/options'
+import Options from '../Button/Options'
 
 const useStyles = makeStyles(theme => ({
   title: {

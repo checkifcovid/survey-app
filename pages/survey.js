@@ -197,9 +197,9 @@ const Survey = ({ symptoms, user, updateSymptom, updateUser }) => {
             options={questionnaires[3].options}
             callback={updateSymptom}
           />
-          <Age callback={updateUser} />
-          <Gender callback={updateUser} />
-          <Location callback={updateUser} />
+          <Age user={user} callback={updateUser} />
+          <Gender user={user} callback={updateUser} />
+          <Location user={user} callback={updateUser} />
         </StepWizard>
       </Grid>
       {/* <pre>

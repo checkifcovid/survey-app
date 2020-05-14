@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
   },
   primaryText: {
-    padding: theme.spacing(3, 0),
+    padding: theme.spacing(0),
     color: theme.palette.primary.main,
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1, 0),
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   subText: {
-    fontSize: '1.6rem',
+    fontSize: '1.2rem',
     padding: theme.spacing(3, 0),
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1, 0),
@@ -100,6 +100,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(2, 0),
     padding: theme.spacing(1, 3),
+    fontSize: '1rem',
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(0),
       padding: theme.spacing(1, 2),
@@ -136,7 +137,7 @@ const Index = () => {
               <span className={classes.bold}>{process.env.site_name}</span>{' '}
               calculates the probability of{' '}
               <span className={classes.primaryText}>
-                {process.env.disease.name}
+                {process.env.disease?.name}
               </span>{' '}
               based on symptoms and location
             </Typography>
@@ -145,13 +146,13 @@ const Index = () => {
             <Typography
               className={classes.subText}
               variant="body1"
-              component="body1"
+              component="p"
               gutterBottom
             >
               The availability and speed of testing for COVID-19 is limited.
               This tool calculates the likelihood of an infection by comparing
               your symptoms with the data from confirmed{' '}
-              {process.env.disease.name} cases and previously self-reported
+              {process.env.disease?.name} cases and previously self-reported
               symptoms.
             </Typography>
             <Typography
@@ -271,7 +272,7 @@ const Index = () => {
                 <Typography variant="h3" component="h3" gutterBottom>
                   MyCOVID: A Call for Help
                 </Typography>
-                <Typography variant="body1" component="body1" gutterBottom>
+                <Typography variant="body1" component="p" gutterBottom>
                   We want to get as much information about COVID-19 as possible
                   to people who need it. That starts with reporting COVID-19
                   diagnoses. We are asking individuals who've been tested to
@@ -300,7 +301,7 @@ const Index = () => {
               <Typography variant="h3" component="h3" gutterBottom>
                 The Power of Open Source
               </Typography>
-              <Typography variant="body1" component="body1" gutterBottom>
+              <Typography variant="body1" component="p" gutterBottom>
                 We are a group of volunteers and this project is non-profit. All
                 the data produced will be open and available through the API. If
                 you are a developer who wants to contribute, or has a network

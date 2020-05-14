@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container'
 
 import Typography from '@material-ui/core/Typography'
 
-import Options from './Button/options'
+import Options from './Button/Options'
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Gender({ callback }) {
+export default function Gender({ user, callback }) {
   const classes = useStyles()
 
   const options = [
@@ -57,6 +57,7 @@ export default function Gender({ callback }) {
       </Container>
       <Container className={classes.options} align="center">
         <Options
+          value={user.gender}
           options={options}
           style={{ width: 400 }}
           sendUpdate={response => {

@@ -45,16 +45,16 @@ export default function Nav({
             Submit
           </Button>
         ) : (
-          <Button
-            className={classes.action}
-            disabled={isLast}
-            color="primary"
-            variant="contained"
-            onClick={nextStep}
-          >
-            Next
-          </Button>
-        )}
+            <Button
+              className={classes.action}
+              disabled={isLast}
+              color="primary"
+              variant="contained"
+              onClick={nextStep}
+            >
+              Next
+            </Button>
+          )}
       </Grid>
     </Grid>
   )
