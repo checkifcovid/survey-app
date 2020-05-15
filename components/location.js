@@ -2,6 +2,7 @@ import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 
+import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -11,7 +12,8 @@ import { connect } from 'react-redux'
 import { setCountry } from '../redux/actions/configActions'
 import { updateUser } from '../redux/actions/userActions'
 
-import ReactCountryFlag from 'react-country-flag'
+import DropDownCountries from '../components/DropDownCountries/DropDownCountries'
+
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
@@ -50,13 +52,6 @@ const Location = ({ config, user, updateUser }) => {
         </Typography>
       </Container>
       <Container align="center">
-        <Typography variant="h4" component="h4" gutterBottom>
-          <ReactCountryFlag
-            countryCode={config.country.short}
-            className={classes.site}
-          />{' '}
-          {config.country.name}
-        </Typography>
         <Formik
           initialValues={{ postcode: '' }}
           validationSchema={Yup.object().shape({
@@ -86,6 +81,9 @@ const Location = ({ config, user, updateUser }) => {
             } = props
             return (
               <form onSubmit={handleSubmit}>
+                <Grid>
+                  <DropDownCountries display="name" />
+                </Grid>
                 <TextField
                   label="Zip code"
                   name="postcode"

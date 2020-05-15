@@ -49,7 +49,7 @@ const MainMenu = () => {
           >
             Learn more
           </Button>
-          <DropDownCountries />
+          <DropDownCountries display="short" />
         </Grid>
       </Toolbar>
     </AppBar>

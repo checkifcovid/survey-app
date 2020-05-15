@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DropDownCountries = ({ config, setCountry }) => {
+const DropDownCountries = ({ config, setCountry, display }) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -50,7 +50,7 @@ const DropDownCountries = ({ config, setCountry }) => {
           countryCode={config.country.short}
           className={classes.site}
         />
-        {config.country.short} <ArrowDropDownIcon />
+        {config.country[display]} <ArrowDropDownIcon />
       </Button>
       <Menu
         id="country-selector"
