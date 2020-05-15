@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -110,6 +111,8 @@ const useStyles = makeStyles(theme => ({
 
 const Index = () => {
   const classes = useStyles()
+  const router = useRouter()
+
   return (
     <>
       <Head>
@@ -166,7 +169,7 @@ const Index = () => {
               <Grid item className={classes.buttongroup}>
                 <Button
                   className={classes.button}
-                  href="/survey"
+                  onClick={() => router.push('/survey')}
                   variant="contained"
                   color="primary"
                 >
@@ -176,7 +179,7 @@ const Index = () => {
               <Grid item className={classes.buttongroup}>
                 <Button
                   className={classes.button}
-                  href="/mycovid"
+                  onClick={() => router.push('/mycovid')}
                   variant="contained"
                 >
                   Report a diagnosis
