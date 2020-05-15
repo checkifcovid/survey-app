@@ -61,14 +61,17 @@ const Location = ({ config, user, updateUser }) => {
           initialValues={{ postcode: '' }}
           validationSchema={Yup.object().shape({
             postcode: Yup.string()
-              .test(
-                'len',
-                `Must be exactly ${config.country.zip.min} characters`,
-                val => val.toString().length === config.country.zip.min
+              .min(
+                config.country.zip.min,
+                `Must not be less than ${config.country.zip.min} characters`
+              )
+              .max(
+                config.country.zip.max,
+                `Must not be more than ${config.country.zip.max} characters`
               )
               .matches(
                 config.country.zip.regex,
-                `Invalid ${config.country.short} zip code`
+                `Invalid ${config.country.short} location`
               ),
           })}
         >
