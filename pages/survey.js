@@ -19,7 +19,6 @@ import Location from '../components/location'
 // Redux
 import { updateSymptom } from '../redux/actions/symptomActions'
 import { updateUser } from '../redux/actions/userActions'
-
 import { prepareSymptoms } from '../lib/symptoms'
 
 const useStyles = makeStyles(theme => ({
@@ -54,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Survey = ({ symptoms, user, updateSymptom, updateUser }) => {
+const Survey = ({ config, symptoms, user, updateSymptom, updateUser }) => {
   const classes = useStyles()
 
   const handleErrors = response => {
@@ -75,8 +74,8 @@ const Survey = ({ symptoms, user, updateSymptom, updateUser }) => {
       gender: user.gender,
       age: user.age,
       postcode: user.postcode,
-      country: process.env.country.name,
-      country_code: process.env.country.short,
+      country: config.country.name,
+      country_code: config.country.short,
       symptoms,
     }
 
@@ -230,7 +229,8 @@ const Survey = ({ symptoms, user, updateSymptom, updateUser }) => {
   )
 }
 
-const mapStateToProps = ({ symptoms, user }) => ({
+const mapStateToProps = ({ config, symptoms, user }) => ({
+  config,
   symptoms,
   user,
 })
