@@ -9,6 +9,8 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
+import { connect } from 'react-redux'
+
 const useStyles = makeStyles(theme => ({
   dialogTitle: {
     color: '#f44336',
@@ -35,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Urgency = () => {
+const Urgency = ({ config }) => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
 
@@ -53,8 +55,7 @@ const Urgency = () => {
     >
       <DialogTitle className={classes.dialogTitle} id="alert-dialog-title">
         If you have any of the following symptoms, please seek medical attention
-        immediately. Please call {process.env.country.emergency} if
-        experiencing:
+        immediately. Please call {config.country.emergency} if experiencing:
       </DialogTitle>
       <DialogContent>
         <Container maxWidth="md" className={classes.badge}>
@@ -84,4 +85,8 @@ const Urgency = () => {
   )
 }
 
-export default Urgency
+const mapStateToProps = ({ config }) => ({
+  config,
+})
+
+export default connect(mapStateToProps, null)(Urgency)

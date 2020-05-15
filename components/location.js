@@ -1,11 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
+
+// Redux
+import { connect } from 'react-redux'
+import { setCountry } from '../redux/actions/configActions'
+import { updateUser } from '../redux/actions/userActions'
 
 import ReactCountryFlag from 'react-country-flag'
 import { Formik } from 'formik'
@@ -29,9 +33,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Location = ({ callback }) => {
+const Location = ({ config, user, updateUser }) => {
   const classes = useStyles()
 
+  console.log('u', user)
   return (
     <>
       <Container maxWidth="lg">
@@ -47,10 +52,10 @@ const Location = ({ callback }) => {
       <Container align="center">
         <Typography variant="h4" component="h4" gutterBottom>
           <ReactCountryFlag
-            countryCode={process.env.country.short}
+            countryCode={config.country.short}
             className={classes.site}
           />{' '}
-          {process.env.country.name}
+          {config.country.name}
         </Typography>
         <Formik
           initialValues={{ postcode: '' }}
@@ -58,12 +63,12 @@ const Location = ({ callback }) => {
             postcode: Yup.string()
               .test(
                 'len',
-                `Must be exactly ${process.env.country.zip.min} characters`,
-                val => val.toString().length === process.env.country.zip.min
+                `Must be exactly ${config.country.zip.min} characters`,
+                val => val.toString().length === config.country.zip.min
               )
               .matches(
-                process.env.country.zip.regex,
-                `Invalid ${process.env.country.short} zip code`
+                config.country.zip.regex,
+                `Invalid ${config.country.short} zip code`
               ),
           })}
         >
@@ -91,7 +96,7 @@ const Location = ({ callback }) => {
                         .toUpperCase()
                         .replace(/\s/g, '')
                       setFieldValue('postcode', value)
-                      callback({ field: 'postcode', value })
+                      updateUser({ field: 'postcode', value: value })
                     }
                   }}
                   onBlur={handleBlur}
@@ -109,8 +114,13 @@ const Location = ({ callback }) => {
   )
 }
 
-Location.propTypes = {
-  callback: PropTypes.func.isRequired,
-}
+const mapStateToProps = ({ config, user }) => ({
+  config,
+  user,
+})
 
-export default Location
+const mapDispatchToProps = {
+  setCountry,
+  updateUser,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Location)

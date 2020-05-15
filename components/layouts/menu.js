@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 
-import ReactCountryFlag from 'react-country-flag'
+import DropDownCountries from '../DropDownCountries/DropDownCountries'
 
 const useStyles = makeStyles(theme => ({
   appbar: {
@@ -21,14 +21,12 @@ const useStyles = makeStyles(theme => ({
   logo: {
     width: 48,
   },
-  site: {
-    fontSize: '2em !important',
-    lineHeight: '2em !important',
-    margin: theme.spacing(0, 2),
+  action: {
+    margin: theme.spacing(0, 1),
   },
 }))
 
-const Menu = () => {
+const MainMenu = () => {
   const classes = useStyles()
 
   return (
@@ -47,17 +45,15 @@ const Menu = () => {
             variant="outlined"
             href="https://devpost.com/software/findthecluster"
             color="primary"
+            className={classes.action}
           >
             Learn more
           </Button>
-          <ReactCountryFlag
-            countryCode={process.env.country.short}
-            className={classes.site}
-          />
+          <DropDownCountries />
         </Grid>
       </Toolbar>
     </AppBar>
   )
 }
 
-export default Menu
+export default MainMenu
