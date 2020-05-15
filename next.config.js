@@ -20,6 +20,11 @@ module.exports = {
           weight: 0,
         },
         {
+          label: 'Sinus pressure',
+          key: 'sinus_pressure',
+          weight: 1,
+        },
+        {
           label: 'Chills or sweating',
           key: 'chills',
           weight: 1,
