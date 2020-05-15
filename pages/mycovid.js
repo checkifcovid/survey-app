@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Mycovid = ({
+  config,
   calendar,
   diagnosis,
   symptoms,
@@ -87,8 +88,8 @@ const Mycovid = ({
       gender: user.gender,
       age: user.age,
       postcode: user.postcode,
-      country: process.env.country.name,
-      country_code: process.env.country.short,
+      country: config.country.name,
+      country_code: config.country.short,
       calendar,
       diagnosis,
       symptoms,
@@ -144,8 +145,9 @@ const Mycovid = ({
   )
 }
 
-const mapStateToProps = ({ calendar, diagnosis, symptoms, user }) => ({
+const mapStateToProps = ({ calendar, config, diagnosis, symptoms, user }) => ({
   calendar,
+  config,
   diagnosis,
   symptoms,
   user,
