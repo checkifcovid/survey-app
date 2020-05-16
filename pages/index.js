@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1rem',
       height: 430,
       padding: theme.spacing(2, 1),
+      backgroundPosition: '200% 25px',
+    },
+    [theme.breakpoints.down('xs')]: {
       background: 'none',
     },
   },
@@ -78,7 +81,7 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     padding: theme.spacing(0, 2),
-    lineHeight: '40px',
+    lineHeight: '30px',
   },
   italics: {
     fontStyle: 'italic',
@@ -107,6 +110,10 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(1, 3),
       fontSize: '12px',
     },
+    [theme.breakpoints.down('md')]: {
+      fontSize: '10px',
+      padding: theme.spacing(1, 3),
+    },
   },
 }))
 
@@ -129,7 +136,7 @@ const Index = () => {
         />
       </Head>
       <Grid container className={classes.hero}>
-        <Grid item sm={6}>
+        <Grid item sm={6} md={6} lg={6}>
           <Container>
             <Typography
               className={classes.herotext}
