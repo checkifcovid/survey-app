@@ -114,6 +114,7 @@ const Contribute = () => {
                 <li>Maria Christina Kalogera (Data Science)</li>
                 <li>Sebastian-Sye Klute (Data Science)</li>
                 <li>Siddharth Pathak (Engineering)</li>
+                <li>Prateek Rao (Engineering)</li>
                 <li>Benjamin Von Wong (Creative)</li>
               </ul>
             </Grid>
