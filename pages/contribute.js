@@ -103,6 +103,7 @@ const Contribute = () => {
                 Past Contributors
               </Typography>
               <ul>
+                <li>Dominik Einkemmer (Engineering)</li>
                 <li>Prince Owusu Attah (Product Designer)</li>
                 <li>Jason Lee (Product)</li>
                 <li>Mark Renzo Santiago (Engineering)</li>
