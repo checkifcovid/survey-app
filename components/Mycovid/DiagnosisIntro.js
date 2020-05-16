@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DiagnosisIntro = ({ callback }) => {
+const DiagnosisIntro = () => {
   const classes = useStyles()
   const router = useRouter()
 
