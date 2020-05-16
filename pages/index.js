@@ -24,14 +24,17 @@ const useStyles = makeStyles(theme => ({
     },
   },
   hero: {
-    padding: theme.spacing(8, 2),
-    background: 'url(macbook-mock.png) no-repeat 150% 50px',
+    padding: theme.spacing(4, 2),
+    background: 'url(macbook-mock.png) no-repeat 150% 25px',
     backgroundSize: 'contain',
     height: 680,
     [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
       height: 430,
       padding: theme.spacing(2, 1),
+      backgroundPosition: '200% 25px',
+    },
+    [theme.breakpoints.down('xs')]: {
       background: 'none',
     },
   },
@@ -70,7 +73,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
   },
   action: {
-    margin: theme.spacing(3, 0),
+    margin: theme.spacing(0),
     width: '100%',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
@@ -78,7 +81,7 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     padding: theme.spacing(0, 2),
-    lineHeight: '40px',
+    lineHeight: '30px',
   },
   italics: {
     fontStyle: 'italic',
@@ -101,10 +104,15 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(2, 0),
     padding: theme.spacing(1, 3),
+    fontSize: '16px',
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(0),
-      padding: theme.spacing(1, 2),
-      fontSize: '11px',
+      padding: theme.spacing(1, 3),
+      fontSize: '12px',
+    },
+    [theme.breakpoints.down('md')]: {
+      fontSize: '12px',
+      padding: theme.spacing(1, 3),
     },
   },
 }))
@@ -128,7 +136,7 @@ const Index = () => {
         />
       </Head>
       <Grid container className={classes.hero}>
-        <Grid item sm={6}>
+        <Grid item sm={6} md={6} lg={6}>
           <Container>
             <Typography
               className={classes.herotext}
