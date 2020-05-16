@@ -15,6 +15,9 @@ import { connect } from 'react-redux'
 import { setCountry } from '../../redux/actions/configActions'
 
 const useStyles = makeStyles(theme => ({
+  icon: {
+    minWidth: 25,
+  },
   action: {
     margin: theme.spacing(0, 1),
   },

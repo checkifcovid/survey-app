@@ -101,10 +101,11 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(2, 0),
     padding: theme.spacing(1, 3),
+    fontSize: '16px',
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(0),
-      padding: theme.spacing(1, 2),
-      fontSize: '11px',
+      padding: theme.spacing(1, 3),
+      fontSize: '12px',
     },
   },
 }))

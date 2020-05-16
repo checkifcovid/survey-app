@@ -77,35 +77,72 @@ const Contribute = () => {
           <Grid item sm={12}>
             <Typography
               className={classes.heading}
-              variant="h2"
-              component="h2"
+              variant="h3"
+              component="h3"
               gutterBottom
             >
-              Contributing
+              Contribute
             </Typography>
-            <Typography variant="body1" component="body1" gutterBottom>
-              CheckIfCovid is a non-profit and open source initiative. There are
-              multiple teams working on different areas.
-            </Typography>
-            <Grid container>
-              {teams.map(team => (
-                <Grid key={team.name} className={classes.team} sm={4}>
-                  <Card className={classes.root}>
-                    <CardActionArea>
-                      <CardContent className={classes.content}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {team.name}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          color="textSecondary"
-                          component="p"
-                        >
-                          {team.description}
-                        </Typography>
-                        <Grid className={classes.skills}>
-                          Skills:
-                          {team.skills.map(skill => (
+          </Grid>
+          <Grid container>
+            <Grid item sm={6}>
+              <Typography variant="h4" component="h4" gutterBottom>
+                Active Contributors
+              </Typography>
+              <Typography variant="body1" component="body1" gutterBottom>
+                CheckIfCovid is a non-profit and open source initiative. All
+                contributions are from volunteers who want to help with this
+                pandemic.
+              </Typography>
+              <ul>
+                <li>Efren Macasaet (Product, Engineering)</li>
+                <li>Rashnil Chaturvedi (Engineering)</li>
+                <li>Yaakov Bressler (Data Science)</li>
+              </ul>
+              <Typography variant="h5" component="h5" gutterBottom>
+                Past Contributors
+              </Typography>
+              <ul>
+                <li>Prince Owusu Attah (Product Designer)</li>
+                <li>Jason Lee (Product)</li>
+                <li>Mark Renzo Santiago (Engineering)</li>
+                <li>Diana Zhong, MD (Doctor)</li>
+                <li>Glory Adedayo (Engineering)</li>
+                <li>Mohamed Abdelrehim (Data Science)</li>
+                <li>Maria Christina Kalogera (Data Science)</li>
+                <li>Sebastian-Sye Klute (Data Science)</li>
+                <li>Benjamin Von Wong (Creative)</li>
+              </ul>
+            </Grid>
+            <Grid item sm={6}>
+              <Grid container>
+                <Grid sm={12}>
+                  <Typography variant="h4" component="h4" gutterBottom>
+                    Teams
+                  </Typography>
+                  <Typography variant="body1" component="body1" gutterBottom>
+                    The project is organized into different teams working on
+                    different areas but with a common objective.
+                  </Typography>
+                </Grid>
+                {teams.map(team => (
+                  <Grid key={team.name} className={classes.team} sm={6}>
+                    <Card className={classes.root}>
+                      <CardActionArea>
+                        <CardContent className={classes.content}>
+                          <Typography gutterBottom variant="h5" component="h2">
+                            {team.name}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                          >
+                            {team.description}
+                          </Typography>
+                          <Grid className={classes.skills}>
+                            Skills:
+                            {team.skills.map(skill => (
                             <Chip
                               key={skill}
                               className={classes.skill}
@@ -113,22 +150,23 @@ const Contribute = () => {
                               label={skill}
                             />
                           ))}
-                        </Grid>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                      <Button
-                        href={team.github}
-                        target="_blank"
-                        size="small"
-                        color="primary"
-                      >
-                        Github
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              ))}
+                          </Grid>
+                        </CardContent>
+                      </CardActionArea>
+                      <CardActions>
+                        <Button
+                          href={team.github}
+                          target="_blank"
+                          size="small"
+                          color="primary"
+                        >
+                          Github
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
