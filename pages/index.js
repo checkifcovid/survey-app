@@ -293,7 +293,7 @@ const Index = () => {
                 </Typography>
                 <Grid item sm={12}>
                   <Button
-                    href="/mycovid"
+                    onClick={() => router.push('/mycovid')}
                     className={classes.button}
                     variant="contained"
                     color="primary"
