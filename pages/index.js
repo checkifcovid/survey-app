@@ -111,7 +111,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: '12px',
     },
     [theme.breakpoints.down('md')]: {
-      fontSize: '10px',
+      fontSize: '12px',
       padding: theme.spacing(1, 3),
     },
   },
