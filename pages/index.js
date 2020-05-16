@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   hero: {
-    padding: theme.spacing(8, 2),
-    background: 'url(macbook-mock.png) no-repeat 150% 50px',
+    padding: theme.spacing(4, 2),
+    background: 'url(macbook-mock.png) no-repeat 150% 25px',
     backgroundSize: 'contain',
     height: 680,
     [theme.breakpoints.down('sm')]: {
@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
   },
   action: {
-    margin: theme.spacing(3, 0),
+    margin: theme.spacing(0),
     width: '100%',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
