@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid'
 import Nav from '../components/nav'
 import Dates from '../components/Mycovid/Dates'
 import Diagnosis from '../components/Mycovid/Diagnosis'
-import DiagnosisCheck from '../components/Mycovid/DiagnosisCheck'
 import DiagnosisIntro from '../components/Mycovid/DiagnosisIntro'
 import Questionnaire from '../components/questionnaire'
 
@@ -118,7 +117,6 @@ const Mycovid = ({
           className={classes.wizard}
           nav={<Nav handleSubmit={handleSubmit} />}
         >
-          <DiagnosisCheck callback={updateDiagnosis} />
           <Diagnosis callback={updateDiagnosis} />
           <Questionnaire
             question="What were your symptoms?"

@@ -2,7 +2,7 @@ import { UPDATE_DIAGNOSIS } from '../actions/diagnosisActions'
 
 const diagnosisReducer = (
   state = {
-    tested: false,
+    tested: true,
     result: false,
   },
   action

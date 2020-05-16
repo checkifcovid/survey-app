@@ -32,14 +32,16 @@ const Thanks = () => {
               Thank you
             </Typography>
             <Grid>
-              <Typography variant="body1" component="body1" gutterBottom>
+              <Typography variant="body1" component="p" gutterBottom>
                 Your time in completing this information is highly appreciated.
-                The data you've submitted will always be anonymous and will be
-                useful in helping others.
+              </Typography>
+              <Typography variant="body1" component="p" gutterBottom>
+                Rest assured that the data you've submitted will always be
+                anonymous and will only be used for helping others.
               </Typography>
             </Grid>
             <Grid>
-              <Typography variant="body1" component="body1" gutterBottom>
+              <Typography variant="body1" component="p" gutterBottom>
                 Keep safe and stay healthy!
               </Typography>
             </Grid>

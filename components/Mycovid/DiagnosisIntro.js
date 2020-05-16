@@ -1,13 +1,14 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { useRouter } from 'next/router'
 
 import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(theme => ({
   continue: {
@@ -29,6 +30,8 @@ const useStyles = makeStyles(theme => ({
 
 const DiagnosisIntro = () => {
   const classes = useStyles()
+  const router = useRouter()
+
   const [open, setOpen] = React.useState(true)
 
   const handleClose = () => {
@@ -44,26 +47,33 @@ const DiagnosisIntro = () => {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">
-        About reporting diagnosis
+        Have you been clinically tested for COVID-19?
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          <Grid container className={classes.badge}>
-            This form is used to self-report diagnosis of COVID-19. The data
-            submitted is anonymous and can't be traced back to the person
-            reporting. This method aims to set the stage for a globally shared
-            database of symptoms useful for COVID-19 diagnostics.
-          </Grid>
+          <Typography variant="body2" component="p" gutterBottom>
+            Use this form to self-report clinical diagnosis of COVID-19. The
+            data submitted is anonymous and can't be traced back to the person
+            reporting. The data collected will be used to help others and
+            predict the spread of the disease.
+          </Typography>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
+        <Button
+          className={classes.continue}
+          variant="outlined"
+          onClick={() => router.push('/')}
+        >
+          No
+        </Button>
         <Button
           className={classes.continue}
           color="primary"
           variant="outlined"
           onClick={handleClose}
         >
-          Continue
+          Yes
         </Button>
       </DialogActions>
     </Dialog>
