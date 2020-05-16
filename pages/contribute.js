@@ -47,20 +47,21 @@ const Contribute = () => {
       description:
         "The team's primary goal is to develop a front-end interface to capture the symptoms from users.",
       skills: ['React', 'NextJS', 'HTML', 'Material UI', 'Typescript'],
-      github: 'https://github.com/checkifcovid/survey-app',
+      github: 'https://github.com/orgs/checkifcovid/teams/survey-app',
     },
     {
       name: 'API',
       description:
         'The API team enables onboarding of data. They develop endpoints that is needed by the Survey App team and as well as endpoints to expose the data to users.',
       skills: ['Python', 'AWS'],
-      github: 'https://github.com/checkifcovid/api-app',
+      github: 'https://github.com/orgs/checkifcovid/teams/api-app',
     },
     {
       name: 'Data Science',
       description:
         'The data science team looks after scraping data from third-party sources and cleaning them. They are also building models to train the collected data',
       skills: ['Python'],
+      github: 'https://github.com/orgs/checkifcovid/teams/data-science',
     },
     {
       name: 'Mobile',
