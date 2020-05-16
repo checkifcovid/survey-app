@@ -20,6 +20,8 @@ const Layout = ({ children }) => (
     <Footer />
     <SlackFeedback
       channel="#feedback"
+      showIcon={false}
+      showChannel={false}
       user="Slack Feedback" // The logged in user (default = "Unknown User")
       onSubmit={(payload, success, error) =>
         sendToServer(payload)
