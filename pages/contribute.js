@@ -1,11 +1,10 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 
+import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
@@ -68,6 +67,7 @@ const Contribute = () => {
       description:
         'This team is new and nothing has been started. This will be a port of the Survey App but will be a native mobile application',
       skills: ['React Native'],
+      github: 'https://github.com/orgs/checkifcovid/teams/mobile-app',
     },
   ]
 
@@ -130,7 +130,7 @@ const Contribute = () => {
                 {teams.map(team => (
                   <Grid key={team.name} className={classes.team} sm={6}>
                     <Card className={classes.root}>
-                      <CardActionArea>
+                      <CardActionArea target="_blank" href={team.github}>
                         <CardContent className={classes.content}>
                           <Typography gutterBottom variant="h5" component="h2">
                             {team.name}
