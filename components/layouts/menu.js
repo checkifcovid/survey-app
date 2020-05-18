@@ -41,10 +41,7 @@ const MainMenu = () => {
         </Button>
         <Grid>
           <Button
-            target="_blank"
-            variant="outlined"
-            href="https://devpost.com/software/findthecluster"
-            color="primary"
+            onClick={() => Router.push('/about')}
             className={classes.action}
           >
             Learn more
