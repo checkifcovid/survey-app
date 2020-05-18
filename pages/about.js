@@ -66,10 +66,8 @@ const About = () => {
               <Typography variant="body1" component="p" gutterBottom>
                 We've seen outbreaks happen on long-term care homes where a lot
                 of older people contract the disease. COVID-19 outbreak could be
-                anywhere but might not be visible because symptoms of people
-                around are mild or if most are asymptomatic. The key to
-                identifying outbreaks is data and acces to it can be used to
-                cluster symptoms and isolate potential local oubreaks.
+                anywhere but might not be visible because symptoms are mild or
+                people are asymptomatic.
               </Typography>
             </Grid>
             <Grid item sm={5} className={classes.graphic}>
@@ -88,13 +86,9 @@ const About = () => {
                 gutterBottom
                 className={classes.primaryText}
               >
-                CheckIfCovid aims to help solve the pandemic with the use of
-                data
-              </Typography>
-              <Typography variant="body1" component="p" gutterBottom>
-                We are building a solution that will enable anyone to check the
-                probability of a Covid-19 based on their symptoms and location,
-                even without leaving home.
+                CheckIfCovid aims to alleviate the problem through insights that
+                will enable better risk assessment and more effective testing
+                program
               </Typography>
             </Grid>
           </Grid>
