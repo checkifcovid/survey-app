@@ -100,6 +100,7 @@ module.exports = {
           lng: '',
         },
         emergency: '911',
+        require: ['postcode'],
         zip: {
           min: 5,
           max: 5,
@@ -115,6 +116,7 @@ module.exports = {
           lng: '',
         },
         emergency: '911',
+        require: ['postcode'],
         zip: {
           min: 6,
           max: 6,
@@ -130,6 +132,7 @@ module.exports = {
           lng: '',
         },
         emergency: '999',
+        require: ['postcode'],
         zip: {
           min: 5,
           max: 8,
@@ -145,6 +148,7 @@ module.exports = {
           lng: '',
         },
         emergency: '911',
+        require: ['street', 'postcode'],
         zip: {
           min: 3,
           max: 4,

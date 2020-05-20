@@ -1,21 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 
 import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
 
 // Redux
 import { connect } from 'react-redux'
-import { setCountry } from '../redux/actions/configActions'
-import { updateUser } from '../redux/actions/userActions'
 
 import DropDownCountries from '../components/DropDownCountries/DropDownCountries'
-
-import { Formik } from 'formik'
-import * as Yup from 'yup'
+import Postcode from '../components/Location/Postcode'
+import { setPosition } from '../redux/actions/positionActions'
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -24,21 +20,32 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.8rem',
     },
   },
-  formControl: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: 250,
-    padding: theme.spacing(2, 0),
-  },
   input: {
-    padding: theme.spacing(1, 0),
+    margin: theme.spacing(2, 0),
   },
 }))
 
-const Location = ({ config, user, updateUser }) => {
+const renderInput = input => {
+  switch (input) {
+    case 'postcode':
+      return <Postcode />
+    default:
+      return null
+  }
+}
+
+const Location = ({ config, setPosition }) => {
   const classes = useStyles()
 
-  console.log('u', user)
+  // Set the country value to the current site value
+  useEffect(() => {
+    setPosition({
+      field: 'country',
+      value: config.country.name,
+    })
+  }, [config.country])
+
+  console.log('c', config)
   return (
     <>
       <Container maxWidth="lg">
@@ -52,76 +59,24 @@ const Location = ({ config, user, updateUser }) => {
         </Typography>
       </Container>
       <Container align="center">
-        <Formik
-          initialValues={{ postcode: '' }}
-          validationSchema={Yup.object().shape({
-            postcode: Yup.string()
-              .min(
-                config.country.zip.min,
-                `Must not be less than ${config.country.zip.min} characters`
-              )
-              .max(
-                config.country.zip.max,
-                `Must not be more than ${config.country.zip.max} characters`
-              )
-              .matches(
-                config.country.zip.regex,
-                `Invalid ${config.country.short} location`
-              ),
-          })}
-        >
-          {props => {
-            const {
-              values,
-              touched,
-              errors,
-              handleBlur,
-              handleSubmit,
-              setFieldValue,
-            } = props
-            return (
-              <form onSubmit={handleSubmit}>
-                <Grid>
-                  <DropDownCountries display="name" />
-                </Grid>
-                <TextField
-                  label="Zip code"
-                  name="postcode"
-                  className={classes.textField}
-                  value={values.postcode}
-                  onChange={e => {
-                    if (e.keyCode === 32) {
-                      e.preventDefault()
-                    } else {
-                      const value = e.target.value
-                        .toUpperCase()
-                        .replace(/\s/g, '')
-                      setFieldValue('postcode', value)
-                      updateUser({ field: 'postcode', value: value })
-                    }
-                  }}
-                  onBlur={handleBlur}
-                  helperText={
-                    errors.postcode && touched.postcode && errors.postcode
-                  }
-                  margin="normal"
-                />
-              </form>
-            )
-          }}
-        </Formik>
+        <Grid>
+          <DropDownCountries display="name" />
+        </Grid>
+        {config.country.require?.map(input => (
+          <Grid className={classes.input} key={input}>
+            {renderInput(input)}
+          </Grid>
+        ))}
       </Container>
     </>
   )
 }
 
-const mapStateToProps = ({ config, user }) => ({
+const mapStateToProps = ({ config, position }) => ({
   config,
-  user,
+  position,
 })
-
 const mapDispatchToProps = {
-  setCountry,
-  updateUser,
+  setPosition,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Location)
