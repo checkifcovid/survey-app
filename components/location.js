@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-
 import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
 // Redux
 import { connect } from 'react-redux'
+import { setPosition } from '../redux/actions/positionActions'
 
+// Components
 import DropDownCountries from '../components/DropDownCountries/DropDownCountries'
 import Postcode from '../components/Location/Postcode'
-import { setPosition } from '../redux/actions/positionActions'
+import Street from '../components/Location/Street'
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -29,6 +30,9 @@ const renderInput = input => {
   switch (input) {
     case 'postcode':
       return <Postcode />
+
+    case 'street':
+      return <Street />
     default:
       return null
   }
