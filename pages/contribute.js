@@ -99,13 +99,13 @@ const Contribute = () => {
                 <li>Efren Macasaet (Product, Engineering)</li>
                 <li>Rashnil Chaturvedi (Engineering)</li>
                 <li>Yaakov Bressler (Data Science)</li>
+                <li>Prince Owusu Attah (Product Designer)</li>
               </ul>
               <Typography variant="h5" component="h5" gutterBottom>
                 Past Contributors
               </Typography>
               <ul>
                 <li>Dominik Einkemmer (Engineering)</li>
-                <li>Prince Owusu Attah (Product Designer)</li>
                 <li>Jason Lee (Product)</li>
                 <li>Mark Renzo Santiago (Engineering)</li>
                 <li>Diana Zhong, MD (Doctor)</li>
