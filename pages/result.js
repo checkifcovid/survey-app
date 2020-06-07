@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import fetch from 'isomorphic-unfetch'
 import { connect } from 'react-redux'
+import clx from 'classnames'
 
 import NumberFormat from 'react-number-format'
 
@@ -16,11 +17,34 @@ import ResultLinks from '../components/Result/links'
 import Accuracy from '../components/Result/accuracy'
 
 const useStyles = makeStyles(theme => ({
+  result: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    height: '18vh',
+    width: '100%',
+    backgroundColor: '#013A6B',
+    borderRadius: '15px',
+    backgroundImage:
+      '-webkit-linear-gradient(-30deg, #00D081 35%, #F6F8FB 35%)',
+  },
   Positive: {
-    color: 'red',
+    backgroundImage: '-webkit-linear-gradient(-30deg, red 35%, #F6F8FB 35%)',
   },
   Negative: {
-    color: 'green',
+    backgroundImage:
+      '-webkit-linear-gradient(-30deg, #00D081 35%, #F6F8FB 35%)',
+  },
+  diagnosis: {
+    fontSize: 60,
+    color: '#fff',
+    padding: theme.spacing(3),
+  },
+  diagnosistext: {
+    padding: theme.spacing(6, 8),
+    color: '#515861',
+  },
+  warning: {
+    color: 'red',
   },
   probability: {
     background: '#ccc',
@@ -41,6 +65,9 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'underline',
     color: '#1968fc',
     fontWeight: 'bold',
+  },
+  tip: {
+    marginTop: '20px',
   },
 }))
 
@@ -76,15 +103,20 @@ const Result = ({ symptoms, user }) => {
         <Grid container>
           <Grid className={classes.summary} item sm={8}>
             <Typography
-              className={classes.result}
+              style={{ color: '#515861', fontSize: '2em' }}
               variant="h3"
               component="h3"
               gutterBottom
             >
-              Result:{' '}
-              {result.probability ? (
-                <>
-                  <span className={classes[result.diagnosis]}>
+              Your Results:
+            </Typography>
+            <Grid container>
+              <Grid
+                item
+                className={clx(classes.result, classes[result.diagnosis])}
+              >
+                {result.probability ? (
+                  <span className={classes.diagnosis}>
                     <NumberFormat
                       value={result.probability}
                       displayType="text"
@@ -92,21 +124,28 @@ const Result = ({ symptoms, user }) => {
                       decimalScale={2}
                     />{' '}
                   </span>
-                  probability
-                </>
-              ) : (
-                <span>Inconclusive</span>
-              )}{' '}
-              of {process.env.disease.name}
-            </Typography>
+                ) : (
+                    <span>Inconclusive</span>
+                  )}
+                <Typography
+                  className={classes.diagnosistext}
+                  variant="h3"
+                  component="h3"
+                  gutterBottom
+                >
+                  Probability of {process.env.disease.name}
+                </Typography>
+              </Grid>
+            </Grid>
+
             <Typography
               variant="body1"
               component="body1"
-              className={classes.Positive}
+              className={classes.warning}
               gutterBottom
             >
               Percentage is still a work in progress. We are still building the
-              model and scraping data. You'll get a random result here.
+              model and gathering data. You'll get a random result here.
             </Typography>
             <Grid container>
               <Grid item sm={6} className={classes.statistics}>
@@ -116,45 +155,56 @@ const Result = ({ symptoms, user }) => {
                 </Typography>
                 <Statistics title="Symptom" data={symptoms} />
               </Grid>
-              <Grid item sm={6} className={classes.statistics}>
-                <Typography variant="h6" component="h6">
-                  Confirmed COVID-19 near{' '}
-                  <span className={classes.postal_code}>{user.postcode}</span>
-                </Typography>
-                <StatisticsCountry country="US" postal_code="12345" />
-              </Grid>
+              <Grid item sm={6} className={classes.statistics}></Grid>
             </Grid>
             <Typography variant="h5" component="h5" gutterBottom>
               Your Next Steps
             </Typography>
-            <Typography variant="h6" component="h6" gutterBottom>
-              Isolate From Others
-            </Typography>
-            <Typography variant="body1" component="body1" gutterBottom>
-              You should try to stay away from others for at least 7 days from
-              when your symptoms first appeared. Your isolation can end if your
-              symptoms improve significantly and if you have had no fever for at
-              least 72 hours without the use of medicine. By isolating yourself,
-              you can slow the spread of COVID‑19 and protect others.
-            </Typography>
-            <Typography variant="h6" component="h6" gutterBottom>
-              Rest and Take Care
-            </Typography>
-            <Typography variant="body1" component="body1" gutterBottom>
-              Eat well, drink fluids, and get plenty of rest.
-            </Typography>
-            <Typography variant="h6" component="h6" gutterBottom>
-              Monitor Symptoms
-            </Typography>
-            <Typography variant="body1" component="body1" gutterBottom>
-              Watch for COVID‑19 symptoms such as cough, fever, and difficulty
-              breathing. If your symptoms get worse, contact your doctor’s
-              office.
-            </Typography>
+            <Grid container>
+              <Grid item sm={8} style={{ paddingRight: '15px' }}>
+                <Typography variant="body1" component="body1" gutterBottom>
+                  You should try to stay away from others for at least 7 days
+                  from when your symptoms first appeared. Your isolation can end
+                  if your symptoms improve significantly and if you have had no
+                  fever for at least 72 hours without the use of medicine. By
+                  isolating yourself, you can slow the spread of COVID‑19 and
+                  protect others.
+                </Typography>
+              </Grid>
+              <Grid item sm={4}>
+                <Typography variant="body1" component="body1" gutterBottom>
+                  Eat well, drink fluids, and get plenty of rest.
+                </Typography>
+                <Typography variant="body1" component="body1" gutterBottom>
+                  Watch for COVID‑19 symptoms such as cough, fever, and
+                  difficulty breathing. If your symptoms get worse, contact your
+                  doctor’s office.
+                </Typography>
+              </Grid>
+            </Grid>
+            <Accuracy />
           </Grid>
           <Grid container sm={4}>
             <Grid className={classes.statistics} item>
-              <Accuracy />
+              <Typography variant="h6" component="h6">
+                Confirmed COVID-19 near{' '}
+                <span className={classes.postal_code}>{user.postcode}</span>
+              </Typography>
+              <div
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  background: 'url(map-stock.jpg)',
+                }}
+              ></div>
+              <StatisticsCountry country="US" postal_code="12345" />
+              <hr
+                style={{
+                  borderColor: '#f4f4f4',
+                  borderStyle: 'solid',
+                  margin: '20px',
+                }}
+              />
               <ResultLinks />
             </Grid>
           </Grid>

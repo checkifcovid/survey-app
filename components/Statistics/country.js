@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { withStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
+import MuiTableCell from '@material-ui/core/TableCell'
 
 import NumberFormat from 'react-number-format'
+
+const TableCell = withStyles({
+  root: {
+    borderBottom: 'none',
+  },
+})(MuiTableCell)
 
 const StatisticsCountry = () => {
   const [result, setResult] = useState({
@@ -43,18 +48,12 @@ const StatisticsCountry = () => {
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>{result.country}</TableCell>
-              <TableCell align="right">Count</TableCell>
-            </TableRow>
-          </TableHead>
+      <TableContainer>
+        <Table size="small" aria-label="simple table">
           <TableBody>
             <TableRow key="confirmed">
               <TableCell component="th" scope="row">
-                Confirmed
+                <span style={{ color: 'gold' }}>◉</span> Confirmed
               </TableCell>
               <TableCell align="right">
                 <NumberFormat
@@ -66,7 +65,7 @@ const StatisticsCountry = () => {
             </TableRow>
             <TableRow key="deaths">
               <TableCell component="th" scope="row">
-                Deaths
+                <span style={{ color: 'red' }}>◉</span> Deaths
               </TableCell>
               <TableCell align="right">
                 <NumberFormat
@@ -78,7 +77,7 @@ const StatisticsCountry = () => {
             </TableRow>
             <TableRow key="recovered">
               <TableCell component="th" scope="row">
-                Recovered
+                <span style={{ color: 'green' }}>◉</span> Recovered
               </TableCell>
               <TableCell align="right">
                 <NumberFormat
