@@ -41,7 +41,7 @@ const Statistics = ({ title, data }) => {
                     {formattedSymptom.label || ''}
                   </TableCell>
                   <TableCell align="right" className={classes.none}>
-                    No data
+                    Low data
                   </TableCell>
                 </TableRow>
               )

@@ -11,6 +11,7 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(2),
+    margin: theme.spacing(5, 0),
   },
   info: {
     display: 'flex',
