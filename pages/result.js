@@ -26,22 +26,42 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '15px',
     backgroundImage:
       '-webkit-linear-gradient(-30deg, #00D081 35%, #F6F8FB 35%)',
+    [theme.breakpoints.down('sm')]: {
+      height: '9vh',
+      backgroundImage:
+        '-webkit-linear-gradient(-30deg, #00D081 45%, #F6F8FB 45%)',
+    },
   },
   Positive: {
     backgroundImage: '-webkit-linear-gradient(-30deg, red 35%, #F6F8FB 35%)',
+    [theme.breakpoints.down('sm')]: {
+      backgroundImage: '-webkit-linear-gradient(-30deg, red 40%, #F6F8FB 40%)',
+    },
   },
   Negative: {
     backgroundImage:
       '-webkit-linear-gradient(-30deg, #00D081 35%, #F6F8FB 35%)',
+    [theme.breakpoints.down('sm')]: {
+      backgroundImage:
+        '-webkit-linear-gradient(-30deg, #00D081 40%, #F6F8FB 40%)',
+    },
   },
   diagnosis: {
     fontSize: 60,
     color: '#fff',
     padding: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 30,
+      padding: theme.spacing(2),
+    },
   },
   diagnosistext: {
     padding: theme.spacing(6, 8),
     color: '#515861',
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(3),
+      fontSize: 18,
+    },
   },
   warning: {
     color: 'red',
