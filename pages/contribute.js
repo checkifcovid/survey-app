@@ -116,6 +116,7 @@ const Contribute = () => {
                 <li>Siddharth Pathak (Engineering)</li>
                 <li>Prateek Rao (Engineering)</li>
                 <li>Benjamin Von Wong (Creative)</li>
+                <li>Zhoulai Fu</li>
               </ul>
             </Grid>
             <Grid item sm={6}>
