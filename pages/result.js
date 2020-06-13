@@ -15,6 +15,7 @@ import StatisticsCountry from '../components/Statistics/country'
 
 import ResultLinks from '../components/Result/links'
 import Accuracy from '../components/Result/accuracy'
+import Zip from '../components/Result/zip'
 
 const useStyles = makeStyles(theme => ({
   result: {
@@ -170,8 +171,7 @@ const Result = ({ symptoms, user }) => {
             <Grid container>
               <Grid item sm={6} className={classes.statistics}>
                 <Typography variant="h6" component="h6">
-                  Symptoms near{' '}
-                  <span className={classes.postal_code}>{user.postcode}</span>
+                  Symptoms near <Zip code={user.postcode} />
                 </Typography>
                 <Statistics title="Symptom" data={symptoms} />
               </Grid>
@@ -207,8 +207,7 @@ const Result = ({ symptoms, user }) => {
           <Grid container sm={4}>
             <Grid className={classes.statistics} item>
               <Typography variant="h6" component="h6">
-                Confirmed COVID-19 near{' '}
-                <span className={classes.postal_code}>{user.postcode}</span>
+                Confirmed COVID-19 near <Zip code={user.postcode} />
               </Typography>
               <div
                 style={{
