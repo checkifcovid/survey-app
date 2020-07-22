@@ -61,12 +61,15 @@ const Urgency = ({ config }) => {
         <Container maxWidth="md" className={classes.badge}>
           <Grid container>
             <ul className={classes.list}>
-              <li>Difficulty breathing</li>
+              <li>Extreme difficulty breathing (gasping for air or cannot talk without catching your breath)</li>
+              <li>Serious disorientation or confusion</li>
+              <li>Unconscious or very difficult to wake up</li>
               <li>Persistent chest pain or pressure</li>
-              <li>Brush lips or face</li>
+              <li>Bluish lips, face, or nail beds</li>
               <li>New confusion</li>
               <li>Fainting or severe lightheadedness</li>
-              <li>Any other new and concerning symptoms</li>
+              <li>Slurred speech (new or worsening)</li>
+              <li>Seizures</li>
             </ul>
           </Grid>
         </Container>
