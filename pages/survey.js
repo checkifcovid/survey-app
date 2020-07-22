@@ -129,7 +129,7 @@ const Survey = ({ config, symptoms, user, updateSymptom, updateUser }) => {
           active: false,
         },
         {
-          label: 'Kidney disease',
+          label: 'Chronic Kidney Disease',
           key: 'kidney_disease',
           active: false,
         },
