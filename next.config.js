@@ -60,7 +60,7 @@ module.exports = {
           weight: 2,
         },
         {
-          label: 'Rash',
+          label: 'Rash or skin discolorations',
           key: 'rash',
           weight: 2,
         },
