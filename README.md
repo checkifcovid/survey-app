@@ -25,7 +25,7 @@ A deployment can be configured through `next.config.js`. Each deployment is spec
       lat: '',
       lon: '',
     },
-    emergency: '911', // Local emergency number
+    emergency: '911', // Local emergency number!
     zip: {
       min: 5,
       max: 5,
