@@ -24,4 +24,4 @@ jobs:
       uses: codecov/codecov-action@v1.0.6
     - run: npm install
     - run: npm run build --if-present
-    - run: pm2 reload checkifcovid-us
+    - run: pm2 reload default
